@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 describe("Admin School Validation", function () {
 
   beforeEach(function () {
@@ -10,12 +7,6 @@ describe("Admin School Validation", function () {
       cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
     })
   })
-
-  it("TC001 Verify_ sample", function () {
-    cy.xpath("//p[text()='Your Dashboard']").should('be.visible')
-  })
-=======
-describe('Admin School Validation', function () {
 
     before(function () {
         cy.visit(Cypress.env("url"))
@@ -27,12 +18,4 @@ describe('Admin School Validation', function () {
       it('TC001 Validate thee admin school login',function () {
 
       })
->>>>>>> 3a325bb4e5bc15f018b416a92a5abc999117c2ae
-=======
-
-describe("Admin_User",function(){
-    it("E2E-01",function(){
-        
     })
->>>>>>> 586a4987490eff6271da7d5c454d12b217144456
-})
