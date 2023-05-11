@@ -15,6 +15,10 @@ class adminIndexPage{
     getLogInBtn() {
         return cy.get('button[form="loginForm"]')
     }
+
+    getLoginAsTeacherBtn(){
+        return cy.get('button[type="button"]').eq(1)
+    }
     
 }
 
