@@ -12,7 +12,7 @@ Cypress.Commands.add('adminLogin', (email, password) => {
   login.getUserNameTxtFld().clear().type(email)
   login.getPasswordTxtFld().clear().type(password)
   login.getLogInBtn().click().wait(2000)
-  cy.url().should('contain', 'dashboard')
+  cy.url().should('contain',  'dashboard')
   cy.wait(1000);
 })
 
