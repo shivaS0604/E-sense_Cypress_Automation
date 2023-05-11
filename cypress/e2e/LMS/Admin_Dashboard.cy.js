@@ -10,6 +10,6 @@ describe("Admin School Validation", function () {
       })
       
       it('Adm_Dashboard 001 To validate user is able to view the attendance marked is reflected in the Grade wise attendace section and Student Present widgets', function () {
-        dashboard.logout() 
+        dashboard. logout()  
       })
     })
