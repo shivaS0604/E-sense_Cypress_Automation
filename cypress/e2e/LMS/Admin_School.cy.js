@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 describe("Admin School Validation", function () {
 
@@ -27,4 +28,11 @@ describe('Admin School Validation', function () {
 
       })
 >>>>>>> 3a325bb4e5bc15f018b416a92a5abc999117c2ae
+=======
+
+describe("Admin_User",function(){
+    it("E2E-01",function(){
+        
+    })
+>>>>>>> 586a4987490eff6271da7d5c454d12b217144456
 })
