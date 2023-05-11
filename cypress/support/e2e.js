@@ -1,9 +1,6 @@
 //X-path plugin
 require('cypress-xpath');
 
-//To fetch cypress actions globally
-/// <reference types = "Cypress" />
-
 //To handle Uncaught Exception
 Cypress.on('uncaught:exception', (err, runnable) => {
   console.log(`Caught at: ${runnable.title}\n`, err)
@@ -20,3 +17,6 @@ Cypress.Commands.add('adminLogin', (email, password) => {
   cy.url().should('contain', 'dashboard')
   cy.wait(1000);
 })
+
+/// <reference types = "Cypress" />
+
