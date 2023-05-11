@@ -7,7 +7,7 @@ describe("Admin School Validation", function () {
         })
       })
 
-      it('TC001 Validate thee admin school login', function () {
+      it('TC001 Validate thee admin school login',  function () {
 
       })
     })
