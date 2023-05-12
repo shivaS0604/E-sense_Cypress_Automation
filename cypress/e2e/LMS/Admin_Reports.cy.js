@@ -19,7 +19,7 @@ describe('Validate Admin Edited the Gradebook Template Successfully',function(){
     
         ReportDashboardPage.getAdminReportsVerifyBasicTemplateDetailsText().should('have.text','Basic Template Details')
         ReportDashboardPage.getCreateNewTemplateGradeDropdown().should('have.text','Grade 1')
-        ReportDashboardPage.getCreateNewTemplateSectionDropdown().should('have.text','A')
+        ReportDashboardPage.getCreateNewTemplateSectionDropdown().should('have.text', 'A')
         ReportDashboardPage.getCreateNewTemplateNumberOftermsDropdown().click()
         ReportDashboardPage.getCreateNewTemplateSelectNumberOftermsValue().click()
         ReportDashboardPage.getCreateNewTemplatePublishGradebookInDropdown().click()
