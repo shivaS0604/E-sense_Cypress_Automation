@@ -1,20 +1,33 @@
-// ***********************************************************
-// This example support/e2e.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
+/// <reference types = "Cypress" />
 
-// Import commands.js using ES2015 syntax:
-import './commands'
+//X-path plugin
+require('cypress-xpath');
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+//To handle Uncaught Exception
+Cypress.on('uncaught:exception', (err, runnable) => {
+  console.log(`Caught at: ${runnable.title}\n`, err)
+  return false
+})
+
+//To Login As Admin
+const login = require('./pageObjects/LMS/adminIndexPage')
+Cypress.Commands.add('adminLogin', (email, password) => {
+  login.getLoginAsAdminBtn().click()
+  login.getUserNameTxtFld().clear().type(email)
+  login.getPasswordTxtFld().clear().type(password)
+  login.getLogInBtn().click().wait(2000)
+  cy.url().should('contain', 'dashboard').wait(1000)
+})
+
+//To Login As Teacher
+const teacherLogin = require('./pageObjects/LMS/adminIndexPage')
+Cypress.Commands.add('teacherLogin', (email, password) => {
+  teacherLogin.getLoginAsTeacherBtn().click()
+  teacherLogin.getUserNameTxtFld().clear().type(email)
+  teacherLogin.getPasswordTxtFld().clear().type(password)
+  teacherLogin.getLogInBtn().click().wait(2000)
+  cy.url().should('contain', 'dashboard').wait(1000)
+})
+
+
+
