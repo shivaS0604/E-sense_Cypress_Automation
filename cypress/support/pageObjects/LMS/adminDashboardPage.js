@@ -7,6 +7,11 @@ class adminDashboardPage {
     getLogoutBtnInMyProfileList() {
         return cy.get('div.popover-student>.classTitle').contains("Logout")
     }
+    getCalenderTab()
+    {
+        return cy.xpath("//div[text()='Calendar']")
+        
+    }
 
     //Logout-admin
     logout() {
