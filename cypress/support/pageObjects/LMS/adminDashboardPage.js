@@ -13,6 +13,10 @@ class adminDashboardPage {
         
     }
 
+    getGradeWiseAttendanceBarLst(className) {
+        return cy.xpath('//h4[text()="'+className+'"]/parent::*')
+    }
+
     //Logout-admin
     logout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
