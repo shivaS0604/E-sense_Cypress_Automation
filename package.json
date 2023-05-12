@@ -1,11 +1,12 @@
 {
-  "name": "esense_automation_forbackup",
+  "name": "e-sense_cypress_automation",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "cypress.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+ 
   "author": "",
   "license": "ISC",
   "devDependencies": {
