@@ -11,7 +11,7 @@ describe("Admin Users Validation", function () {
       })
       
 
-      it('TC001 Verify that School admin can add Teachers successfully when entered a valid data',  function () {
+      it('TC_US_001 Verify that School admin can add Teachers successfully when entered a valid data',  function () {
         cy.fixture("LMS/TeacherDetails.json").then((techerDetails)=>{
         adminUsersPage.getAdminUsersSideMenuTab().click({force:true})
         adminUsersPage.getAdminUsersTeachersTab().click()
@@ -48,7 +48,7 @@ describe("Admin Users Validation", function () {
         })
       })
 
-      it('TC002 Verify that School admin can add Teachers successfully with bulk upload of data',function(){
+      it('TC_US_002 Verify that School admin can add Teachers successfully with bulk upload of data',function(){
         adminUsersPage.getAdminUsersSideMenuTab().click({force:true})
         adminUsersPage.getAdminUsersTeachersTab().click()
         
