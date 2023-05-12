@@ -1,3 +1,5 @@
+/// <reference types = "Cypress" />
+
 //X-path plugin
 require('cypress-xpath');
 
@@ -14,9 +16,18 @@ Cypress.Commands.add('adminLogin', (email, password) => {
   login.getUserNameTxtFld().clear().type(email)
   login.getPasswordTxtFld().clear().type(password)
   login.getLogInBtn().click().wait(2000)
-  cy.url().should('contain', 'dashboard')
-  cy.wait(1000);
+  cy.url().should('contain', 'dashboard').wait(1000)
 })
 
-/// <reference types = "Cypress" />
+//To Login As Teacher
+const teacherLogin = require('./pageObjects/LMS/adminIndexPage')
+Cypress.Commands.add('teacherLogin', (email, password) => {
+  teacherLogin.getLoginAsTeacherBtn().click()
+  teacherLogin.getUserNameTxtFld().clear().type(email)
+  teacherLogin.getPasswordTxtFld().clear().type(password)
+  teacherLogin.getLogInBtn().click().wait(2000)
+  cy.url().should('contain', 'dashboard').wait(1000)
+})
+
+
 

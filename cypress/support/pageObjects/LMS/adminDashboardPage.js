@@ -7,6 +7,15 @@ class adminDashboardPage {
     getLogoutBtnInMyProfileList() {
         return cy.get('div.popover-student>.classTitle').contains("Logout")
     }
+    getCalenderTab()
+    {
+        return cy.xpath("//div[text()='Calendar']")
+        
+    }
+
+    getGradeWiseAttendanceBarLst(className) {
+        return cy.xpath('//h4[text()="'+className+'"]/parent::*')
+    }
 
     //Logout-admin
     logout() {
