@@ -11,5 +11,9 @@ class adminSchoolPage{
     getAcademicSetUpTittle(){
         return cy.get('div.header-font-cls')
     }
+
+    getAdminSchoolQuickLinkTittle(){
+        return cy.xpath('//p[text()="Quick Links"]')
+    }
 }
 module.exports = new adminSchoolPage()
