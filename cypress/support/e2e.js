@@ -1,4 +1,4 @@
-/// <reference types = "Cypress" />
+import './commands';
 
 //X-path plugin
 require('cypress-xpath');

@@ -11,6 +11,10 @@ class adminDashboardPage {
     getCalenderTab() {
         return cy.xpath("//div[text()='Calendar']")
     }
+    getSideNavBar()
+    {
+        return cy.xpath('//div[@class="side-nav-bar "]')
+    }
 
     getGradeWiseAttendanceBarLst(className) {
         return cy.xpath('//h4[text()="'+className+'"]/parent::*')
