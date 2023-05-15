@@ -1,5 +1,6 @@
 const adminschoolpage = require('../../support/pageObjects/LMS/admin_Schoolpage.js')
 const academicsetuppage = require('../../support/pageObjects/LMS/academicSetUpPage.js')
+
 describe("Admin School Validation", function () {
 
     before(function () {
