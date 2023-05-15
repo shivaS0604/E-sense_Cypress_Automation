@@ -39,4 +39,7 @@ describe("Admin School Validation", function () {
     cy.contains("100% present").should('be.visible')
   })
 
+  it("")
+//author - shiva
+
 })
