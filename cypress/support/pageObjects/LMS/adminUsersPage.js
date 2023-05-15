@@ -113,6 +113,22 @@ class adminUsersPage{
         return cy.get('button.userdelete')
     }
 
+    getTeacherBulkUploadBtn(){
+        return cy.get('button[aria-label="Bulk Upload"]')
+    }
+
+    getTeacherUploadTeacherAccountsinbulkDownloadSampleFileLink(){
+        return cy.get('button.BulkUpload_downloadSampleTxt__1UJTp')
+    }
+
+    getTeacherUploadTeacherAccountsinbulkSelectFileFromComputerBtn(){
+        return cy.get('input[id="file-input"]')
+    }
+
+    getTeacherUploadTeacherAccountsinbulkImportTeacherAccounts(){
+        return cy.get('button.BulkUpload_bulkImport__spFpc')
+    }
+
 }
 
 module.exports = new adminUsersPage()
