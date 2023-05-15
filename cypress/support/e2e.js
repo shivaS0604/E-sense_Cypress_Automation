@@ -3,6 +3,10 @@
 //X-path plugin
 require('cypress-xpath');
 
+// File-Upload Plugin
+import 'cypress-file-upload';
+
+
 //To handle Uncaught Exception
 Cypress.on('uncaught:exception', (err, runnable) => {
   console.log(`Caught at: ${runnable.title}\n`, err)

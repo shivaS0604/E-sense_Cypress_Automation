@@ -5,13 +5,15 @@ class AdminReportPage{
     }
 
     getAdminReportsStudentGradebookTab(){
-        return cy.get('[class="content-popover-reports"]').eq(0)
+        return cy.get('div[class="content-popover-reports"]').eq(0)
     }
     getAdminReportsVerifyStudentGradebookText(){
         return cy.contains('Student Gradebook')
     }
-    getAdminReportsGradeEditButton(){
-        return cy.xpath('//p[contains(text(),"Grade 1")]/ancestor::tr//img[@aria-label="Edit"]')
+    getAdminReportsGradeEditButton(Grades){
+        // return cy.xpath('//p[contains(text(),"Grade 1")]/ancestor::tr//img[@aria-label="Edit"]')
+        return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr//img[@aria-label="Edit"]')
+
     }
 
     getAdminReportsVerifyBasicTemplateDetailsText(){
@@ -102,7 +104,7 @@ class AdminReportPage{
         return cy.contains('Add Signature')
     }
     getCreateNewTemplateUploadImage(){
-        return cy.get('div[class="fileimages"]')
+        return cy.get('.fileimages > input')
     }
 
 

@@ -12,10 +12,10 @@ describe('Validate Admin Edited the Gradebook Template Successfully',function(){
 
     it('Verify that School Admin can Edit the TopSchool Gradebook Template',function(){
         ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
-        ReportDashboardPage.getAdminReportsStudentGradebookTab().click()
+        ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible',{timeout:2000}).click({force:true})
         cy.wait(2000)
         ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text','Student Gradebook')
-        ReportDashboardPage.getAdminReportsGradeEditButton().click()
+        ReportDashboardPage.getAdminReportsGradeEditButton("Grade 1").click()
     
         ReportDashboardPage.getAdminReportsVerifyBasicTemplateDetailsText().should('have.text','Basic Template Details')
         ReportDashboardPage.getCreateNewTemplateGradeDropdown().should('have.text','Grade 1')
@@ -46,8 +46,11 @@ describe('Validate Admin Edited the Gradebook Template Successfully',function(){
 
         ReportDashboardPage.getCreateNewTemplateAddActivityTextfield().type('Drawing')
        ReportDashboardPage.getCreateNewTemplateAddPrincipleSignatureButton().click()
-       ReportDashboardPage.getCreateNewTemplateVerifyAddSignatureTxt().should('have.value','Add Signature')
-       ReportDashboardPage.getCreateNewTemplateUploadImage().click()
+       ReportDashboardPage.getCreateNewTemplateVerifyAddSignatureTxt().should('have.text','Add Signature')
+      var ImagePath= "C:\\Users\\user.TYSS-GARIMASAIN\\Pictures\\Screenshots\\6165-manoj-muntashir039s-signature.jpg"
+      ReportDashboardPage.getCreateNewTemplateUploadImage().selectFile(ImagePath)
+      cy.get('[data-testid="savvBtn"]').click({force:true})
+
 
     })
     //author - manoj
