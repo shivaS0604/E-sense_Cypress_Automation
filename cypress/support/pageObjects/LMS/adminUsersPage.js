@@ -76,8 +76,8 @@ class adminUsersPage{
         return cy.get('div[id="opt-subjects"]')
     }
 
-    getAdminAddNewTeacherAccountGradeSectionSelectGradeDropdownOpt(){
-        return cy.get('span.MuiListItemText-primary')
+    getAdminAddNewTeacherAccountGradeSectionSelectGradeDropdownOpt(opt){
+        return cy.get('span.MuiListItemText-primary').contains(opt)
     }
 
     getAdminAddNewTeacherAccountGradeSectionSelectGradeCheckBox(){
@@ -105,6 +105,22 @@ class adminUsersPage{
         return cy.xpath('//p[text()="'+teachername+'"]/ancestor::tr//button[@aria-label="Delete Teacher"]')
     }
 
+    getTeacherEditBtn(teachername){
+        return cy.xpath('//p[text()="'+teachername+'"]/ancestor::tr//button[@aria-label="Edit Teacher"]')
+    }
+
+    getTeacherResetBtn(teachername){
+        return cy.xpath('//p[text()="'+teachername+'"]/ancestor::tr//button[@aria-label="Reset"]')
+    }
+
+    getTeacherViewBtn(teachername){
+        return cy.xpath('//p[text()="'+teachername+'"]/ancestor::tr//img[@src="/static/media/rightViewImg.a97b7807.svg"]')
+    }
+
+    getTeacherEditSaveChangesBtn(){
+        return cy.get('button.continue-btn-cls')
+    }
+
     getTeacherDeleteAccountBtn(){
         return cy.get('h6[class="MuiTypography-root MuiTypography-h6 css-1anx036"]').contains('Delete Account')
     }
@@ -127,6 +143,14 @@ class adminUsersPage{
 
     getTeacherUploadTeacherAccountsinbulkImportTeacherAccounts(){
         return cy.get('button.BulkUpload_bulkImport__spFpc')
+    }
+
+    getAdminAddNewTeacherAccountBasicDetailsCancelBtn(){
+        return cy.get('div.cancel-btn')
+    }
+
+    getTeacherInCompleteIcon(){
+        return cy.get('.TeacherDashboard_alertImgcls__3ceOA')
     }
 
 }
