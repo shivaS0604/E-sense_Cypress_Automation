@@ -9,7 +9,7 @@ class academicSetUpPage{
     }
 
     getAddAcademicPopUpSelectYearDropdownLists(){
-        return cy.get('div.MuiPopover-paper>ul>li').eq(0)
+        return cy.get('div.MuiPopover-paper>ul>li')
     }
 
     getAddAcademicSetUpPopUpTittle(){
@@ -32,7 +32,17 @@ class academicSetUpPage{
         return cy.get('button.add-btn-cls')
     }
 
+    getGradeAndAcademicTab(){
+        return cy.xpath('//button[text()="Grades and subject"]')
+    }
 
+    getAddAcademicPopUpCalenderYearArrowDropDownIcon(){
+        return cy.get('svg[data-testid="ArrowDropDownIcon"]')
+    }
+
+    getAddAcademicPopUpCalenderYearArrowDropDownLists(){
+        return cy.get('button.PrivatePickersYear-yearButton')
+    }
 
     
 
