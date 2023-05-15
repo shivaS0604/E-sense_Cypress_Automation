@@ -11,7 +11,6 @@ class AdminReportPage{
         return cy.contains('Student Gradebook')
     }
     getAdminReportsGradeEditButton(Grades){
-        // return cy.xpath('//p[contains(text(),"Grade 1")]/ancestor::tr//img[@aria-label="Edit"]')
         return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr//img[@aria-label="Edit"]')
 
     }
@@ -50,7 +49,7 @@ class AdminReportPage{
         return cy.get('div#mui-component-select-testType')
     }
     getCreateNewTemplateTermCheckbox(){
-        return cy.get('input[type="checkbox"]')
+        return cy.get('li[data-value="1"]')
     }
     getCreateNewTemplateTestTypeDropdown(){
         return cy.get('div#demo-simple-select-helper').eq(3)
@@ -66,7 +65,7 @@ class AdminReportPage{
     }
 
     getCreateNewTemplateSelectMaxMarksValue(){
-        return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('15')
+        return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('100')
     }
     getCreateNewTemplateAddSubjectButton(){
         return cy.contains(' + Add Subject ')
@@ -75,7 +74,7 @@ class AdminReportPage{
         return cy.get('div#mui-component-select-subject')
     }
     getCreateNewTemplateSelectSubjectvalue(){
-        return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('Indian Constitution')
+        return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"] li').eq(0)
     }
 
     getCreateNewTemplateAddTheoryAndPracticleButton(){
@@ -94,6 +93,7 @@ class AdminReportPage{
     getCreateNewTemplatePracticleTextfield(){
         return cy.get('input[name="practicalMarks"]')
     }
+
     getCreateNewTemplateAddActivityTextfield(){
         return cy.get('input[name="activity"]')
     }
@@ -107,7 +107,62 @@ class AdminReportPage{
         return cy.get('.fileimages > input')
     }
 
+    getCreateNewTemplateSaveAndPreviewBtn(){
+        return cy.xpath("//button[contains(.,'Save And Preview')]")
+
+    }
+    getPreviewScreenSubDetailsText(){
+        return cy.get('[title="display"]')
+    }
+    getPreviewScreenCoScholasticActivitiesTxt(){
+        return cy.get('.MuiTableBody-root > .MuiTableRow-root > :nth-child(1)')
+    }
+
+    getPreviewScreenPublishButton(){
+        return cy.xpath('//button[contains(.,"Publish")]')
+    }
+
+    getPreviewScreenYesPublishButton(){
+        return cy.xpath('//button[contains(.,"Yes, Publish")]')
+    }
+
+    getStudentGradeBookTxt(){
+        return cy.xpath('//p[contains(.,"Student Gradebook")]')
+    }
+
+    getVerifyGradeContainPublishedStatus(){
+       return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Published")]')
+    }
+
+    getPublishedStatusToggleButton(){
+        return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Published")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
+    }
+
+    getYesUnfinishButton(){
+        return cy.xpath('//span[contains(.,"Yes, Unpublish")]')
+    }
+
+    getVerifyGradebookUnfinishedSuccesfullyTxt(){
+        return cy.get('div[class="font-cls"]')
+    }
+
+    getVerifyGradeContainDraftStatus(){
+        return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Draft")]')
+    }
+
+    getDraftStatusToggleButton(){
+        return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
+    }
+
+    getDeleteButton(){
+        return cy,xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::img[@aria-label="Delete"]')
+    }
+
+
+
+
 
 }
 
 module.exports=new AdminReportPage()
+
