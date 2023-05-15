@@ -4,7 +4,7 @@ class adminDashboardPage {
         return cy.get('div.side-nav-dashboard>.profile-pic>img')
     }
 
-    getLogoutBtnInMyProfileList() {
+    getLogoutBtnInMyProfileList()  {
         return cy.get('div.popover-student>.classTitle').contains("Logout")
     }
     
