@@ -32,6 +32,9 @@ class academicSetUpPage{
         return cy.get('button.add-btn-cls')
     }
 
+    getGradeAndAcademicTab(){
+        return cy.xpath('//button[text()="Grades and subject"]')
+    }
 
 
     
