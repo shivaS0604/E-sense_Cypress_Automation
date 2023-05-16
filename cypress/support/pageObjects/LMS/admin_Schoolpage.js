@@ -15,5 +15,9 @@ class adminSchoolPage{
     getAdminSchoolQuickLinkTittle(){
         return cy.xpath('//p[text()="Quick Links"]')
     }
+
+    getSchoolInfrastructures(){
+        return cy.xpath('//p[text()="School Infrastructure"]')
+    }
 }
 module.exports = new adminSchoolPage()
