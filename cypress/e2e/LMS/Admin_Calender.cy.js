@@ -54,7 +54,7 @@ describe('Calender', function(){
             cy.wait(500)
 
         }
-        calenderPage.getRemainderModelContent().click({ force: true })
+        calenderPage.getRemainderModelContent().click({ force: true } )
         calenderPage.getEndTimeButton().should('have.value', '10:00 pm')
         calenderPage.getRepeatDropdown().click()
         calenderPage.getRepeatlist('Every weekday').click()
