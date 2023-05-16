@@ -1,5 +1,3 @@
-/// <reference types = "Cypress" />
-
 //X-path plugin
 require('cypress-xpath');
 

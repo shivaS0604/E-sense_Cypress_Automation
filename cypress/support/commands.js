@@ -1,5 +1,1 @@
-
-
-
-
 /// <reference types = "Cypress" />
