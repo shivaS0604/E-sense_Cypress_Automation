@@ -1,7 +1,8 @@
-import './commands';
-
 //X-path plugin
 require('cypress-xpath');
+
+//import commands.js using ES2015 syntax:
+import './commands';
 
 //To handle Uncaught Exception
 Cypress.on('uncaught:exception', (err, runnable) => {
