@@ -1,5 +1,7 @@
 class AdminReportPage{
 
+    //Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template
+
     getAdminReportsSideMenubarReportTab(){
         return  cy.get('div.side-nav-bar ').invoke('show').contains('Reports')
     }
@@ -13,7 +15,7 @@ class AdminReportPage{
     }
 
     getAdminReportsGradeEditButton(Grades){
-        cy.xpath('(//p[contains(text(),"'+Grades+'")]/ancestor::tr//button[contains(.,"Pending")]//following::img[@aria-label="Edit"])[1]')
+        return cy.xpath('(//p[contains(text(),"'+Grades+'")]/ancestor::tr//button[contains(.,"Pending")]//following::img[@aria-label="Edit"])[1]')
     }
 
     getAdminReportsVerifyBasicTemplateDetailsText(){
@@ -106,6 +108,10 @@ class AdminReportPage{
         return cy.get('input[name="practicalMarks"]')
     }
 
+    getDelButton(){
+       return cy.get(':nth-child(4) > .MuiButton-root')
+    }
+
     getCreateNewTemplateAddActivityTextfield(){
         return cy.get('input[name="activity"]')
     }
@@ -120,6 +126,10 @@ class AdminReportPage{
 
     getCreateNewTemplateUploadImage(){
         return cy.get('.fileimages > input')
+    }
+
+    getSaveButton(){
+        return cy.get('[data-testid="savvBtn"]')
     }
 
     getCreateNewTemplateSaveAndPreviewBtn(){
@@ -170,9 +180,49 @@ class AdminReportPage{
         return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
     }
 
-    getDeleteButton(Grades){
+    getDeleteIcon(Grades){
         return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::img[@aria-label="Delete"]')
     }
+
+    getDeleteButton(){
+        return cy.xpath('//span[contains(.,"Delete")]')
+    }
+
+
+    //Tc_002 Verify that School Admin can Create the Gradebook Template
+    getAdminReportsGradeViewButton(Grade){
+        return cy.xpath('//p[contains(text(),"'+Grade+'")]/ancestor::tr/descendant::td[contains(.,"Pending")]/../descendant::button[@aria-label="View"]')
+    }
+
+    getCreateNewButton(){
+        return cy.xpath('//span[contains(.,"Create New")]')
+    }
+
+    getCreateNewTemplateSelectGradeDropdownValue(){
+       return cy.get('ul[class="MuiList-root MuiMenu-list MuiList-padding"] li').contains('Grade 2')
+    }
+
+    getCreateNewTemplateSelectSectionDropdownValue(){
+       return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"] li').contains('A')
+    }
+
+    getCountinueButton(){
+        return cy.xpath('//button[contains(.,"Continue")]')
+    }
+
+    getAddActivityButton(){
+        return cy.xpath('//button[contains(.,"+ Add Activity")]')
+    }
+
+
+    // Tc-003 Verify that School Admin can Delete the Gradebook Template
+    getCreatetemplateButton(){
+        return cy.xpath(' //a[contains(.,"Create Template")]')
+    }
+
+
+
+
 
 
 

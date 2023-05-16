@@ -4,9 +4,14 @@
    "StudentGradebookText":"Student Gradebook",
    "BasicTemplateDetailsText":"Basic Template Details",
    "Theory":"100",
-   "Practicle":"6",
+   "Practicle":"0",
    "AddActivityName":"Drawing",
-   "AddSignatureTxt":"Add Signature"
-   
+   "AddSignatureTxt":"Add Signature",
+   "SignatureFile":"C:/Users/user.TYSS-GARIMASAIN/Desktop/Esens/TopSchool/E-sense_Cypress_Automation/cypress/fixtures/LMS/GradeBook_signature.jpg",
+   "SubDetails":"display",
+   "Co_ScholasticActivities":"SportsDrawing",
+   "PublishedStatus":"Published",
+   "DraftStatus":"Draft",
+   "StudentGradeBookTxt":"Student Gradebook"
    
 }
