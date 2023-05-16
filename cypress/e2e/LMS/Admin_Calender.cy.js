@@ -72,8 +72,22 @@ describe('Calender', () => {
         cy.get('div[class*="MuiCalendarPicker-root"] div[role="row"]').last().find('div[role="cell"] [type="button"]').last().click()
         cy.wait(1000)
         calenderPage.getAddDescriptionTextarea().type('Remainder for Event' + remain).wait(1000)
-        calenderPage.getAttachAFileButton().attachFile('LMS/Event_added.pdf',{force:true})
-        cy.wait(500)
+        calenderPage.getAttachAFileButton().attachFile('LMS/Event_added.pdf',{force:true}).wait(500)
+        cy.xpath("//p[text()='Add Notes']").click()
+        cy.xpath("//button[text()='Add Note']").click()
+        var title="Notes"+remain
+        var description="description"+remain
+        cy.xpath('//time[@class="view_note-time"]').then(function(time){
+            this.time=time
+        })
+        cy.xpath('//input[@placeholder="Add title"]').type(title)
+
+        cy.xpath('//div[@data-placeholder="Description"]').type(description).wait(500)
+        cy.xpath("//button[text()='Back to note list']").click().wait(500)
+        cy.xpath("//button[contains(text(),'All Notes')]").click()
+        cy.get('input[@placeholder="Search"]:visible')
+
+
 
     })
 
