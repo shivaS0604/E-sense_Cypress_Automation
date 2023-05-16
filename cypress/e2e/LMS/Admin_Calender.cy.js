@@ -59,11 +59,11 @@ describe('Calender', function(){
         calenderPage.getRepeatDropdown().click()
         calenderPage.getRepeatlist('Every weekday').click()
         calenderPage.getEndRemainderOnButton().click({ force: true })
-        calenderPage.getPickDateInCalender(Date).click()
+        calenderPage.getPickDateInCalender(date).click()
         cy.wait(1000)
         calenderPage.getAddDescriptionTextarea().type('Remainder for Event' + remain).wait(1000)
         calenderPage.getAttachAFileButton().attachFile('LMS/Event_added.pdf',{force:true}).wait(500)
-        calenderPage.getAddNotesButton().click()
+        calenderPage.getAddNotesButton().click().wait(500)
         calenderPage.getAddNoteButton().click()
         var title="Notes"+remain
         var description="description"+remain

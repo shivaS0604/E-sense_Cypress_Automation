@@ -3,6 +3,7 @@
 
 
 /// <reference types = "Cypress" />
+import 'cypress-file-upload'
 
 
 const adminschoolpage = require('../support/pageObjects/LMS/admin_Schoolpage.js')

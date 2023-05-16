@@ -62,7 +62,7 @@ class CalenderPage{
     }
     getAddNoteButton()
     {
-        cy.xpath("//button[text()='Add Note']")
+      return cy.xpath("//button[text()='Add Note']")
     }
     getSaveRemainderButton(){
 
