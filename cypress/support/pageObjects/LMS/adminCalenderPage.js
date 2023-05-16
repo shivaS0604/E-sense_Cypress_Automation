@@ -1,5 +1,21 @@
-class CreateRemainder
+class CalenderPage
 {
+    getYourCalenderText()
+    {
+        return cy.xpath("//div[text()='Your Calendar']")
+    }
+    getCreateNewButton()
+    {
+        return cy.xpath("//button[text()='Create New']")
+    }
+    getCreateANewCalenderText()
+    {
+        return cy.xpath("//p[text()='Create a new calendar entry']")
+    }
+    getRemainderTab()
+    {
+        return cy.xpath("//div[text()='Reminder']")
+    }
     getCreateRemainderText()
     {
         return cy.xpath("//h1[text()='Create Reminder']")
@@ -62,6 +78,7 @@ class CreateRemainder
         return cy.xpath("//span[text()='PM']/parent::button")
     }
 
+    
 
 }
-module.exports=new CreateRemainder()
+module.exports=new CalenderPage()

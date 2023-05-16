@@ -4,12 +4,16 @@ class adminDashboardPage {
         return cy.get('div.side-nav-dashboard>.profile-pic>img')
     }
 
-    getLogoutBtnInMyProfileList() {
+    getLogoutBtnInMyProfileList()  {
         return cy.get('div.popover-student>.classTitle').contains("Logout")
     }
     
     getCalenderTab() {
         return cy.xpath("//div[text()='Calendar']")
+    }
+    getSideNavBar()
+    {
+        return cy.xpath('//div[@class="side-nav-bar "]')
     }
 
     getGradeWiseAttendanceBarLst(className) {
