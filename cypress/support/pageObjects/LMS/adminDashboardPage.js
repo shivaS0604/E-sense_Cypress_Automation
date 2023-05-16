@@ -36,7 +36,7 @@ class adminDashboardPage {
         return cy.get('div.dash_profile>img')
     }
 
-    getGradebookTabInStudentGradebookPage(){
+    getGradebookTabInStudentGradebookPage(){ 
         return cy.get('button#simple-tab-1')
     }
 
@@ -62,6 +62,34 @@ class adminDashboardPage {
 
     getScholosticActivitiesPageSaveBtn(){
         return cy.get('div>button[class*=StudentGradeBook_stdGrdActionGoBkSavEdt_]')
+    }
+
+    getClassWisePerformanceGradeDrpDwn(){
+        return cy.get('div.ClsPerfmnsTopbarFilter>div>div>div[tabindex="0"]').eq(0)
+    }
+
+    getDropdownLstInDashboard(){
+        return cy.get('li[role="option"]')
+    }
+
+    getTopPerformersGradeDrpdwn(){
+        return cy.get('div[data-testid="gradeSelect"]')
+    }
+
+    getTopPerformerOverallPercentageTxt(studentName){
+        return cy.xpath('//div[contains(@class,"TopPerformers_topPefListItemsInfo")]/h4[text()="'+studentName+'"]/../../../div[contains(@class,"top_per_mark")]/h6')
+    }
+
+    getOverallResultTabInSiteAnalytics(){
+        return cy.get('button[role="tab"]').contains("Overall Result")
+    }
+
+    getGradeDropDwnInOverallResultTab(){
+        return cy.get('div[data-testid="selectlabels"]>div')
+    }
+
+    getOverallResultBarInSiteAnalytics(){
+        return cy.get('div[class*="OverallResult_dashOvrRsltvDataXaxisItemBar_"]')
     }
 
 
