@@ -7,18 +7,20 @@ class AdminReportPage{
     getAdminReportsStudentGradebookTab(){
         return cy.get('div[class="content-popover-reports"]').eq(0)
     }
+
     getAdminReportsVerifyStudentGradebookText(){
         return cy.contains('Student Gradebook')
     }
-    getAdminReportsGradeEditButton(Grades){
-        return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr//img[@aria-label="Edit"]')
 
+    getAdminReportsGradeEditButton(Grades){
+        cy.xpath('(//p[contains(text(),"'+Grades+'")]/ancestor::tr//button[contains(.,"Pending")]//following::img[@aria-label="Edit"])[1]')
     }
 
     getAdminReportsVerifyBasicTemplateDetailsText(){
         return  cy.contains('Basic Template Details')
 
     }
+
     getCreateNewTemplateGradeDropdown(){
         return cy.get('div#demo-simple-select-helper').eq(0)
     }
@@ -30,6 +32,7 @@ class AdminReportPage{
     getCreateNewTemplateNumberOftermsDropdown(){
         return cy.get('div#demo-simple-select-helper').eq(1)
     }
+
     getCreateNewTemplateSelectNumberOftermsValue(){
         return cy.get('li[data-value="1"]')
     }
@@ -41,38 +44,44 @@ class AdminReportPage{
     getCreateNewTemplateSelectPublishGradebookInValue(){
        return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('Mark')
     }
+
     getCreateNewTemplateAddTestTypeButton(){
     return cy.contains('+ Add Test Type')
-
     }
+
     getCreateNewTemplateTermDropdown(){
         return cy.get('div#mui-component-select-testType')
     }
+
     getCreateNewTemplateTermCheckbox(){
         return cy.get('li[data-value="1"]')
     }
+
     getCreateNewTemplateTestTypeDropdown(){
         return cy.get('div#demo-simple-select-helper').eq(3)
  
     }
+
     getCreateNewTemplateSelectTestTypeValue(){
         return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('Test 1')
     }
 
     getCreateNewTemplateMaxMarksDropdown(){
         return cy.get('div#demo-simple-select-helper').eq(4)
- 
     }
 
     getCreateNewTemplateSelectMaxMarksValue(){
         return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('100')
     }
+
     getCreateNewTemplateAddSubjectButton(){
         return cy.contains(' + Add Subject ')
     }
+
     getCreateNewTemplateSubjectDropdown(){
         return cy.get('div#mui-component-select-subject')
     }
+
     getCreateNewTemplateSelectSubjectvalue(){
         return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"] li').eq(0)
     }
@@ -80,12 +89,15 @@ class AdminReportPage{
     getCreateNewTemplateAddTheoryAndPracticleButton(){
         return cy.contains('+ Add Theory and Practical')
     }
+
     getAddTheoryAndPracticleTestTypeDropdown(){
         return cy.get('.CreateNewTemplate_crtNewTempCodeSubInner__1YOJm > .adminTempContSelctFild > .MuiInputBase-root > #demo-simple-select-helper')
     }
+
     getAddTheoryAndPracticleTestTypeValue(){
         return cy.get('[class="MuiList-root MuiMenu-list MuiList-padding"]').contains('Test 1')
     }
+
     getCreateNewTemplateTheoryTextfield(){
         return cy.get('input[name="theoryMarks"]')
     }
@@ -97,23 +109,27 @@ class AdminReportPage{
     getCreateNewTemplateAddActivityTextfield(){
         return cy.get('input[name="activity"]')
     }
+
     getCreateNewTemplateAddPrincipleSignatureButton(){
         return cy.contains("Add Principal's Signature")
     }
+
     getCreateNewTemplateVerifyAddSignatureTxt(){
         return cy.contains('Add Signature')
     }
+
     getCreateNewTemplateUploadImage(){
         return cy.get('.fileimages > input')
     }
 
     getCreateNewTemplateSaveAndPreviewBtn(){
         return cy.xpath("//button[contains(.,'Save And Preview')]")
-
     }
+
     getPreviewScreenSubDetailsText(){
         return cy.get('[title="display"]')
     }
+
     getPreviewScreenCoScholasticActivitiesTxt(){
         return cy.get('.MuiTableBody-root > .MuiTableRow-root > :nth-child(1)')
     }
@@ -130,12 +146,12 @@ class AdminReportPage{
         return cy.xpath('//p[contains(.,"Student Gradebook")]')
     }
 
-    getVerifyGradeContainPublishedStatus(){
-       return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Published")]')
+    getVerifyGradeContainPublishedStatus(Grades){
+       return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Published")]')
     }
 
-    getPublishedStatusToggleButton(){
-        return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Published")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
+    getPublishedStatusToggleButton(Grades){
+        return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Published")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
     }
 
     getYesUnfinishButton(){
@@ -146,16 +162,16 @@ class AdminReportPage{
         return cy.get('div[class="font-cls"]')
     }
 
-    getVerifyGradeContainDraftStatus(){
-        return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Draft")]')
+    getVerifyGradeContainDraftStatus(Grades){
+        return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Draft")]')
     }
 
-    getDraftStatusToggleButton(){
-        return cy.xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
+    getDraftStatusToggleButton(Grades){
+        return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::span[@class="MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9"]')
     }
 
-    getDeleteButton(){
-        return cy,xpath('//p[contains(text(),"Grade 2")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::img[@aria-label="Delete"]')
+    getDeleteButton(Grades){
+        return cy.xpath('//p[contains(text(),"'+Grades+'")]/ancestor::tr/descendant::td[contains(.,"Draft")]/../descendant::img[@aria-label="Delete"]')
     }
 
 
