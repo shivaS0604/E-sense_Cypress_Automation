@@ -1,3 +1,5 @@
+/// <reference types = "Cypress" />
+
 const adminDashboardPage = require("../../support/pageObjects/LMS/adminDashboardPage")
 const dashboard = require("../../support/pageObjects/LMS/adminDashboardPage")
 const teacherDashboard = require("../../support/pageObjects/LMS/teacherDashboardPage")
@@ -6,6 +8,7 @@ describe("Admin School Validation", function () {
 
   beforeEach(function () {
     cy.visit(Cypress.env("url"))
+    cy.viewport(1920,1080)
     cy.fixture("LMS/Credentials").then(function (credential) {
       cy.adminLogin(credential.username, credential.password)
     })
@@ -34,12 +37,23 @@ describe("Admin School Validation", function () {
     cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
       cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
     })
-    //let classNam = "NTT grade1 - B";
     adminDashboardPage.getGradeWiseAttendanceBarLst(this.basic.className).trigger('mouseover')
     cy.contains("100% present").should('be.visible')
   })
 
-  it("")
-//author - shiva
+  it("Adm_Dashboard 002 To validate user is able to update School picture is reflected in Reports", function () {
+    adminDashboardPage.getSchoolTabInSideNavigationBar().click()
+    adminDashboardPage.getStudentGradebookTabInReportsTab().trigger('mouseover',{timeout:2000}).click({force:true})
+    adminDashboardPage.getLogoPicInStudentGradebookTemplatePage().eq(0).should('be.visible')
+    adminDashboardPage.getDashboardTabInSideNavigationBar().click()
+    adminDashboardPage.getProfileImageInDashboard().should('be.visible')
+  })
 
+  it("Adm_Dashboard 003 To validate user is able to see the average score based on the Marks updated in Gradebook", function () {
+    adminDashboardPage.getSchoolTabInSideNavigationBar().click()
+    adminDashboardPage.getStudentGradebookTabInReportsTab().trigger('mouseover',{timeout:2000}).click({force:true})
+    Grade Updated Succesfully
+
+  })
+//author - shiva
 })
