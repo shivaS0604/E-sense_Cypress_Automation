@@ -153,6 +153,31 @@ class adminUsersPage{
         return cy.get('.TeacherDashboard_alertImgcls__3ceOA')
     }
 
+
+    getTeacherViewDeactivateAccountBtn(){
+        return cy.get('button.TeacherProfile_tchPrfDactBtn__2E33J')
+    }
+
+    getTeacherViewTeacherDetailsTab(){
+        return cy.get('div.tchPrfWrkListDetailsImg').contains('Teacher Details')
+    }
+
+    getTeacherViewAcademicDetailsTab(){
+        return cy.get('div.tchPrfWrkListDetailsImg').contains('Academic Details')
+    }
+
+    getTeacherViewViewTeacherCalendarTab(){
+        return cy.get('div.tchPrfWrkListDetailsImg').contains('View Teacher Calendar')
+    }
+
+    getTeacherViewPopupCloseBtn(){
+        return cy.get('div[class="closediv"] svg[data-testid="CloseIcon"]')
+    }
+
+    getTeacherSearchTxtfld(){
+        return cy.get('input[type="search"]')
+    }
+
 }
 
 module.exports = new adminUsersPage()
