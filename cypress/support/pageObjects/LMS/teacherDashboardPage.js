@@ -24,6 +24,38 @@ class teacherDashboardPage {
         return cy.get('div.popover-student>.classTitle').contains("Logout")
     }
 
+    getCalendarTabInSideNavigationBar() {
+        return cy.get('a[href*="mycalendar"]')
+    }
+
+    getRequestLeaveBtnInCalendarPage(){
+        return cy.get('button[data-testid="requestBtn"]')
+    }
+
+    getReasonForLeaveLst(){
+        return cy.get('div.leaveRqtLeveTypeOpt')
+    }
+
+    getStartDateInRequestAbsencePopup(){
+        return cy.get('div.schAdminInputCtrDate>div>input').eq(0)
+    }
+
+    getStartDateInRequestAbsencePopup(){
+        return cy.get('div.schAdminInputCtrDate>div>input').eq(1)
+    }
+
+    getTodaysDateInCalendarPickerInRequestAbsencePopup(){
+        return cy.get('div>button.MuiPickersDay-today')
+    }
+
+    getHalfDayCheckBoxInRequestAbsencePopup(){
+        return cy.get('div.leaveRqtLeveTypeOpt>span[data-testid="fullDayRadio"]')
+    }
+
+    getSendRequestBtnInRequestAbsencePopup(){
+        return cy.get('button.leaveRqtAction')
+    }
+
     //Logout-teacher
     teacherLogout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)

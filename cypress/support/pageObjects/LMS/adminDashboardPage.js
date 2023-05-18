@@ -96,6 +96,18 @@ class adminDashboardPage {
         return cy.get('div[class*="OverallResult_dashOvrRsltvDataXaxisItemBar_"]')
     }
 
+    getSupportTicketTabInSideNavBar(){
+        return cy.get('a[href*="support"]')
+    }
+
+    getLeaveRequestInSupportTickets(){
+        return cy.get('a[role="tab"]').eq(1)
+    }
+
+    getApproveBtnInLeaveRequestPage(){
+        return cy.get('div.supportAndFeedTableStatus>span>button').contains("Approve")
+    }
+
 
     //Logout-admin
     logout() {
