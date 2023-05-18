@@ -128,11 +128,11 @@ class CalenderPage{
    getWeeklyDropdown(){
     return cy.get('select')
    }
-   getVerifyRemainderTextInCalender(date,remain){
+   getVerifyTextInCalenderWithName(date,remain){
     return cy.xpath('((//div[@class="mbsc-calendar-wrapper mbsc-windows"])[2]/descendant::div[text()="'+date+'"])[2]/following-sibling::div/descendant::div[text()="'+remain+'"]')
    }
-   getRemainderDetailsInCalender(){
-    return cy.get('.md-custom-event-wrapper')
+   getRemainderDetailsInCalender(remain){
+    return cy.xpath("//strong[text()='"+remain+"']")
    }
    getDeleteButton(){
     return cy.xpath("//button[text()='Delete']")
@@ -140,5 +140,68 @@ class CalenderPage{
    getDeleteForEverButton(){
     return cy.xpath("//button[text()='Delete forever']")
    }
-}
+   getCreateHolidayText(){
+    return cy.xpath("//h1[text()='Create Holiday']")
+   }
+   getHolidaybutton(){
+    return cy.xpath("//div[text()='Holiday']")
+   }
+   getEnterHolidayTextField(){
+    return cy.xpath('//input[@placeholder="Enter Holiday Title"]')
+   }
+   getStartdateButtonInCreateHolidayPage(){
+    return cy.xpath('(//input[@placeholder="ddd d mmm, yyyy"])[1]')
+   }
+   getEnddateButtonInCreateHolidayPage(){
+    return cy.xpath('(//input[@placeholder="ddd d mmm, yyyy"])[2]')
+   }
+   getHolidayDescriptionTextareaField(){
+    return cy.xpath("(//span[text()='Holiday description']/ancestor::fieldset/parent::div/textarea)[1]")
+   }   
+   getSaveHolidayButton(){
+    return cy.xpath("//button[contains(text(),'Save Holiday')]")
+   }
+   getHolidayAddedSuccessfullyMsg(){
+    return cy.xpath("//div[contains(text(),'Holiday Added Successfully')]")
+   }
+   getDeleteHolidayButton(){
+    return cy.get('button').contains('Delete Holiday')
+   }
+   getHolidayDetailsIncalender(holiday){
+    return cy.xpath("//strong[text()='"+holiday+"']")
+   }
+   getEventButton(){
+    return cy.xpath("//div[contains(text(),'Event')]")
+   }
+   getEnterEventTitle(){
+    return cy.xpath('//input[@placeholder="Enter Event Title"]')
+   }
+   getSingleDayRadioButton(){
+    return cy.xpath('//input[@value="Single"]')
+   }
+   getMultipleDaysRadioButton(){
+    return cy.xpath('//input[@value="Multiple"]')
+   }
+   getDateOfEventButton(){
+    return cy.xpath("//label[contains(text(),'Date of the event')]/parent::div")
+   }
+   getEventAddDescription(){
+    return cy.xpath("(//span[contains(text(),'Add description')]/ancestor::fieldset/parent::div/textarea)[1]")
+   }
+   getEventTypeDropdown(){
+    return cy.xpath("//span[contains(.,'Event type')]/ancestor::fieldset/parent::div")
+   }
+   getEventDropdownList(eventType){
+    return cy.xpath("//li[contains(text(),'"+eventType+"')]")
+   }
+   getExtraCurricularActivityCheckbox(){
+    return cy.xpath('//span[contains(text(),"Extra Curricular Activity?")]/parent::label/child::span[contains(@class,"MuiCheckbox-root MuiCheckbox-colorPrimary")]/input')
+   }
+   getPrepHoursRequiredDropdown(){
+    return cy.xpath("//label[contains(text(),'Prep hours required')]/parent::div")
+   }
+   getPrepHoursRequiredDropdownList(hours){
+    return cy.xpath("//li[contains(text(),'"+hours+" hours')]")
+   }
+}   
 module.exports=new CalenderPage()

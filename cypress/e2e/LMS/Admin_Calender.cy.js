@@ -1,4 +1,4 @@
-/// <reference types = "Cypress" />
+
 
 const AdminIndexPage = require('../../support/pageObjects/LMS/adminIndexPage')
 const adminDashBoardPage = require('../../support/pageObjects/LMS/adminDashboardPage')
@@ -15,7 +15,7 @@ describe('Calender', function(){
         })
       
     })
-    it('E2E_01_Calender_Remainder_To Validate that the user is able to create reminder in calender and display the popup about the reminder anywhere in screen for selected date and time.', () => {
+    it('E2E_01_Remainder_To Validate that the user is able to create reminder in calender and display the popup about the reminder anywhere in screen for selected date and time.', () => {
         adminDashBoardPage.getSideNavBar().invoke('show')
         adminDashBoardPage.getCalenderTab().click()
         calenderPage.getYourCalenderText().should('be.visible', { timeout: 10000 })
@@ -29,10 +29,7 @@ describe('Calender', function(){
         calenderPage.getDateTextField().click()
         var d = new Date();
         var date = d.getDate()+1
-        cy.log(date)
-
-        cy.xpath("//button[text()='"+date+"']").click()
-        
+        calenderPage.getPickDateInCalender(date).click()
         calenderPage.getStartTimeButton().click()
         for (let i = 0; i < 2; i++) {
             
@@ -85,13 +82,52 @@ describe('Calender', function(){
 
     calenderPage.getRemaindersCheckBox().click()
     calenderPage.getWeeklyDropdown().select('Monthly')
-    calenderPage.getVerifyRemainderTextInCalender(date,remain).should('be.visible').wait(500)
+    calenderPage.getVerifyTextInCalenderWithName(date,remain).should('be.visible').wait(500)
     calenderPage.getWeeklyDropdown().select('Weekly')
-    calenderPage.getRemainderDetailsInCalender().click()
+    calenderPage.getRemainderDetailsInCalender(remain).click()
     calenderPage.getDeleteButton().click()
     calenderPage.getDeleteForEverButton().click()
     
     })
+it.skip("E2E_02_Holiday_To Validate that the user is able to create Holiday in calender and display in weekly calender board on selected date.",function(){
+    adminDashBoardPage.getSideNavBar().invoke('show')
+    adminDashBoardPage.getCalenderTab().click()
+    calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
+    calenderPage.getCreateNewButton().click()
+    calenderPage.getHolidaybutton().click()
+    calenderPage.getCreateHolidayText().should('be.visible')
+    var hrand = Math.ceil(Math.random()*1000)
+    var holiday= 'Holiday' + hrand;
+    calenderPage.getEnterHolidayTextField().type(holiday)
+    calenderPage.getStartdateButtonInCreateHolidayPage().click()
+    var d = new Date();
+    var date = d.getDate()+1
+    calenderPage.getPickDateInCalender(date).click().wait(1000)
+    calenderPage.getEnddateButtonInCreateHolidayPage().click()
+    calenderPage.getPickDateInCalender(date).click().wait(1000)
+    var description="description"+holiday
+    calenderPage.getHolidayDescriptionTextareaField().type(description)
+    calenderPage.getSaveHolidayButton().click()
+    calenderPage.getHolidayAddedSuccessfullyMsg().should('be.visible',{timeout:10000})
+    calenderPage.getWeeklyDropdown().select('Monthly')
+    calenderPage.getVerifyTextInCalenderWithName(date,holiday).should('be.visible').wait(500)
+    calenderPage.getWeeklyDropdown().select('Weekly')
+    calenderPage.getHolidayDetailsIncalender(holiday).click()
+    calenderPage.getDeleteButton().click()
+    calenderPage.getDeleteHolidayButton().click()
+    
+})
 
+it('E2E_03_Event_To Validate that the user is able to create Event in calender and notification will be sent to participents as per the selection.',function(){
+
+    adminDashBoardPage.getSideNavBar().invoke('show')
+    adminDashBoardPage.getCalenderTab().click()
+    calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
+    calenderPage.getCreateNewButton().click()
+    
+
+
+
+})
 
 })
