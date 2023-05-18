@@ -110,4 +110,5 @@ class adminDashboardPage {
 
 }
 
+
 module.exports = new adminDashboardPage()
