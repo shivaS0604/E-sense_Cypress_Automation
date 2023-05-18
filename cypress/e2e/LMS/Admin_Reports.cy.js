@@ -154,12 +154,18 @@ describe('Admin Report Validation', function () {
 
 
   it('Tc_003 Verify that School Admin can Delete the Gradebook Template', function () {
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
 
-    adminReportPage.CreateNewTemplate(this.TemplateDetails.Grade,this.TemplateDetails.section,this.TemplateDetails.Practicle, this.TemplateDetails.AddActivityName, this.TemplateDetails.SignatureFile)
+    adminReportPage.CreateNewTemplate(this.TemplateDetails.Grade, this.TemplateDetails.section, this.TemplateDetails.Practicle, this.TemplateDetails.AddActivityName, this.TemplateDetails.SignatureFile)
     ReportDashboardPage.getDeleteIcon(this.TemplateDetails.Grade).click()
     ReportDashboardPage.getDeleteButton().click()
     ReportDashboardPage.getVerifyGradeContainDraftStatus(this.TemplateDetails.Grade).should('not.be.enabled')
-    adminReportPage.CreateNewTemplate(this.TemplateDetails.Grade,this.TemplateDetails.section,this.TemplateDetails.Practicle, this.TemplateDetails.AddActivityName, this.TemplateDetails.SignatureFile)
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
+    adminReportPage.CreateNewTemplate(this.TemplateDetails.Grade, this.TemplateDetails.section, this.TemplateDetails.Practicle, this.TemplateDetails.AddActivityName, this.TemplateDetails.SignatureFile)
     adminReportPage.getGradeCheckBoxStudentGradeBookPage(this.TemplateDetails.Grade).click()
     adminReportPage.getDeleteIconStudentGradeBookPage().click()
     ReportDashboardPage.getDeleteButton().click()
@@ -175,17 +181,80 @@ describe('Admin Report Validation', function () {
   })
 
 
-  it.only('Tc_004 Verify that School Admin can view the Gradebook Template',function(){
+  it('Tc_004 Verify that School Admin can view the Gradebook Template', function () {
 
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
     ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
-    ReportDashboardPage.getGradePublishedStatusViewIcon(this.TemplateDetails.PublishedGrade).click()
+    ReportDashboardPage.getGradeDraftStatusViewIcon(this.TemplateDetails.Grade2).click()
     ReportDashboardPage.getAdminReportsVerifyBasicTemplateDetailsText().should('have.text', this.TemplateDetails.BasicTemplateDetailsText)
     ReportDashboardPage.getPreviewButton().click()
-    
+    cy.get('td[class="schlTbleRptCell2"]').should('have.text', 'display')
+    cy.get('tr[class="MuiTableRow-root css-1gqug66"]').should('have.text', 'Drawing')
+    ReportDashboardPage.getPreviewScreenPublishButton().click()
+    ReportDashboardPage.getPreviewScreenYesPublishButton().click({ force: true })
+    ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade2).should('have.text', this.TemplateDetails.PublishedStatus)
+    ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade2).click().wait(1000)
+    ReportDashboardPage.getYesUnfinishButton().click()
+    ReportDashboardPage.getVerifyGradeContainDraftStatus(this.TemplateDetails.Grade2).should('have.text', this.TemplateDetails.DraftStatus)
+    ReportDashboardPage.getDraftStatusToggleButton(this.TemplateDetails.Grade2).click().wait(1000)
+    ReportDashboardPage.getPreviewScreenPublishButton().click()
+    ReportDashboardPage.getPreviewScreenYesPublishButton().click({ force: true })
+    ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade2).should('have.text', this.TemplateDetails.PublishedStatus)
+    ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade2).click().wait(1000)
+    ReportDashboardPage.getYesUnfinishButton().click().wait(2000)
 
+    adminReportPage.CreateNewTemplate(this.TemplateDetails.Grade, this.TemplateDetails.section, this.TemplateDetails.Practicle, this.TemplateDetails.AddActivityName, this.TemplateDetails.SignatureFile)
+    ReportDashboardPage.getDraftStatusToggleButton(this.TemplateDetails.Grade).click()
+    ReportDashboardPage.getPreviewScreenSubDetailsText().contains(this.TemplateDetails.SubDetails)
+    ReportDashboardPage.getPreviewScreenCoScholasticActivitiesTxt().contains(this.TemplateDetails.AddActivityName)
+    ReportDashboardPage.getPreviewScreenPublishButton().click()
+    ReportDashboardPage.getPreviewScreenYesPublishButton().click().wait(1000)
+    ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade).should('have.text', this.TemplateDetails.PublishedStatus)
+    ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade).click().wait(1000)
+    ReportDashboardPage.getYesUnfinishButton().click()
+    ReportDashboardPage.getVerifyGradeContainDraftStatus(this.TemplateDetails.Grade).should('have.text', this.TemplateDetails.DraftStatus)
+    ReportDashboardPage.getDraftStatusToggleButton(this.TemplateDetails.Grade).click()
+    ReportDashboardPage.getPreviewScreenPublishButton().click()
+    ReportDashboardPage.getPreviewScreenYesPublishButton().click()
+    ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade).should('have.text', this.TemplateDetails.PublishedStatus)
+    ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade).click().wait(1000)
+    ReportDashboardPage.getYesUnfinishButton().click().wait(1000)
+    ReportDashboardPage.getVerifyGradeContainDraftStatus(this.TemplateDetails.Grade).should('have.text', this.TemplateDetails.DraftStatus)
+    ReportDashboardPage.getDraftStatusToggleButton(this.TemplateDetails.Grade).click()
+    ReportDashboardPage.getPreviewScreenPublishButton().click()
+    ReportDashboardPage.getPreviewScreenYesPublishButton().click()
+    ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade).should('have.text', this.TemplateDetails.PublishedStatus)
 
+    ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade).click().wait(1000)
+    ReportDashboardPage.getYesUnfinishButton().click()
+    ReportDashboardPage.getDeleteIcon(this.TemplateDetails.Grade).click()
+    ReportDashboardPage.getDeleteButton().click()
+
+  })
+
+  it.only('Tc_005 Verify that School Admin can search and select filters in template  Template', function () {
+
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
+
+    ReportDashboardPage.getSearchTextfield().type('Grade 1')
+    ReportDashboardPage.getGradesList().contains('Grade 1')
+
+    ReportDashboardPage.getAllDropdown().click()
+    ReportDashboardPage.getTopSchoolBtn().click()
+
+    ReportDashboardPage.getGradesList().each(($element) => {
+      var grades = $element.text()
+      if (grades.includes('Grade 10') || grades.includes('Grade 11') || grades.includes('Grade 12')) {
+        ReportDashboardPage.getGradesList().should('be.visible')
+      }
+    })
+
+    ReportDashboardPage.getAllDropdown().click()
+    ReportDashboardPage.getMySchoolBtn().click()
+    ReportDashboardPage.getGradesList().contains('Grade 1')
 
   })
 
