@@ -1,6 +1,6 @@
 {
-   "Grade":"Grade 2",
-   "section":"A",
+   "Grade":"Grade 4",
+   "section":"B",
    "StudentGradebookText":"Student Gradebook",
    "BasicTemplateDetailsText":"Basic Template Details",
    "Theory":"100",
@@ -8,10 +8,11 @@
    "AddActivityName":"Drawing",
    "AddSignatureTxt":"Add Signature",
    "SignatureFile":"C:/Users/user.TYSS-GARIMASAIN/Desktop/Esens/TopSchool/E-sense_Cypress_Automation/cypress/fixtures/LMS/GradeBook_signature.jpg",
-   "SubDetails":"display",
-   "Co_ScholasticActivities":"SportsDrawing",
+   "SubDetails":"Civics new",
+   "Co_ScholasticActivities":"activity Drawing",
    "PublishedStatus":"Published",
    "DraftStatus":"Draft",
-   "StudentGradeBookTxt":"Student Gradebook"
+   "StudentGradeBookTxt":"Student Gradebook",
+   "PublishedGrade":"Grade 2"
    
 }
