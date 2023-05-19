@@ -56,6 +56,10 @@ class teacherDashboardPage {
         return cy.get('button.leaveRqtAction')
     }
 
+    getDashboardTitle(){
+        return cy.get('.Dashboard_tchDshTitle__3rghy')
+    }
+
     //Logout-teacher
     teacherLogout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
