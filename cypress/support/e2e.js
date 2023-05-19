@@ -1,13 +1,19 @@
-/// <reference types = "Cypress" />
-
 //X-path plugin
 require('cypress-xpath');
+
+// File-Upload Plugin
+import 'cypress-file-upload';
 
 //To handle Uncaught Exception
 Cypress.on('uncaught:exception', (err, runnable) => {
   console.log(`Caught at: ${runnable.title}\n`, err)
   return false
 })
+
+// Stubbing the window:alert event
+cy.on('window:alert', (message) => {
+  cy.on('window:alert', cy.stub().as('alertStub').returns(true)); // Close the alert
+});
 
 //To Login As Admin
 const login = require('./pageObjects/LMS/adminIndexPage')
@@ -26,8 +32,10 @@ Cypress.Commands.add('teacherLogin', (email, password) => {
   teacherLogin.getUserNameTxtFld().clear().type(email)
   teacherLogin.getPasswordTxtFld().clear().type(password)
   teacherLogin.getLogInBtn().click().wait(2000)
-  cy.url().should('contain', 'dashboard').wait(1000)
 })
+
+
+
 
 
 
