@@ -108,6 +108,21 @@ class adminDashboardPage {
         return cy.get('div.supportAndFeedTableStatus>span>button').contains("Approve")
     }
 
+    getApproveRequestBtnInLeaveRequestPage(){
+        return cy.get('button[class*="ViewLeaveRequest_approveRequest"]').click()
+    }
+
+    getApprovedStatusLstInLeaveRequestsPage(teacherName){
+        return cy.get('//tbody/tr/td/div/span[contains(text(),"'+teacherName+'")]/ancestor::tr/td/div/button')
+    }
+
+    getRightArrowIconInDashboardPage(){
+        return cy.get('img[class*="Dashboard_hideArrow"]')
+    }
+
+    getTeacherPresentCount(){
+        return cy.get('div[class*="Dashboard_tchDshTimelineCnt"]>div>h4>span')
+    }
 
     //Logout-admin
     logout() {

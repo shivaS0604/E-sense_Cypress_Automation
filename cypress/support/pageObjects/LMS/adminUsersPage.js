@@ -153,31 +153,6 @@ class adminUsersPage {
         return cy.get('.TeacherDashboard_alertImgcls__3ceOA')
     }
 
-<<<<<<< HEAD
-
-    getTeacherViewDeactivateAccountBtn(){
-        return cy.get('button.TeacherProfile_tchPrfDactBtn__2E33J')
-    }
-
-    getTeacherViewTeacherDetailsTab(){
-        return cy.get('div.tchPrfWrkListDetailsImg').contains('Teacher Details')
-    }
-
-    getTeacherViewAcademicDetailsTab(){
-        return cy.get('div.tchPrfWrkListDetailsImg').contains('Academic Details')
-    }
-
-    getTeacherViewViewTeacherCalendarTab(){
-        return cy.get('div.tchPrfWrkListDetailsImg').contains('View Teacher Calendar')
-    }
-
-    getTeacherViewPopupCloseBtn(){
-        return cy.get('div[class="closediv"] svg[data-testid="CloseIcon"]')
-    }
-
-    getTeacherSearchTxtfld(){
-        return cy.get('input[type="search"]')
-=======
     getActionsBtnLst() {
         return cy.get('div[class*="TeacherDashboard_textdeactive"]')
     }
@@ -374,7 +349,6 @@ class adminUsersPage {
         cy.get('body').click(0, 0)
         this.getThirdContinueBtn().click()
         cy.wait(2000)
->>>>>>> 13bf71078ecdec2c39ce234462a02170bd7f1f45
     }
 
 }

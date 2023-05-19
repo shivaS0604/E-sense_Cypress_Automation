@@ -98,8 +98,43 @@ describe("Admin School Validation", function () {
           teacherLogin.getPasswordTxtFld().clear().type("Test@123")
           teacherLogin.getLogInBtn().click().wait(2000)
         }
+        teacherDashboard.getNewTeacherPopupCancelIcon().click()
+        for(let i=0;i<3;i++){
+          teacherDashboard.getNewTeacherFirstPageContinueBtn().click().wait(1000)
+        }
+        teacherDashboard.getCalendarTabInSideNavigationBar().click({force:true})
+        teacherDashboard.getRequestLeaveBtnInCalendarPage().click().wait(2000)
+        teacherDashboard.getReasonForLeaveLst().eq(0).click()
+        teacherDashboard.getFullDayCheckBoxInRequestAbsencePopup().click()
+        teacherDashboard.getStartDateInRequestAbsencePopup().click()
+        teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click()
+        teacherDashboard.getEndDateInRequestAbsencePopup().click()
+        teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click()
+        teacherDashboard.getSendRequestBtnInRequestAbsencePopup().click()
+        cy.contains("Request Sent Successfully").should('be.visible').wait(5000)
+        teacherDashboard.teacherLogout()
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+          cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        adminDashboardPage.getSupportTicketTabInSideNavBar().click()
+        adminDashboardPage.getLeaveRequestInSupportTickets().click()
+        adminDashboardPage.getApproveBtnInLeaveRequestPage().eq(0).click()
+        adminDashboardPage.getApproveRequestBtnInLeaveRequestPage().click()
+        cy.contains("Leave Request Approved Substitution Pending").should('be.visible')
+        adminDashboardPage.getApprovedStatusLstInLeaveRequestsPage("alex").should('have.text',"Approved")
+        adminDashboardPage.getDashboardTabInSideNavigationBar().scrollIntoView().click()
+        adminDashboardPage.getRightArrowIconInDashboardPage().click()
+        adminDashboardPage.getTeacherPresentCount().invoke('text').then(text => {
+          const first = text.charAt(0);
+          const last = text.charAt(text.length - 1);
+          const firstNum = first.charCodeAt(0);
+          const lastNum = last.charCodeAt(0);
+          cy.wrap(lastNum).should('be.gt',firstNum)
+        })
+
       })
     })
+
   })
 
   //author - shiva

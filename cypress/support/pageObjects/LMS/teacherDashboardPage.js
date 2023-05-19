@@ -25,7 +25,7 @@ class teacherDashboardPage {
     }
 
     getCalendarTabInSideNavigationBar() {
-        return cy.get('a[href*="mycalendar"]')
+        return cy.get('div.side-nav-icon>img[src*="myCalendar"]')
     }
 
     getRequestLeaveBtnInCalendarPage(){
@@ -40,7 +40,7 @@ class teacherDashboardPage {
         return cy.get('div.schAdminInputCtrDate>div>input').eq(0)
     }
 
-    getStartDateInRequestAbsencePopup(){
+    getEndDateInRequestAbsencePopup(){
         return cy.get('div.schAdminInputCtrDate>div>input').eq(1)
     }
 
@@ -48,13 +48,23 @@ class teacherDashboardPage {
         return cy.get('div>button.MuiPickersDay-today')
     }
 
-    getHalfDayCheckBoxInRequestAbsencePopup(){
+    getFullDayCheckBoxInRequestAbsencePopup(){
         return cy.get('div.leaveRqtLeveTypeOpt>span[data-testid="fullDayRadio"]')
     }
 
     getSendRequestBtnInRequestAbsencePopup(){
         return cy.get('button.leaveRqtAction')
     }
+
+    getNewTeacherPopupCancelIcon(){
+        return cy.get('svg[data-testid="CancelIcon"]:visible')
+    }
+
+    getNewTeacherFirstPageContinueBtn(){
+        return cy.get('.MuiButton-contained')
+    }
+
+
 
     //Logout-teacher
     teacherLogout() {
