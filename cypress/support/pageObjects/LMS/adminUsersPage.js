@@ -125,7 +125,16 @@ class adminUsersPage {
         return cy.get('h6[class="MuiTypography-root MuiTypography-h6 css-1anx036"]').contains('Delete Account')
     }
 
+    getTeacherDeactivateAccountBtn() {
+        return cy.get('h6[class="MuiTypography-root MuiTypography-h6 css-1anx036"]').contains('Deactivate Account')
+    }
+
     getTeacherConfermationPopupDeleteBtn() {
+        return cy.get('button.userdelete')
+    }
+
+
+    getTeacherConfermationPopupDeactivateaccountBtn() {
         return cy.get('button.userdelete')
     }
 
@@ -153,6 +162,31 @@ class adminUsersPage {
         return cy.get('.TeacherDashboard_alertImgcls__3ceOA')
     }
 
+
+    getTeacherViewDeactivateAccountBtn(){
+        return cy.get('button.TeacherProfile_tchPrfDactBtn__2E33J')
+    }
+
+    getTeacherViewTeacherDetailsTab(){
+        return cy.get('div.tchPrfWrkListDetailsImg').contains('Teacher Details')
+    }
+
+    getTeacherViewAcademicDetailsTab(){
+        return cy.get('div.tchPrfWrkListDetailsImg').contains('Academic Details')
+    }
+
+    getTeacherViewViewTeacherCalendarTab(){
+        return cy.get('div.tchPrfWrkListDetailsImg').contains('View Teacher Calendar')
+    }
+
+    getTeacherViewPopupCloseBtn(){
+        return cy.get('div[class="closediv"] svg[data-testid="CloseIcon"]')
+    }
+
+    getTeacherSearchTxtfld(){
+        return cy.get('input[type="search"]')
+
+    }
     getActionsBtnLst() {
         return cy.get('div[class*="TeacherDashboard_textdeactive"]')
     }
@@ -287,6 +321,22 @@ class adminUsersPage {
 
     getStudentDltBtn() {
         return cy.get('button[aria-label="Delete Student"]')
+    }
+
+    getTeacherAdmissionNumber(teacherName){
+        return cy.xpath('//p[text()="'+teacherName+'"]/ancestor::div[@class="TeacherDashboard_studentMeta__3kQfU"]//p[@class="MuiTypography-root MuiTypography-body1 TeacherDashboard_adminssionNumber__1gVX3 css-9l3uo3"]')
+    }
+
+    getTeacherDeactivateBtn(teacherName){
+        return cy.xpath('//p[text()="'+teacherName+'"]/ancestor::tr//div[@class="TeacherDashboard_textdeactive__3UvpD"]')
+    }
+
+    getTeacherDeactivateActivateBtn(){
+        return cy.get('div[class="font-cls"]').contains('Activate')
+    }
+
+    getTeacherDeactivatePopupActivateBtn(){
+        return cy.get('button.activate')
     }
 
     //Business-Logic
