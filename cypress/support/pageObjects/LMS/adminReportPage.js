@@ -236,8 +236,7 @@ class AdminReportPage {
 
     //To Create Template
     CreateNewTemplate(Grade,Section,Practicle, AddActivityName, SignatureFile) {
-        this.getAdminReportsSideMenubarReportTab().click()
-        this.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+       
         this.getCreatetemplateButton().click()
         this.getCreateNewTemplateGradeDropdown().click()
         this.getCreateNewTemplateSelectGradeDropdownValue().contains(Grade).click()
@@ -278,13 +277,40 @@ class AdminReportPage {
 
 
     //Tc_004 Verify that School Admin can view the Gradebook Template
-    getGradePublishedStatusViewIcon(PublishedGrade){
-       return cy.xpath('//p[contains(text(),"'+PublishedGrade+'")]/ancestor::tr/descendant::button[contains(.,"Published")]/ancestor::tr/descendant::button[@aria-label="View"]')
+    getGradeDraftStatusViewIcon(DraftStatusGrade){
+       return cy.xpath('//p[contains(text(),"'+DraftStatusGrade+'")]/ancestor::tr/descendant::button[contains(.,"Draft")]/ancestor::tr/descendant::button[@aria-label="View"]')
     }
 
     getPreviewButton(){
         return cy.xpath('//span[contains(.,"Preview")]')
     }
+
+    getPublishedStatusViewIcon(Grades) {
+        return cy.xpath('//p[contains(text(),"' + Grades + '")]/ancestor::tr/descendant::td[contains(.,"Published")]/../descendant::button[@aria-label="View"]')
+    }
+
+
+    //Tc_005 Verify that School Admin can search and select filters in template  Template
+    getSearchTextfield(){
+        return cy.get('input[placeholder="Search a template"]')
+    }
+
+    getAllDropdown(){
+        return cy.get('div[id="demo-simple-select"]')
+    }
+
+    getGradesList(){
+        return cy.get('p[class="MuiTypography-root MuiTypography-body1 name css-9l3uo3"] ')
+    }
+
+    getTopSchoolBtn(){
+        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('TopSchool')
+    }
+
+    getMySchoolBtn(){
+        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('My School')
+    }
+
 
 
 
