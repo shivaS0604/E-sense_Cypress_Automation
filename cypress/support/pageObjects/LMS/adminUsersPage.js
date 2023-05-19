@@ -125,7 +125,16 @@ class adminUsersPage {
         return cy.get('h6[class="MuiTypography-root MuiTypography-h6 css-1anx036"]').contains('Delete Account')
     }
 
+    getTeacherDeactivateAccountBtn() {
+        return cy.get('h6[class="MuiTypography-root MuiTypography-h6 css-1anx036"]').contains('Deactivate Account')
+    }
+
     getTeacherConfermationPopupDeleteBtn() {
+        return cy.get('button.userdelete')
+    }
+
+
+    getTeacherConfermationPopupDeactivateaccountBtn() {
         return cy.get('button.userdelete')
     }
 
@@ -153,7 +162,6 @@ class adminUsersPage {
         return cy.get('.TeacherDashboard_alertImgcls__3ceOA')
     }
 
-<<<<<<< HEAD
 
     getTeacherViewDeactivateAccountBtn(){
         return cy.get('button.TeacherProfile_tchPrfDactBtn__2E33J')
@@ -177,7 +185,8 @@ class adminUsersPage {
 
     getTeacherSearchTxtfld(){
         return cy.get('input[type="search"]')
-=======
+
+    }
     getActionsBtnLst() {
         return cy.get('div[class*="TeacherDashboard_textdeactive"]')
     }
@@ -314,6 +323,22 @@ class adminUsersPage {
         return cy.get('button[aria-label="Delete Student"]')
     }
 
+    getTeacherAdmissionNumber(teacherName){
+        return cy.xpath('//p[text()="'+teacherName+'"]/ancestor::div[@class="TeacherDashboard_studentMeta__3kQfU"]//p[@class="MuiTypography-root MuiTypography-body1 TeacherDashboard_adminssionNumber__1gVX3 css-9l3uo3"]')
+    }
+
+    getTeacherDeactivateBtn(teacherName){
+        return cy.xpath('//p[text()="'+teacherName+'"]/ancestor::tr//div[@class="TeacherDashboard_textdeactive__3UvpD"]')
+    }
+
+    getTeacherDeactivateActivateBtn(){
+        return cy.get('div[class="font-cls"]').contains('Activate')
+    }
+
+    getTeacherDeactivatePopupActivateBtn(){
+        return cy.get('button.activate')
+    }
+
     //Business-Logic
     newTeacherCreation() {
         cy.get('body').click(0, 0)
@@ -374,7 +399,6 @@ class adminUsersPage {
         cy.get('body').click(0, 0)
         this.getThirdContinueBtn().click()
         cy.wait(2000)
->>>>>>> 13bf71078ecdec2c39ce234462a02170bd7f1f45
     }
 
 }
