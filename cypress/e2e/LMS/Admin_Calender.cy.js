@@ -386,7 +386,7 @@ it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered sele
             calenderPage.getStudentCheckboxInEventPage('StudentA').click({timeout:10000})
             calenderPage.getStudentPopupCloseIconInEventPage().click()
             calenderPage.getSaveEventButton().click()
-            calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
+              calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
            
             calenderPage.getWeeklyDropdown().select('Monthly')
             calenderPage.getVerifyTextInCalenderWithName(date,event).should('be.visible').wait(500)
