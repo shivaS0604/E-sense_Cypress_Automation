@@ -177,8 +177,8 @@ class adminUsersPage {
         return cy.get('div[class*="TeacherDashboard_student"] p:nth-child(1)')
     }
 
-    getTeacherDltBtn() {
-        return cy.get('button[aria-label="Delete Teacher"]')
+    getTeacherDltBtn(teacherName) {
+        return cy.get('(//button[@aria-label="Delete Teacher"]/ancestor::tbody/tr/td/div/div[contains(@class,"TeacherDashboard_studentMeta")]/p[contains(text(),"'+teacherName+'")])[2]')
     }
 
     getDeleteAccountBtn() {
@@ -294,29 +294,12 @@ class adminUsersPage {
         cy.get('body').click(0, 0)
         this.getAdminUsersSideMenuTab().click({ force: true })
         this.getAdminUsersTeachersTab().click().wait(2000)
-        cy.get('body').then(($el) => {
-            if ($el.find('div[class*="TeacherDashboard_textdeactive"]').length > 0) {
-                this.getActionsBtnLst().eq(0).click()
-                this.getTeacherDeactivatedDrpDwnLst().eq(1).click()
-                this.getDeactivateAccountBtn().click()
+                this.getTeacherDltBtn("alex").click()
                 this.getDeleteAccountBtn().click()
                 cy.contains("Do you want to delete the teacher alex ?").should('be.visible')
                 this.getDeleteSubmitBtn().click()
                 cy.wait(2000)
                 this.getTeacherLst().should('not.contain.text', "alex")
-            }
-        })
-        this.getTeacherLst().each(($e1, index) => {
-            const txt = $e1.text()
-            if (txt === "alex") {
-                this.getTeacherDltBtn().eq(index).click()
-                this.getDeleteAccountBtn().click()
-                cy.contains("Do you want to delete the teacher alex ?").should('be.visible')
-                this.getDeleteSubmitBtn().click()
-                cy.wait(2000)
-                this.getTeacherLst().should('not.contain.text', "alex")
-            }
-        })
         cy.wait(3000)
         this.getAddTeacherBtnInTeacherPage().click()
         this.getFullNameTxtFld().type("alex")

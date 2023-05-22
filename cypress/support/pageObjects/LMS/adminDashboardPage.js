@@ -97,7 +97,7 @@ class adminDashboardPage {
     }
 
     getSupportTicketTabInSideNavBar(){
-        return cy.get('a[href*="support"]')
+        return cy.get('div.menu-txt').contains("Support Tickets")
     }
 
     getLeaveRequestInSupportTickets(){
@@ -109,11 +109,11 @@ class adminDashboardPage {
     }
 
     getApproveRequestBtnInLeaveRequestPage(){
-        return cy.get('button[class*="ViewLeaveRequest_approveRequest"]').click()
+        return cy.get('button[class*="ViewLeaveRequest_approveRequest"]')
     }
 
     getApprovedStatusLstInLeaveRequestsPage(teacherName){
-        return cy.get('//tbody/tr/td/div/span[contains(text(),"'+teacherName+'")]/ancestor::tr/td/div/button')
+        return cy.xpath('//tbody/tr/td/div/span[contains(text(),"'+teacherName+'")]/ancestor::tr/td/div/button')
     }
 
     getRightArrowIconInDashboardPage(){
@@ -121,7 +121,7 @@ class adminDashboardPage {
     }
 
     getTeacherPresentCount(){
-        return cy.get('div[class*="Dashboard_tchDshTimelineCnt"]>div>h4>span')
+        return cy.get('div[class*="Dashboard_tchDshTimelineCnt"]>div>h4>span').eq(6)
     }
 
     //Logout-admin

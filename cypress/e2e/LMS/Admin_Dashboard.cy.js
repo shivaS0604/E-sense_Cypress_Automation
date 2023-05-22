@@ -104,12 +104,12 @@ describe("Admin School Validation", function () {
         }
         teacherDashboard.getCalendarTabInSideNavigationBar().click({force:true})
         teacherDashboard.getRequestLeaveBtnInCalendarPage().click().wait(2000)
-        teacherDashboard.getReasonForLeaveLst().eq(0).click()
         teacherDashboard.getFullDayCheckBoxInRequestAbsencePopup().click()
         teacherDashboard.getStartDateInRequestAbsencePopup().click()
         teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click()
         teacherDashboard.getEndDateInRequestAbsencePopup().click()
-        teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click()
+        teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click().wait(2000)
+        cy.get('.mt-4 > :nth-child(2)').click()
         teacherDashboard.getSendRequestBtnInRequestAbsencePopup().click()
         cy.contains("Request Sent Successfully").should('be.visible').wait(5000)
         teacherDashboard.teacherLogout()
@@ -120,15 +120,19 @@ describe("Admin School Validation", function () {
         adminDashboardPage.getLeaveRequestInSupportTickets().click()
         adminDashboardPage.getApproveBtnInLeaveRequestPage().eq(0).click()
         adminDashboardPage.getApproveRequestBtnInLeaveRequestPage().click()
-        cy.contains("Leave Request Approved Substitution Pending").should('be.visible')
+        cy.contains("Leave Request Approved Substitution Pending").should('be.visible').wait(1500)
         adminDashboardPage.getApprovedStatusLstInLeaveRequestsPage("alex").should('have.text',"Approved")
         adminDashboardPage.getDashboardTabInSideNavigationBar().scrollIntoView().click()
-        adminDashboardPage.getRightArrowIconInDashboardPage().click()
+        adminDashboardPage.getRightArrowIconInDashboardPage().click().wait(3000)
         adminDashboardPage.getTeacherPresentCount().invoke('text').then(text => {
-          const first = text.charAt(0);
-          const last = text.charAt(text.length - 1);
-          const firstNum = first.charCodeAt(0);
-          const lastNum = last.charCodeAt(0);
+          const str = "text";
+          const letters = str.split('');
+          const first = letters[0];
+          const last = letters(letters.length - 1);
+          const firstNum = parseInt(first);
+          const lastNum = parseInt(last);
+          cy.log(firstNum)
+          cy.log(lastNum)
           cy.wrap(lastNum).should('be.gt',firstNum)
         })
 
