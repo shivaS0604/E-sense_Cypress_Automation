@@ -233,7 +233,27 @@ describe('Admin Report Validation', function () {
 
   })
 
+
+
   it('Tc_005 Verify that School Admin can search and select filters in template  Template', function () {
+
+    // pre condition --- Create student
+    cy.get('div.side-nav-bar ').invoke('show').contains('Users').click()
+    cy.xpath('//button[contains(.,"Students")]').click()
+    cy.get('div[aria-label="Add student(s)"]').click()
+    cy.get('#fullName').click().type('kumar')
+    cy.get('//label[contains(.,"Gender*"")]').click()
+    cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('Male').click()
+    cy.get('//label[contains(.,"Contact Number*"")] ').eq(0).click().type('9999999999')
+    cy.get('//label[contains(.,"Select Relation*"")] ').click()
+
+
+
+
+
+
+
+
 
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
@@ -301,10 +321,14 @@ describe('Admin Report Validation', function () {
     })
 
     ReportDashboardPage.getShowGradingSystemDropdown().click()
+  
     /// This step not done =>> Admin can able to see the Grade system
-    ///printing step not done
+    cy.xpath('//button[contains(.,"Preview & Print")]').click({force:true}).wait(2000)
+    cy.get('[class="MuiTypography-root MuiTypography-body1 css-9hthsz"] div[class="MuiBox-root css-k4h52c"]').should('be.visible')
+    cy.get('body').click()
 
-    ReportDashboardPage.getPreviewScreenPublishButton().click()
+
+    ReportDashboardPage.getPreviewScreenPublishButton().click({force:true})
     cy.get('[data-testid="primaryBtn"]').click()
     //ReportDashboardPage.getPreviewScreenPublishButton().click()
     ReportDashboardPage.getPublishedStatus().should('be.visible')
@@ -315,11 +339,18 @@ describe('Admin Report Validation', function () {
     })
 
     cy.get('div.side-nav-bar ').invoke('show').contains('My Classes').click({force:true})
-    cy.get('.content-popover_border').should('be.visible', { timeout: 2000 }).click({ force: true })
-    cy.xpath('//button[contains(.,"Assessments")]').click()
-    cy.xpath('//button[contains(.,"ELAs")]').click()
-    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    cy.get('[class="content-popover_border"] [class="popover-arrow"]',{timeout:2000}).click({force:true})
+    cy.xpath('//button[contains(.,"Assessments")]').click({force:true}).wait(1000)
+    cy.xpath('//button[contains(.,"ELAs")]').should('be.visible').wait(1000)
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click({force:true})
     ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+
+    cy.get('tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)').each(($element, index) => {
+      if ($element.text() == 'kumar') {
+        ReportDashboardPage.getStudentResult().should('be.visible')
+
+      }
+    })
 
 
 
