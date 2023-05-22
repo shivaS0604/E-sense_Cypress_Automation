@@ -3,6 +3,7 @@ require('cypress-xpath');
 
 // File-Upload Plugin
 import 'cypress-file-upload';
+import './commands'
 
 //To handle Uncaught Exception
 Cypress.on('uncaught:exception', (err, runnable) => {
