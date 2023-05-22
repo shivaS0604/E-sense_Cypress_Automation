@@ -8,6 +8,10 @@ class adminUsersPage {
         return cy.get('button.MuiTab-root').contains('Teachers')
     }
 
+    getAdminUsersStudentTab() {
+        return cy.get('button.MuiTab-root').contains('Students')
+    }
+
     getAdminUsersAddTeacherBtn() {
         return cy.get('div.TeacherDashboard_AddUserIcon__2LG5j')
     }
@@ -185,8 +189,12 @@ class adminUsersPage {
 
     getTeacherSearchTxtfld(){
         return cy.get('input[type="search"]')
-
     }
+
+    getStudentSearchTxtfld(){
+        return cy.get('input[type="search"]')
+    }
+
     getActionsBtnLst() {
         return cy.get('div[class*="TeacherDashboard_textdeactive"]')
     }
@@ -337,6 +345,94 @@ class adminUsersPage {
 
     getTeacherDeactivatePopupActivateBtn(){
         return cy.get('button.activate')
+    }
+
+    getAddtudentBtn(){
+        return cy.get('div[aria-label="Add student(s)"]')
+    }
+
+    getStudentFullNameTxtFld(){
+        return cy.get('input[id="fullName"]')
+    }
+
+    getStudentGenderDropDown(){
+        return cy.get('div[id="demo-simple-select"]').eq(1)
+    }
+
+    getStudentRelationDropDown(){
+        return cy.get('div[id="demo-simple-select"]').eq(3)
+    }
+
+    getStudentGenderDropDownOpt(){
+        return cy.get('li[role="option"]')
+    }
+
+    getStudentRelationDropDownOpt(){
+        return cy.get('li[role="option"]')
+    }
+
+    getStudentContactNumberTxtFld(){
+        return cy.get('input[name="contactNumber"]')
+    }
+
+    getStudentGurdianNameTxtFld(){
+        return cy.get('input[id="Guardian Name*"]')
+    }
+
+    getStudentGurdianContactNumberTxtFld(){
+        return cy.get('input[id="Contact Number*"]').eq(1)
+    }
+
+    getStudentAddressTxtFld(){
+        return cy.get('input[name="addressLineOne"]')
+    }
+
+    getStudentPinecodeTxtFld(){
+        return cy.get('input[name="pinCode"]')
+    }
+
+    getAddStudentBtn(){
+        return cy.get('button.AcademicDetails_saveChangesBtn__5Hcqk')
+    }
+
+    getStudentAcademicDetailsAmissionYearTxtFld(){
+        return cy.get('input[placeholder="yyyy"]')
+    }
+
+    getStudentAcademicDetailsAdmissionNumberTxtFld(){
+        return cy.get('input[id="AdmissionNo"]')
+    }
+
+    getStudentAcademicDetailsGradeDropdown(){
+        return cy.get('.css-10bl4s4 > .MuiGrid-container > :nth-child(2) > .MuiFormControl-root > .MuiOutlinedInput-root > #demo-simple-select')
+    }
+
+    getStudentAcademicDetailsSectionsDropdown(){
+        return cy.get(':nth-child(3) > .MuiFormControl-root > .MuiOutlinedInput-root > #demo-simple-select')
+    }
+
+    getStudentAcademicDetailsGradeDropdownOpt(grade){
+        return cy.get('li[role="option"]').contains(grade)
+    }
+
+    getStudentAcademicDetailsSectionDropdownOpt(){
+        return cy.get('li[role="option"]')
+    }
+
+    getStudentAcademicDetailsRollNoTxtFld(){
+        return cy.get('input[id="RollNo"]')
+    }
+
+    getStudentDeleteBtn(studentName){
+        return cy.xpath('//div[@class="UserDashBoard_studentMeta__12OmY"]/p[text()="'+studentName+'"]/ancestor::tr//button[@aria-label="Delete Student"]')
+    }
+
+    getStudentDeleteAccountBtn() {
+        return cy.get('h6[class="MuiTypography-root MuiTypography-h6 css-1anx036"]').contains('Delete Account')
+    }
+
+    getStudentConfermationPopupDeleteBtn() {
+        return cy.get('button.userdelete')
     }
 
     //Business-Logic
