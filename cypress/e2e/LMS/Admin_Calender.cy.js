@@ -194,7 +194,7 @@ it('E2E_03_Event_To Validate that the user is able to create Event in calender a
     })
 
 })
-it.only('E2E_04_Appointment_To Validate that the user is able to create Appointment in calender and notification will be sent to participents as per the selection.',function(){
+it('E2E_04_Appointment_To Validate that the user is able to create Appointment in calender and notification will be sent to participents as per the selection.',function(){
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
     calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
@@ -257,11 +257,147 @@ it.only('E2E_04_Appointment_To Validate that the user is able to create Appointm
     calenderPage.getDeleteAppointmentButton().click({force:true}).wait(1000)
     calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
     
-    
-
-    
-
      
+})
+
+it('E2E_05_Exam_To Validate that the user is able to create exam in calender and notification will be sent to participents as per the selection.',function(){
+    adminDashBoardPage.getSideNavBar().invoke('show')
+    adminDashBoardPage.getCalenderTab().click()
+    calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
+    calenderPage.getCreateNewButton().click()  
+    calenderPage.getCreateANewCalenderText().should('be.visible',{timeout:10000})
+    calenderPage.getExamTab().click()
+    calenderPage.getCreateExamText().should('be.visible',{timeout:10000})
+    calenderPage.getGradeDropdownInEventPage().click()
+    calenderPage.getGradeDropdownListInEventPage('Grade 8').scrollIntoView().click({timeout:10000})
+    calenderPage.getSubjectDropdownInExamSection().click().wait(500)
+    calenderPage.getSubjectDropdownList('Civics (Msb_EM)').click()
+    var rand=Math.ceil(Math.random()*1000)
+    var exam="Exam"+rand
+    calenderPage.getExamTitleTextField().type(exam)
+    calenderPage.getDateOfExamButton().click()
+    var d=new Date()
+    var date=d.getDate()+1
+    calenderPage.getPickDateInCalender(date).click().wait(1000)
+    calenderPage.getStartTimeButton().click()
+    for (let i = 0; i < 2; i++) {
+        
+        calenderPage.getBody().type('{downArrow}').wait(500)
+        
+
+    }
+    calenderPage.getAMButton().click()
+    calenderPage.getCreateExamBody().click({ force: true })
+    calenderPage.getStartTimeButton().should('have.value', '10:00 am')
+    calenderPage.getEndTimeButton().click().wait(500)
+    calenderPage.getPMButton().click().wait(500)
+    calenderPage.getCreateExamBody().click({ force: true })
+    cy.wait(500)
+    calenderPage.getEndTimeButton().click()
+    cy.wait(500)
+    for (let j = 0; j < 2; j++) {
+        calenderPage.getBody().type('{downArrow}').wait(500)
+
+    }
+    calenderPage.getCreateExamBody().click({ force: true })
+    calenderPage.getEndTimeButton().should('have.value', '10:00 pm').wait(500)
+    calenderPage.getExamTypeDropdown().click()
+    calenderPage.getExamTypeDropdownList('Test 1').click()
+    calenderPage.getAttachAFileButton().attachFile('LMS/Event_added.pdf',{force:true}).wait(500)
+    calenderPage.getSaveExamButton().click().wait(500)
+    calenderPage.getExamAddedSuccessfullyMsg().should('be.visible',{timeout:10000})
+    calenderPage.getExamCheckbox().click({force:true})
+    calenderPage.getWeeklyDropdown().select('Monthly')
+    calenderPage.getVerifyTextInCalenderWithName(date,exam).should('be.visible').wait(500)
+    calenderPage.getWeeklyDropdown().select('Weekly')
+    calenderPage.getExamDetailsIncalender(exam).click()
+    calenderPage.getDeleteButton().click()
+    calenderPage.getDeleteExamButton().click({force:true}).wait(10000)
+    calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
+
+})
+it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
+    adminDashBoardPage.getSideNavBar().invoke('show')
+    adminDashBoardPage.getCalenderTab().click()
+    calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
+    calenderPage.getSelectAllCheckbox().click().should('be.checked',{delay:10000})
+    calenderPage.getEventCheckbox().should('be.checked')
+    calenderPage.getHolidaysCheckbox().should('be.checked')
+    calenderPage.getClassesCheckbox().should('be.checked')
+    calenderPage.getExamCheckbox().should('be.checked')
+    calenderPage.getRemaindersCheckBox().should('be.checked')
+    calenderPage.getAppointmentCheckbox().should('be.checked')
+    calenderPage.getSelectAllCheckbox().click().should('not.be.checked')
+    calenderPage.getEventCheckbox().click().should('be.checked',{timeout:10000})
+    calenderPage.getEventDetails().should('not.be.exist')
+    ///////////////////////////////////////////////////////
+    calenderPage.getCreateNewButton().click()
+    calenderPage.getCreateANewCalenderText().should('be.visible',{timeout:10000})
+    calenderPage.getEventButton().click()
+    calenderPage.getCreateEventText().should('be.visible',{timeout:10000})
+    var rand = Math.ceil(Math.random()*1000)
+    var event = 'Event' + rand;
+    calenderPage.getEnterEventTitleTextField().type(event)
+    calenderPage.getSingleDayRadioButton().then(($el)=>{
+        if(!$el.is(':checked'))
+        {
+            calenderPage.getSingleDayRadioButton().click()
+            
+        }
+        
+            calenderPage.getDateOfEventButton().click()
+            var d = new Date();
+            var date = d.getDate()+1
+            calenderPage.getPickDateInCalender(date).click().wait(1000)
+            calenderPage.getStartTimeButton().click()
+            for (let i = 0; i < 2; i++) {
+                
+                calenderPage.getBody().type('{downArrow}').wait(500)
+                
+    
+            }
+            calenderPage.getAMButton().click()
+            calenderPage.getEventModelBody().click({ force: true })
+            calenderPage.getStartTimeButton().should('have.value', '10:00 am')
+            calenderPage.getEndTimeButton().click().wait(500)
+            calenderPage.getPMButton().click().wait(500)
+            calenderPage.getEventModelBody().click({ force: true })
+            cy.wait(500)
+            calenderPage.getEndTimeButton().click()
+            cy.wait(500)
+            for (let j = 0; j < 2; j++) {
+                calenderPage.getBody().type('{downArrow}').wait(500)
+    
+            }
+            calenderPage.getEventModelBody().click({ force: true })
+            calenderPage.getEndTimeButton().should('have.value', '10:00 pm').wait(500)
+            var description="Description"+rand;
+            calenderPage.getAddDescriptionTextarea().type(description)
+            calenderPage.getEventTypeDropdown().click().wait(500)
+            calenderPage.getEventDropdownList('School Event').click().wait(500)
+            calenderPage.getExtraCurricularActivityCheckbox().click()
+            calenderPage.getPrepHoursRequiredDropdown().should('be.visible').click()
+            calenderPage.getPrepHoursRequiredDropdownList("12").click()
+            calenderPage.getAddParticipants().click()
+            calenderPage.getGradeDropdownInEventPage().click()
+            calenderPage.getGradeDropdownListInEventPage('Grade 8').click().wait(500)
+            calenderPage.getSectionDropdownInEventPage().click()
+            calenderPage.getSectionDropdownListInEventPage("B").click().wait(1000)
+            calenderPage.getStudentCheckboxInEventPage('StudentA').click({timeout:10000})
+            calenderPage.getStudentPopupCloseIconInEventPage().click()
+            calenderPage.getSaveEventButton().click()
+              calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
+           
+            calenderPage.getWeeklyDropdown().select('Monthly')
+            calenderPage.getVerifyTextInCalenderWithName(date,event).should('be.visible').wait(500)
+            calenderPage.getWeeklyDropdown().select('Weekly')
+            calenderPage.getEventDetailsIncalender(event).click()
+            calenderPage.getDeleteButton().click()
+            calenderPage.getDeleteEventButton().click({force:true}).wait(1000)
+            calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
+        })
+
+
 })
 
 })

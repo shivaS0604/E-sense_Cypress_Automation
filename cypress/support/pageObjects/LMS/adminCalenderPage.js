@@ -308,6 +308,64 @@ class CalenderPage{
    getStudentCheckboxInAppointmentPage(student){
     return cy.xpath("//p[contains(text(),'"+student+"')]/ancestor::div[@class='d-flex txtcenter']/following-sibling::span/input")
    }
+   getExamTab(){
+    return cy.xpath("//div[text()='Exam']")
+   }
+   getCreateExamText(){
+    return cy.xpath("//h1[text()='Create Exam']")
+   }
+   getSubjectDropdownInExamSection(){
+    return cy.xpath("//label[text()='Subject']/parent::div")
+   }
+   getSubjectDropdownList(subject){
+    return cy.xpath("//li[contains(text(),'"+subject+"')]")
+   }
+   getExamTitleTextField(){
+    return cy.xpath('//input[@placeholder="Enter Exam Title"]')
+   }
+   getDateOfExamButton(){
+    return cy.xpath("//label[text()='Date of exam']/parent::div")
+   }
+   getExamTypeDropdown(){
+    return cy.xpath("//label[text()='Exam type']/parent::div")
+   }
+   getExamTypeDropdownList(examType){
+    return cy.xpath("//li[text()='"+examType+"']")
+   }
+   getAttachFileInExamSection(){
+    return cy.xpath("//p[text()='Attach a file']")
+   }
+   getSaveExamButton(){
+    return cy.xpath("//button[text()='Save Exam']")
+   }
+   getExamAddedSuccessfullyMsg(){
+    return cy.xpath("//div[text()='Exam Added Successfully']")
+   }
+   getExamCheckbox(){
+    return cy.xpath("//input[@name='Exam']")
+   }
+   getExamDetailsIncalender(exam){
+    return cy.xpath("//span[text()='"+exam+"']")
+   }
+   getDeleteExamButton(){
+    return cy.xpath("//button[text()='Delete Exam']")
+   }
+   getCreateExamBody(){
+    return cy.xpath('//div[@class="reminder-model-content"]')
+   }
 
+   getSelectAllCheckbox(){
+    return cy.xpath('//input[@id="selectAll"]')
+   }
+   getHolidaysCheckbox(){
+    return cy.xpath('//input[@name="Holidays"]')
+   }
+   getClassesCheckbox(){
+    return cy.xpath('//input[@name="Classes"]')
+   }
+   getEventDetails(){
+    return cy.xpath('//div[@class="md-custom-event-details remainderCell"]')
+   }
+   
 }   
 module.exports=new CalenderPage()
