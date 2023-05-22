@@ -391,6 +391,10 @@ class AdminReportPage {
         return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Published")]')
     }
 
+    getStudentResult(){
+        return cy.xpath('//td[contains(.,"kumar")]/parent::tr/child::td[5]')
+    }
+
 
 
 
