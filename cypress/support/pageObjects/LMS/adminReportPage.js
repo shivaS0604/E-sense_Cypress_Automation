@@ -148,6 +148,10 @@ class AdminReportPage {
         return cy.xpath('//button[contains(.,"Publish")]')
     }
 
+    getPreviewScreenProceedPublishButton(){
+        return cy.get('[data-testid="primaryBtn"]')
+    }
+
     getPreviewScreenYesPublishButton() {
         return cy.xpath('//button[contains(.,"Yes, Publish")]')
     }
@@ -235,8 +239,8 @@ class AdminReportPage {
     }
 
     //To Create Template
-    CreateNewTemplate(Grade,Section,Practicle, AddActivityName, SignatureFile) {
-       
+    CreateNewTemplate(Grade, Section, Practicle, AddActivityName, SignatureFile) {
+
         this.getCreatetemplateButton().click()
         this.getCreateNewTemplateGradeDropdown().click()
         this.getCreateNewTemplateSelectGradeDropdownValue().contains(Grade).click()
@@ -277,11 +281,11 @@ class AdminReportPage {
 
 
     //Tc_004 Verify that School Admin can view the Gradebook Template
-    getGradeDraftStatusViewIcon(DraftStatusGrade){
-       return cy.xpath('//p[contains(text(),"'+DraftStatusGrade+'")]/ancestor::tr/descendant::button[contains(.,"Draft")]/ancestor::tr/descendant::button[@aria-label="View"]')
+    getGradeDraftStatusViewIcon(DraftStatusGrade) {
+        return cy.xpath('//p[contains(text(),"' + DraftStatusGrade + '")]/ancestor::tr/descendant::button[contains(.,"Draft")]/ancestor::tr/descendant::button[@aria-label="View"]')
     }
 
-    getPreviewButton(){
+    getPreviewButton() {
         return cy.xpath('//span[contains(.,"Preview")]')
     }
 
@@ -291,118 +295,237 @@ class AdminReportPage {
 
 
     //Tc_005 Verify that School Admin can search and select filters in template  Template
-    getSearchTextfield(){
+    getSearchTextfield() {
         return cy.get('input[placeholder="Search a template"]')
     }
 
-    getAllDropdown(){
+    getAllDropdown() {
         return cy.get('div[id="demo-simple-select"]')
     }
 
-    getGradesList(){
+    getGradesList() {
         return cy.get('p[class="MuiTypography-root MuiTypography-body1 name css-9l3uo3"] ')
     }
 
-    getTopSchoolBtn(){
+    getTopSchoolBtn() {
         return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('TopSchool')
     }
 
-    getMySchoolBtn(){
+    getMySchoolBtn() {
         return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('My School')
     }
 
 
-// Tc_006 Verify that School Admin can Add results for respective students
-    getGradeBookTab(){
+
+    // Tc_006 Verify that School Admin can Add results for respective students
+
+    // pre condition -Create student
+    getUserTab() {
+        return cy.get('div.side-nav-bar ').invoke('show').contains('Users')
+    }
+
+    getStudentsTab() {
+        return cy.xpath('//button[contains(.,"Students")]')
+    }
+
+    getAddStudentsIcon() {
+        return cy.get('div[aria-label="Add student(s)"]')
+    }
+
+    getAddStudentPageFullNameTxtfield() {
+        return cy.get('#fullName')
+    }
+
+    getAddStudentPageGenderDropdown() {
+        return cy.get('[id="demo-simple-select"]').eq(1)
+    }
+
+    getAddStudentPageGenderList() {
+        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('Male')
+    }
+
+    getAddStudentPagePrimaryDetailsContactNumb() {
+        return cy.get('[id="Contact Number*"]').eq(0)
+    }
+
+    getAddStudentPageSelectRelationDropdown() {
+        return cy.get('[id="demo-simple-select"]').eq(3)
+    }
+
+    getAddStudentPageSelectRelation() {
+        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('Mother')
+    }
+
+    getAddStudentPageGuardianNameTxtfield() {
+        return cy.get('input[id="Guardian Name*"]')
+    }
+
+    getAddStudentPageGuardianContactNumb() {
+        return cy.get('[id="Contact Number*"]').eq(1)
+    }
+
+    getAddStudentPageAddressLine1TxtField() {
+        return cy.get('input[id="Address Line 1"]')
+    }
+
+    getAddStudentPagePincodeTxtfield() {
+        return cy.get('input[id="Pin Code"]')
+    }
+
+    getAddStudentButton() {
+        return cy.xpath('//button[contains(.,"Add Student")]')
+    }
+
+    getAddStudentPageAdmissionYeartxtfield() {
+        return cy.get('input[placeholder="yyyy"]')
+    }
+
+    getAddStudentPageAdmissionNumbTxtfield() {
+        return cy.get('input[id="AdmissionNo"]')
+    }
+
+    getAddStudentPageGradeDropdown() {
+        return cy.get('[id="demo-simple-select"]').eq(2)
+    }
+
+    getAddStudentPageGradesList() {
+        return cy.get('[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"]>li').contains('Grade 5')
+    }
+
+    getAddStudentPageSectionDropdown() {
+        return cy.get('[id="demo-simple-select"]').eq(3)
+    }
+
+    getAddStudentPageSectionList() {
+        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"]>li').contains('B')
+    }
+
+    getAddStudentPageRollNumbTxtfield() {
+        return cy.get('input[id="RollNo"]')
+    }
+
+    // Post condition -Delete created Student 
+    getAdminModuleUserPageStudentsList() {
+        return cy.get('div.UserDashBoard_studentMeta__12OmY p:nth-child(1)')
+    }
+
+    getAdminModuleUserPageStudentsListDeleteIcon() {
+        return cy.get('[aria-label="Delete Student"]')
+    }
+
+    getAdminModuleUserPageStudentsListDeletePopup() {
+        return cy.get('p[class="MuiTypography-root MuiTypography-body1 css-si96ef"] h6').contains('Delete Account')
+    }
+
+    getAdminModuleUserPageStudentsListDeleteButton() {
+        return cy.xpath('//button[contains(.,"Delete account")]')
+    }
+
+
+
+    getGradeBookTab() {
         return cy.xpath('//button[contains(.,"GradeBook")]')
     }
 
-    getGradeBookPagePendingStatus(){
+    getGradeBookPagePendingStatus() {
         return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Pending")]')
     }
 
+    getGradeBookStudentsLists() {
+        return cy.get('tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)')
+    }
 
-    getArrowForwordIcon(){
+    getArrowForwordIcon() {
         return cy.get('[data-testid="ArrowForwardIosIcon"]')
     }
 
-    getEditButton(){
+    getEditButton() {
         return cy.xpath('//button[contains(.,"Edit")]')
     }
 
-    getTheoryTextField(){
+    getTheoryTextField() {
         return cy.get('input[type="number"]').eq(0)
     }
 
-    getPracticleTextfield(){
+    getPracticleTextfield() {
         return cy.get('input[type="number"]').eq(1)
     }
 
-    getCoScholasticActivities1_TxtField(){
+    getCoScholasticActivities1_TxtField() {
         return cy.contains('Activity 1')
-
     }
 
-    getCoScholasticActivities2_TxtField(){
+    getCoScholasticActivities2_TxtField() {
         return cy.contains('Activity 2')
     }
 
-    getCoScholasticActivities3_TxtField(){
+    getCoScholasticActivities3_TxtField() {
         return cy.contains('Activity 3')
     }
 
-    getCoScholasticActivities4_TxtField(){
-       return cy.contains('Activity 4')
+    getCoScholasticActivities4_TxtField() {
+        return cy.contains('Activity 4')
     }
 
-    getSaveBtn(){
+    getSaveBtn() {
         return cy.xpath('//button[contains(.,"Save")]')
     }
 
-    getRemarksTextfield(){
+    getRemarksTextfield() {
         return cy.get('textarea[id="outlined-multiline-static"]')
     }
 
-    getTotalPercentage(){
+    getTotalPercentage() {
         return cy.get('div[class="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt__1IGxO"]').eq(0)
     }
 
-    getResult(){
+    getResult() {
         return cy.get('div[class="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt__1IGxO"]').eq(3)
     }
 
-    getUpdatedStatus(){
+    getUpdatedStatus() {
         return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Updated")]')
     }
 
-    getCancelButton(){
+    getCancelButton() {
         return cy.xpath('//button[contains(.,"Cancel")]')
     }
 
-    getShowGradingSystemDropdown(){
+    getShowGradingSystemDropdown() {
         return cy.xpath(' //button[contains(.,"Grading System")]')
     }
 
-    getPreviewAndPrintButton(){
+    getPreviewAndPrintButton() {
         return cy.xpath('//button[contains(.,"Preview & Print")]')
     }
 
-    getPublishedStatus(){
+    getPrintOptions() {
+        return cy.get('[class="MuiTypography-root MuiTypography-body1 css-9hthsz"] div[class="MuiBox-root css-k4h52c"]')
+    }
+
+    getPublishedStatus() {
         return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Published")]')
     }
 
-    getStudentResult(){
+    getStudentResult() {
         return cy.xpath('//td[contains(.,"kumar")]/parent::tr/child::td[5]')
     }
 
+    getTeacherModuleMyClassTab() {
+        return cy.get('div.side-nav-bar ').invoke('show').contains('My Classes')
+    }
 
+    getTeacherModuleSubjectTab() {
+        return cy.get('[class="content-popover_border"] [class="popover-arrow"]', { timeout: 2000 })
+    }
 
+    getTeacherModuleAssessmentsTab() {
+        return cy.xpath('//button[contains(.,"Assessments")]')
+    }
 
-
-
-
-
-
+    getTeacherModuleELAsTab() {
+        return cy.xpath('//button[contains(.,"ELAs")]')
+    }
 
 }
 
