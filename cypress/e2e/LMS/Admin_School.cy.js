@@ -1,6 +1,8 @@
 const adminschoolpage = require('../../support/pageObjects/LMS/admin_Schoolpage.js')
 const academicsetuppage = require('../../support/pageObjects/LMS/academicSetUpPage.js')
 const gradeAndSubjectPage = require('../../support/pageObjects/LMS/academicSetUpGrade&SubjectPage.js')
+const admin_Schoolpage = require('../../support/pageObjects/LMS/admin_Schoolpage.js')
+const schoolInfrastructuresPage = require('../../support/pageObjects/LMS/schoolInfrastructuresPage')
 
 describe("Admin School Validation", function () {
 
@@ -59,7 +61,7 @@ describe("Admin School Validation", function () {
         gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
         cy.wait(1000)
         cy.get('body').click(0, 0)
-        cy.wait(1000)
+        cy.wait(2000)
         gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click()
         cy.wait(2000)
         adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
@@ -124,8 +126,21 @@ describe("Admin School Validation", function () {
   })
 
   it('admin school 003 Verify that School admin can add the School infracture successfully',function(){
-    
+    cy.wait(2000)
+    adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
+    adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
+    admin_Schoolpage.getSchoolInfrastructures().click()
+    schoolInfrastructuresPage.getAddInfrastructureBttn().click()
+    schoolInfrastructuresPage.getPopUpAddInfrastructureTitle().should('have.text',)
+
+     
+
   })
 })
 
     //Akshay
+
+
+
+
+

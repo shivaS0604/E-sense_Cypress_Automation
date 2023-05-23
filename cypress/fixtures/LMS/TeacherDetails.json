@@ -4,5 +4,6 @@
     "phoneNumber":"6362315152",
     "adress":"Kotturapalli",
     "pineCode":"563124",
-    "ConfermationMessage":"Teacher Added Successfully"
+    "ConfermationMessage":"Teacher Added Successfully",
+    "teacherPassword":"Test@123"
 }

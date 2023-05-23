@@ -137,7 +137,7 @@ class AdminReportPage {
     }
 
     getPreviewScreenSubDetailsText() {
-        return cy.get('[title="Civics new"]')
+        return cy.get('td[class="schlTbleRptCell2"]')
     }
 
     getPreviewScreenCoScholasticActivitiesTxt() {
@@ -310,6 +310,92 @@ class AdminReportPage {
     getMySchoolBtn(){
         return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('My School')
     }
+
+
+// Tc_006 Verify that School Admin can Add results for respective students
+    getGradeBookTab(){
+        return cy.xpath('//button[contains(.,"GradeBook")]')
+    }
+
+    getGradeBookPagePendingStatus(){
+        return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Pending")]')
+    }
+
+
+    getArrowForwordIcon(){
+        return cy.get('[data-testid="ArrowForwardIosIcon"]')
+    }
+
+    getEditButton(){
+        return cy.xpath('//button[contains(.,"Edit")]')
+    }
+
+    getTheoryTextField(){
+        return cy.get('input[type="number"]').eq(0)
+    }
+
+    getPracticleTextfield(){
+        return cy.get('input[type="number"]').eq(1)
+    }
+
+    getCoScholasticActivities1_TxtField(){
+        return cy.contains('Activity 1')
+
+    }
+
+    getCoScholasticActivities2_TxtField(){
+        return cy.contains('Activity 2')
+    }
+
+    getCoScholasticActivities3_TxtField(){
+        return cy.contains('Activity 3')
+    }
+
+    getCoScholasticActivities4_TxtField(){
+       return cy.contains('Activity 4')
+    }
+
+    getSaveBtn(){
+        return cy.xpath('//button[contains(.,"Save")]')
+    }
+
+    getRemarksTextfield(){
+        return cy.get('textarea[id="outlined-multiline-static"]')
+    }
+
+    getTotalPercentage(){
+        return cy.get('div[class="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt__1IGxO"]').eq(0)
+    }
+
+    getResult(){
+        return cy.get('div[class="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt__1IGxO"]').eq(3)
+    }
+
+    getUpdatedStatus(){
+        return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Updated")]')
+    }
+
+    getCancelButton(){
+        return cy.xpath('//button[contains(.,"Cancel")]')
+    }
+
+    getShowGradingSystemDropdown(){
+        return cy.xpath(' //button[contains(.,"Grading System")]')
+    }
+
+    getPreviewAndPrintButton(){
+        return cy.xpath('//button[contains(.,"Preview & Print")]')
+    }
+
+    getPublishedStatus(){
+        return cy.xpath('//td[contains(.,"kumar")]/parent::tr//td[contains(.,"Published")]')
+    }
+
+    getStudentResult(){
+        return cy.xpath('//td[contains(.,"kumar")]/parent::tr/child::td[5]')
+    }
+
+
 
 
 

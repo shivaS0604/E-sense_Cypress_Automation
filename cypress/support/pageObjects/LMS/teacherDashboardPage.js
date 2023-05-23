@@ -60,6 +60,7 @@ class teacherDashboardPage {
         return cy.get('button.leaveRqtAction')
     }
 
+<<<<<<< HEAD
     getNewTeacherPopupCancelIcon(){
         return cy.get('svg[data-testid="CancelIcon"]:visible')
     }
@@ -70,6 +71,12 @@ class teacherDashboardPage {
 
 
 
+=======
+    getDashboardTitle(){
+        return cy.get('.Dashboard_tchDshTitle__3rghy')
+    }
+
+>>>>>>> 5a13aa9c8a8c09ed51e58e1c12b4cae257bb0391
     //Logout-teacher
     teacherLogout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)

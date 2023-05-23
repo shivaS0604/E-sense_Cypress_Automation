@@ -1,4 +1,9 @@
 const adminUsersPage = require('../../support/pageObjects/LMS/adminUsersPage')
+const adminDashboardPage = require('../../support/pageObjects/LMS/adminDashboardPage')
+const teacherOverViewPage = require('../../support/pageObjects/LMS/teacherOverViewPage')
+const teacherDashboardPage = require('../../support/pageObjects/LMS/teacherDashboardPage')
+const login = require('../../support/pageObjects/LMS/adminIndexPage')
+
 const dayjs = require('dayjs')
 
 describe("Admin Users Validation", function () {
@@ -12,7 +17,7 @@ describe("Admin Users Validation", function () {
     })
 
 
-    it('TC_US_001 Verify that School admin can add Teachers successfully when entered a valid data', function () {
+    it('TC_Teacher_001 Verify that School admin can add Teachers successfully when entered a valid data', function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
         adminUsersPage.getAdminUsersAddTeacherBtn().should('be.visible', { timeout: 4000 }).click()
@@ -47,7 +52,7 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getTeacherConfermationPopupDeleteBtn().click()
     })
 
-    it('TC_US_002 Verify that School admin can add Teachers successfully with bulk upload of data', function () {
+    it('TC_Teacher_002 Verify that School admin can add Teachers successfully with bulk upload of data', function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
         adminUsersPage.getTeacherBulkUploadBtn().click()
@@ -62,7 +67,7 @@ describe("Admin Users Validation", function () {
 
     })
 
-    it('TC_US_003 Verify that School admin can add Missing details like Department, Subjects, Class Teacher etc for the bulk uploaded teachers', function () {
+    it('TC_Teacher_003 Verify that School admin can add Missing details like Department, Subjects, Class Teacher etc for the bulk uploaded teachers', function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
 
@@ -107,7 +112,7 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getTeacherConfermationPopupDeleteBtn().click()
     })
 
-    it('TC_US_004 Verify that School admin can update the teacher details successfully', function () {
+    it('TC_Teacher_004 Verify that School admin can update the teacher details successfully', function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
         adminUsersPage.getAdminUsersAddTeacherBtn().should('be.visible', { timeout: 4000 }).click()
@@ -148,7 +153,7 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getTeacherConfermationPopupDeleteBtn().click()
     })
 
-    it('TC_US_005 Verify that School admin can Verify the teacher details with search, Filtesr and Verify pagination', function () {
+    it('TC_Teacher_005 Verify that School admin can Verify the teacher details with search, Filtesr and Verify pagination', function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
         adminUsersPage.getAdminUsersAddTeacherBtn().should('be.visible', { timeout: 4000 }).click()
@@ -179,7 +184,7 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getAdminAddNewTeacherAccountSubjectsAndSectionsContineBtn().click({ force: true })
         cy.contains(this.techerDetails.ConfermationMessage).should('be.visible')
 
-        adminUsersPage.getTeacherViewBtn(this.techerDetails.fullname).should('be.visible',{timeout:2000}).click()
+        adminUsersPage.getTeacherViewBtn(this.techerDetails.fullname).should('be.visible', { timeout: 2000 }).click()
         adminUsersPage.getTeacherViewDeactivateAccountBtn().should('be.visible')
         adminUsersPage.getTeacherViewTeacherDetailsTab().should('be.visible')
         adminUsersPage.getTeacherViewAcademicDetailsTab().should('be.visible')
@@ -193,4 +198,139 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getTeacherConfermationPopupDeleteBtn().click()
 
     })
+
+
+
+    it('TC_Teacher_006 Verify that Teacher in Active status can login successfully after creation added to Users list', function () {
+        adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
+        adminUsersPage.getAdminUsersTeachersTab().click()
+        adminUsersPage.getAdminUsersAddTeacherBtn().should('be.visible', { timeout: 4000 }).click()
+        adminUsersPage.getAdminAddNewTeacherAccountFullNameTxt().type(this.techerDetails.fullname)
+        adminUsersPage.getAdminAddNewTeacherAccountEmailTxt().type(this.techerDetails.teacherMail)
+        adminUsersPage.getAdminAddNewTeacherAccountDateOfBirthIcon().click()
+        var day = dayjs().format('D') - 1
+        adminUsersPage.getAdminAddNewTeacherAccountDateOfBirthDateBtn(day).click()
+        adminUsersPage.getAdminAddNewTeacherAccountGenderDropdown().click()
+        adminUsersPage.getAdminAddNewTeacherAccountGenderDropdownMaleOpt().should('be.visible', { timeout: 2000 }).click()
+        adminUsersPage.getAdminAddNewTeacherAccountContactNumberTxt().type(this.techerDetails.phoneNumber)
+        adminUsersPage.getAdminAddNewTeacherAccountAddressLineTxt().type(this.techerDetails.adress)
+        adminUsersPage.getAdminAddNewTeacherAccountPineCodeTxt().type(this.techerDetails.pineCode).wait(5000)
+        adminUsersPage.getAdminAddNewTeacherAccountBasicDetailsContinueBtn().click().wait(2000)
+        adminUsersPage.getAdminAddNewTeacherAccountAcademicDetailsDepartmentDropdown().click()
+        adminUsersPage.getAdminAddNewTeacherAccountAcademicDetailsDepartmentDropdownOpt().first().click()
+        adminUsersPage.getAdminAddNewTeacherAccountAcademicDetailsBranchDropdown().click()
+        adminUsersPage.getAdminAddNewTeacherAccountAcademicDetailsBranchDropdownOpt().first().click()
+        adminUsersPage.getAdminAddNewTeacherAccountAcademicDetailsDepartmentDropdown().click({ force: true })
+        adminUsersPage.getAdminAddNewTeacherAccountAcademicDetailsContineBtn().click({ force: true })
+        adminUsersPage.getAdminAddNewTeacherAccountGradeSectionSelectGradeDropdown().click()
+        adminUsersPage.getAdminAddNewTeacherAccountGradeSectionSelectGradeDropdownOpt('Grade 2').scrollIntoView().click()
+        cy.get('body').click()
+        adminUsersPage.getAdminAddNewTeacherAccountGradeSectionSelectGradeCheckBox().check()
+        adminUsersPage.getAdminAddNewTeacherAccountGradeSectionClassTeacherRedioBtn().click()
+        adminUsersPage.getAdminAddNewTeacherAccountGradeSectionSelectSubjectsDropdown().click()
+        adminUsersPage.getAdminAddNewTeacherAccountGradeSectionSelectSubjectsDropdownOpt().first().click()
+        adminUsersPage.getAdminAddNewTeacherAccountSubjectsAndSectionsContineBtn().click({ force: true })
+        cy.contains(this.techerDetails.ConfermationMessage).should('be.visible')
+
+
+        adminUsersPage.getTeacherAdmissionNumber(this.techerDetails.fullname).then(($ele) => {
+            var teacherUserName = $ele.text()
+            cy.wrap(teacherUserName).as('teacherUserName')
+        })
+        adminDashboardPage.logout()
+        cy.get('@teacherUserName').then((teacherUserName) => {
+            cy.teacherLogin(teacherUserName, this.techerDetails.teacherPassword)
+            teacherOverViewPage.getTeacherSetNewPasswordPopupContinueBtn().click()
+            teacherOverViewPage.getTeacherSetNewPasswordPasswordTxt().type(this.techerDetails.teacherPassword)
+            teacherOverViewPage.getTeacherSetNewPasswordRetypePasswordTxt().type(this.techerDetails.teacherPassword)
+            teacherOverViewPage.getTeacherSetNewPasswordLoginBtn().click()
+            teacherOverViewPage.getTeacherLoginDetailsSetSuccessfullyPopUpGobackTologinBtn().click()
+            login.getUserNameTxtFld().clear().type(teacherUserName)
+            login.getPasswordTxtFld().clear().type(this.techerDetails.teacherPassword)
+            login.getLogInBtn().click().wait(2000)
+            teacherOverViewPage.getTeacherWalkthroughPopupCloseIcon().click()
+            teacherOverViewPage.getTeacherOverViewContinueBtn().click().wait(1000)
+            teacherOverViewPage.getTeacherOverViewContinueBtn().click().wait(1000)
+            teacherOverViewPage.getTeacherOverViewContinueBtn().click().wait(3000)
+            teacherDashboardPage.getDashboardTitle().should('have.text', 'Your Dashboard')
+        })
+        teacherDashboardPage.teacherLogout()
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
+        adminUsersPage.getAdminUsersTeachersTab().click()
+        adminUsersPage.getTeacherDeleteBtn(this.techerDetails.fullname).click()
+        adminUsersPage.getTeacherDeactivateAccountBtn().click()
+        adminUsersPage.getTeacherConfermationPopupDeactivateaccountBtn().click()
+        cy.wait(5000)
+        adminDashboardPage.logout()
+        cy.get('@teacherUserName').then((teacherUserName) => {
+            cy.teacherLogin(teacherUserName, this.techerDetails.teacherPassword)
+        })
+        cy.contains('Uh oh! Invalid username or password').should('be.visible')
+        cy.go('back')
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
+        adminUsersPage.getAdminUsersTeachersTab().click()
+        adminUsersPage.getTeacherDeactivateBtn(this.techerDetails.fullname).click()
+        adminUsersPage.getTeacherDeactivateActivateBtn().click()
+        adminUsersPage.getTeacherDeactivatePopupActivateBtn().click()
+        cy.wait(5000)
+        adminDashboardPage.logout()
+        cy.get('@teacherUserName').then((teacherUserName) => {
+            cy.teacherLogin(teacherUserName, this.techerDetails.teacherPassword)
+        })
+        teacherDashboardPage.getDashboardTitle().should('have.text', 'Your Dashboard')
+        teacherDashboardPage.teacherLogout()
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
+        adminUsersPage.getAdminUsersTeachersTab().click()
+        adminUsersPage.getTeacherDeleteBtn(this.techerDetails.fullname).click()
+        adminUsersPage.getTeacherDeleteAccountBtn().click()
+        adminUsersPage.getTeacherConfermationPopupDeleteBtn().click()
+    })
+
+
+    it('TC_Student_007 Verify that School admin can add Students successfully when entered a valid data', function () {
+        adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
+        adminUsersPage.getAdminUsersStudentTab().click()
+        adminUsersPage.getStudentSearchTxtfld().should('be.visible')
+        adminUsersPage.getAddtudentBtn().click()
+        adminUsersPage.getStudentFullNameTxtFld().type('manohara')
+        adminUsersPage.getStudentGenderDropDown().click()
+        adminUsersPage.getStudentGenderDropDownOpt().first().click()
+        adminUsersPage.getStudentContactNumberTxtFld().type('6362315152')
+        adminUsersPage.getStudentRelationDropDown().click()
+        adminUsersPage.getStudentRelationDropDownOpt().first().click()
+        adminUsersPage.getStudentGurdianNameTxtFld().type('eerapareddy')
+        adminUsersPage.getStudentGurdianContactNumberTxtFld().type('9008062490')
+        adminUsersPage.getStudentAddressTxtFld().type('kotturapalli')
+        adminUsersPage.getStudentPinecodeTxtFld().type('563124')
+        adminUsersPage.getAddStudentBtn().click()
+        cy.wait(2000)
+        adminUsersPage.getStudentAcademicDetailsAmissionYearTxtFld().type(dayjs().format('YYYY'),{force:true})
+        adminUsersPage.getStudentAcademicDetailsAdmissionNumberTxtFld().type('143').wait(2000)
+        adminUsersPage.getStudentAcademicDetailsGradeDropdown().click({force:true})
+        adminUsersPage.getStudentAcademicDetailsGradeDropdownOpt('Grade 2').click()
+        adminUsersPage.getStudentAcademicDetailsSectionsDropdown().click({force:true})
+        adminUsersPage.getStudentAcademicDetailsSectionDropdownOpt().first().click()
+        adminUsersPage.getStudentAcademicDetailsRollNoTxtFld().type('234')
+        adminUsersPage.getAddStudentBtn().click().wait(2000)
+        adminUsersPage.getStudentDeleteBtn('manohara ').click()
+        adminUsersPage.getStudentDeleteAccountBtn().click()
+        adminUsersPage.getStudentConfermationPopupDeleteBtn().click()
+    })
+
+    // it('TC_Student_008 Verify that School admin can bulk upload students successfully', function () {
+
+    // })
+
+    // it('TC_Student_009 Verify that School admin can Edit the student details successfully', function () {
+
+    // })
 })

@@ -1,4 +1,7 @@
 class CalenderPage{
+    getBody(){
+        return cy.get('body')
+    }
     getYourCalenderText(){
 
         return cy.xpath("//div[text()='Your Calendar']")
@@ -173,7 +176,10 @@ class CalenderPage{
    getEventButton(){
     return cy.xpath("//div[contains(text(),'Event')]")
    }
-   getEnterEventTitle(){
+   getCreateEventText(){
+    return cy.xpath("//h1[text()='Create Event']")
+   }
+   getEnterEventTitleTextField(){
     return cy.xpath('//input[@placeholder="Enter Event Title"]')
    }
    getSingleDayRadioButton(){
@@ -203,5 +209,163 @@ class CalenderPage{
    getPrepHoursRequiredDropdownList(hours){
     return cy.xpath("//li[contains(text(),'"+hours+" hours')]")
    }
+   getAddParticipants(){
+    return cy.xpath("//p[text()='Add Participants']")
+   }
+   getEventModelBody(){
+    return cy.xpath('//div[@class="event-model-wrapper "]')
+   }
+   getGradeDropdownInEventPage(){
+    return cy.xpath("//label[text()='Grade']/parent::div")
+   }
+   getGradeDropdownListInEventPage(grade){
+    return cy.xpath("//li[contains(text(),'"+grade+"')]")
+   }
+   getSectionDropdownInEventPage(){
+    return cy.xpath("//label[text()='Section']/parent::div/child::div")
+   }
+   getSectionDropdownListInEventPage(section){
+    return cy.xpath("//li[contains(text(),'"+section+"')]")
+   }
+   getStudentCheckboxInEventPage(student){
+    return cy.xpath("//p[contains(text(),'"+student+"')]/parent::div/following-sibling::span/input")
+   }
+   getStudentPopupCloseIconInEventPage(){
+    return cy.xpath("(//*[name()='svg' and @data-testid='CloseIcon'])[2]")
+   }
+   getSaveEventButton(){
+    return cy.xpath("//button[text()='Save Event']")
+   }
+   getEventCreatedMsg(){
+    return cy.xpath("//div[contains(text(),'EVENT_CREATED')]")
+   }
+   getEventCheckbox(){
+    return cy.xpath('//input[@name="Event"]')
+   }
+   getEventDetailsIncalender(event){
+    return cy.xpath("//strong[text()='"+event+"']")
+   }
+   getDeleteEventButton(){
+    return cy.xpath("//button[contains(text(),'Delete Event')]")
+   }
+   getAppointmentButton(){
+    return cy.xpath("//div[text()='Appointment']")
+   }
+   getCreateAppointmentSection(){
+    return cy.xpath("//h1[text()='Create Appointment']")
+   }
+   getEnterAppointmentTitleTextField(){
+    return cy.xpath('//input[@placeholder="Enter Appointment Title"]')
+   }
+   getAttendeesButton(){
+    return cy.xpath("//p[text()='Attendees']")
+   }
+   getTeacherButtonInAttendeesSection(){
+    return cy.xpath("//button[text()='Teachers']")
+   }
+   getAdminsButtonInAttendeesSection(){
+    return cy.xpath("//button[text()='Admins']")
+   }
+   getcloseButtonInAttendeesSection(){
+    return cy.xpath("//button[text()='close']")
+   }
+   getRemindDropdownInAppointmentPage(){
+    return cy.xpath("//label[text()='Remind']/parent::div")
+   }
+   getRemindDropdownListInAppointmentPage(remind){
+    return cy.xpath("//li[contains(text(),'"+remind+"')]")
+   }
+   getAppointmentTypeDropdown(){
+    return cy.xpath("//label[text()='Appointment Type']/parent::div")
+   }
+   getAppointmentTypeDropdownListInAppointmentPage(AppointmentType){
+    return cy.xpath("//li[contains(text(),'"+AppointmentType+"')]")
+   }
+   getMeetingLinkTextField(){
+    return cy.xpath("//label[text()='meeting link']/following-sibling::div/input[@type='text']")
+   }
+   getSaveAppointmentButton(){
+    return cy.xpath('//button[text()="Save Appointment"]')
+   }
+   getAppointmentCreatedMsg(){
+    return cy.xpath("//p[contains(text(),'Appointment Created')]")
+   }
+   getAppointmentCheckbox(){
+    return cy.xpath("//input[@name='Appointment']")
+   }
+   getDeleteAppointmentButton(){
+    return cy.xpath("//button[text()=' Delete Appointment']")
+   }
+   getDateButtonInAppointmentPage(){
+    return cy.xpath("//label[text()='Date']/parent::div")
+   }
+   getCreateAppointmentBody(){
+    return cy.xpath('//div[@class="class-model-content"]')
+   }
+   getSectionDropdownInAppointmentPage(){
+    return cy.xpath("//label[text()='Sections']/parent::div")
+   }
+   getStudentCheckboxInAppointmentPage(student){
+    return cy.xpath("//p[contains(text(),'"+student+"')]/ancestor::div[@class='d-flex txtcenter']/following-sibling::span/input")
+   }
+   getExamTab(){
+    return cy.xpath("//div[text()='Exam']")
+   }
+   getCreateExamText(){
+    return cy.xpath("//h1[text()='Create Exam']")
+   }
+   getSubjectDropdownInExamSection(){
+    return cy.xpath("//label[text()='Subject']/parent::div")
+   }
+   getSubjectDropdownList(subject){
+    return cy.xpath("//li[contains(text(),'"+subject+"')]")
+   }
+   getExamTitleTextField(){
+    return cy.xpath('//input[@placeholder="Enter Exam Title"]')
+   }
+   getDateOfExamButton(){
+    return cy.xpath("//label[text()='Date of exam']/parent::div")
+   }
+   getExamTypeDropdown(){
+    return cy.xpath("//label[text()='Exam type']/parent::div")
+   }
+   getExamTypeDropdownList(examType){
+    return cy.xpath("//li[text()='"+examType+"']")
+   }
+   getAttachFileInExamSection(){
+    return cy.xpath("//p[text()='Attach a file']")
+   }
+   getSaveExamButton(){
+    return cy.xpath("//button[text()='Save Exam']")
+   }
+   getExamAddedSuccessfullyMsg(){
+    return cy.xpath("//div[text()='Exam Added Successfully']")
+   }
+   getExamCheckbox(){
+    return cy.xpath("//input[@name='Exam']")
+   }
+   getExamDetailsIncalender(exam){
+    return cy.xpath("//span[text()='"+exam+"']")
+   }
+   getDeleteExamButton(){
+    return cy.xpath("//button[text()='Delete Exam']")
+   }
+   getCreateExamBody(){
+    return cy.xpath('//div[@class="reminder-model-content"]')
+   }
+
+   getSelectAllCheckbox(){
+    return cy.xpath('//input[@id="selectAll"]')
+   }
+   getHolidaysCheckbox(){
+    return cy.xpath('//input[@name="Holidays"]')
+   }
+   getClassesCheckbox(){
+    return cy.xpath('//input[@name="Classes"]')
+   }
+   getEventDetails(){
+    return cy.xpath('//div[@class="md-custom-event-details remainderCell"]')
+   }
+   
 }   
 module.exports=new CalenderPage()
