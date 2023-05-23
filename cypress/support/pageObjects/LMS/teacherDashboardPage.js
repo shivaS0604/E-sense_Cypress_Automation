@@ -28,23 +28,23 @@ class teacherDashboardPage {
         return cy.get('div.side-nav-icon>img[src*="myCalendar"]')
     }
 
-    getRequestLeaveBtnInCalendarPage(){
+    getRequestLeaveBtnInCalendarPage() {
         return cy.get('button[data-testid="requestBtn"]')
     }
 
-    getReasonForLeaveLst(){
+    getReasonForLeaveLst() {
         return cy.get('div.leaveRqtLeveTypeOpt')
     }
 
-    getStartDateInRequestAbsencePopup(){
+    getStartDateInRequestAbsencePopup() {
         return cy.get('div.schAdminInputCtrDate>div>input').eq(0)
     }
 
-    getEndDateInRequestAbsencePopup(){
+    getEndDateInRequestAbsencePopup() {
         return cy.get('div.schAdminInputCtrDate>div>input').eq(1)
     }
 
-    getTodaysDateInCalendarPickerInRequestAbsencePopup(){
+    getTodaysDateInCalendarPickerInRequestAbsencePopup() {
         return cy.get('div>button.MuiPickersDay-today')
     }
 
@@ -52,31 +52,28 @@ class teacherDashboardPage {
         return cy.get('.mt-4 > :nth-child(2)')
     }
 
-    getFullDayCheckBoxInRequestAbsencePopup(){
+    getFullDayCheckBoxInRequestAbsencePopup() {
         return cy.get('div.leaveRqtLeveTypeOpt>span[data-testid="fullDayRadio"]')
     }
 
-    getSendRequestBtnInRequestAbsencePopup(){
+    getSendRequestBtnInRequestAbsencePopup() {
         return cy.get('button.leaveRqtAction')
     }
 
-<<<<<<< HEAD
-    getNewTeacherPopupCancelIcon(){
+    getNewTeacherPopupCancelIcon() {
         return cy.get('svg[data-testid="CancelIcon"]:visible')
     }
 
-    getNewTeacherFirstPageContinueBtn(){
+    getNewTeacherFirstPageContinueBtn() {
         return cy.get('.MuiButton-contained')
     }
 
 
 
-=======
-    getDashboardTitle(){
+    getDashboardTitle() {
         return cy.get('.Dashboard_tchDshTitle__3rghy')
     }
 
->>>>>>> 5a13aa9c8a8c09ed51e58e1c12b4cae257bb0391
     //Logout-teacher
     teacherLogout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
