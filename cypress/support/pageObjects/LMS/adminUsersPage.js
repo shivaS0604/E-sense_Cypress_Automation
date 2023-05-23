@@ -76,6 +76,10 @@ class adminUsersPage {
         return cy.get('div.continue-btn')
     }
 
+    getAdminAddNewTeacherAccountAcademicDetailsSaveChangesBtn() {
+        return cy.get('button.AcademicDetails_saveChangesBtn__5Hcqk')
+    }
+
     getAdminAddNewTeacherAccountGradeSectionSelectGradeDropdown() {
         return cy.get('div[id="opt-subjects"]')
     }
@@ -109,8 +113,16 @@ class adminUsersPage {
         return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//button[@aria-label="Delete Teacher"]')
     }
 
+    getStudentDeleteBtn(teachername) {
+        return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//button[@aria-label="Delete Student"]')
+    }
+
     getTeacherEditBtn(teachername) {
         return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//button[@aria-label="Edit Teacher"]')
+    }
+
+    getStudentEditBtn(studentname) {
+        return cy.xpath('//p[text()="' + studentname + '"]/ancestor::tr//button[@aria-label="Edit Student"]')
     }
 
     getTeacherResetBtn(teachername) {
@@ -121,8 +133,16 @@ class adminUsersPage {
         return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//img[@src="/static/media/rightViewImg.a97b7807.svg"]')
     }
 
+    getStudentViewBtn(Studentname) {
+        return cy.xpath('//p[text()="' + Studentname + '"]/ancestor::tr//img[@src="/static/media/rightViewImg.a97b7807.svg"]')
+    }
+
     getTeacherEditSaveChangesBtn() {
         return cy.get('button.continue-btn-cls')
+    }
+
+    getStudentEditSaveChangesBtn() {
+        return cy.get('button.AcademicDetails_saveChangesBtn__5Hcqk')
     }
 
     getTeacherDeleteAccountBtn() {
@@ -143,6 +163,10 @@ class adminUsersPage {
     }
 
     getTeacherBulkUploadBtn() {
+        return cy.get('button[aria-label="Bulk Upload"]')
+    }
+
+    getStudentBulkUploadBtn() {
         return cy.get('button[aria-label="Bulk Upload"]')
     }
 
@@ -433,6 +457,40 @@ class adminUsersPage {
 
     getStudentConfermationPopupDeleteBtn() {
         return cy.get('button.userdelete')
+    }
+
+
+    getAddStudentGradeDropdown(){
+        return cy.get('div.schAdminInputCtrSelect').eq(0)
+    }
+
+    getAddStudentGradeDropdownOpt(opt){
+        return cy.get('li[role="option"]').contains(opt)
+    }
+
+    getAddStudentSectionDropdown(){
+        return cy.get('div.schAdminInputCtrSelect').eq(1)
+    }
+
+    getAddStudentSectionDropdownOpt(opt){
+        return cy.get('li[role="option"]').contains(opt)
+    }
+
+    getAddStudentDoneBtn(){
+        return cy.get('button.fileUploadPopup_gradeBtn__7zxBc')
+    }
+
+    getStudentBulkUploadDownloadSampleFile(){
+        return cy.get('button.BulkUpload_downloadSampleTxt__1UJTp')
+    }
+
+    getStudentUploadStudentAccountsinbulkSelectFileFromComputerBtn() {
+        return cy.get('input[id="file-input"]')
+    }
+
+
+    getStudentUploadStudentAccountsinbulkImportStudentAccounts() {
+        return cy.get('button.BulkUpload_bulkImport__spFpc')
     }
 
     //Business-Logic
