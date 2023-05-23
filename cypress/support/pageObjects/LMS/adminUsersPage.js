@@ -178,7 +178,7 @@ class adminUsersPage {
     }
 
     getTeacherDltBtn(teacherName) {
-        return cy.get('(//button[@aria-label="Delete Teacher"]/ancestor::tbody/tr/td/div/div[contains(@class,"TeacherDashboard_studentMeta")]/p[contains(text(),"'+teacherName+'")])[2]')
+        return cy.xpath('//div[contains(@class,"TeacherDashboard_studentMeta")]/p[contains(text(),"'+teacherName+'")]/../../../../td/div/button[@aria-label="Delete Teacher"]')
     }
 
     getDeleteAccountBtn() {
@@ -281,12 +281,12 @@ class adminUsersPage {
         return cy.get('div[class*="UserDashBoard_studentMeta"] p:nth-child(1)')
     }
 
-    getTeacherDltBtn() {
-        return cy.get('button[aria-label="Delete Teacher"]')
-    }
-
     getStudentDltBtn() {
         return cy.get('button[aria-label="Delete Student"]')
+    }
+
+    getSiTeacherLst(){
+        return cy.get('p[class*="TeacherDashboard_adminssionNumber"]')
     }
 
     //Business-Logic

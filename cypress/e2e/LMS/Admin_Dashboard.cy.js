@@ -36,7 +36,7 @@ describe("Admin School Validation", function () {
     cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
       cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
     })
-    adminDashboardPage.getGradeWiseAttendanceBarLst(this.basic.className).trigger('mouseover')
+    adminDashboardPage.getGradeWiseAttendanceBarLst(this.basic.className).trigger('mouseover').wait(1500)
     cy.contains("100% present").should('be.visible')
   })
 
@@ -63,53 +63,53 @@ describe("Admin School Validation", function () {
 
   it("Adm_Dashboard 004 To validate user is able to view the TOP PERFORMER based on the marks updated in the Gradebook", function () {
     adminDashboardPage.getTopPerformersGradeDrpdwn().click()
-    adminDashboardPage.getDropdownLstInDashboard().contains("Grade 1").click()
+    adminDashboardPage.getDropdownLstInDashboard().contains(this.basic.dropdownClassName).scrollIntoView().click()
     adminDashboardPage.getTopPerformerOverallPercentageTxt(this.basic.student1).should('have.text', "50.00 %")
   })
 
   it("Adm_Dashboard 005 To Validate user is able to view the average percentage of the entire class in Site Analytics >> Overall Result", function () {
     adminDashboardPage.getOverallResultTabInSiteAnalytics().click()
     adminDashboardPage.getGradeDropDwnInOverallResultTab().click()
-    adminDashboardPage.getDropdownLstInDashboard().contains("Grade 1").click()
+    adminDashboardPage.getDropdownLstInDashboard().contains(this.basic.dropdownClassName).click()
     adminDashboardPage.getOverallResultBarInSiteAnalytics().trigger('mouseover').wait(1500)
     cy.contains("50%").should('be.visible')
   })
 
-  it.only("Adm_Dashboard 005 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
+  it("Adm_Dashboard 005 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
     adminUsersPage.newTeacherCreation()
-    cy.get('p[class*="TeacherDashboard_adminssionNumber"]').contains("alex").invoke('text').then((name) => {
+    adminUsersPage.getSiTeacherLst().contains("alex").invoke('text').then((name) => {
       adminDashboardPage.logout()
       cy.fixture("LMS/Credentials").then(function (validTeacherLoginData) {
         cy.teacherLogin(name, validTeacherLoginData.teacherPassword)
       })
-      cy.get('p.set-password-msg').should('be.visible').then(($element) => {
+      teacherLogin.getSetPasswordBtn().should('be.visible').then(($element) => {
         if ($element.length === 0) {
           cy.fixture("LMS/Credentials").then(function (validTeacherLoginData) {
             cy.teacherLogin(name, validTeacherLoginData.teacherPassword)
           })
         } else {
-          cy.get('button').contains("Continue").click()
-          cy.get('input[name="password"]').type("Test@123")
-          cy.get('input[name="confirmPassword"]').type("Test@123")
-          cy.get('button[type="submit"]').click()
+          teacherLogin.getSetPassrwordContinueBtn().click()
+          teacherLogin.getSetPasswordFld().type("Test@123")
+          teacherLogin.getSetConfirmPasswordFld().type("Test@123")
+          teacherLogin.getSetPassWordSubmitBtn().click()
           cy.contains("Log In Details Sent Successfully").should('be.visible')
-          cy.get('button[type="button"]').contains("Go Back To Login").click()
+          teacherLogin.getGoBackToLoginBtn().click()
           teacherLogin.getUserNameTxtFld().clear().type(name)
           teacherLogin.getPasswordTxtFld().clear().type("Test@123")
           teacherLogin.getLogInBtn().click().wait(2000)
         }
         teacherDashboard.getNewTeacherPopupCancelIcon().click()
-        for(let i=0;i<3;i++){
+        for (let i = 0; i < 3; i++) {
           teacherDashboard.getNewTeacherFirstPageContinueBtn().click().wait(1000)
         }
-        teacherDashboard.getCalendarTabInSideNavigationBar().click({force:true})
+        teacherDashboard.getCalendarTabInSideNavigationBar().click({ force: true })
         teacherDashboard.getRequestLeaveBtnInCalendarPage().click().wait(2000)
         teacherDashboard.getFullDayCheckBoxInRequestAbsencePopup().click()
         teacherDashboard.getStartDateInRequestAbsencePopup().click()
         teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click()
         teacherDashboard.getEndDateInRequestAbsencePopup().click()
         teacherDashboard.getTodaysDateInCalendarPickerInRequestAbsencePopup().click().wait(2000)
-        cy.get('.mt-4 > :nth-child(2)').click()
+        teacherDashboard.getCloseDateInRequestAbsencePopup().click()
         teacherDashboard.getSendRequestBtnInRequestAbsencePopup().click()
         cy.contains("Request Sent Successfully").should('be.visible').wait(5000)
         teacherDashboard.teacherLogout()
@@ -121,25 +121,17 @@ describe("Admin School Validation", function () {
         adminDashboardPage.getApproveBtnInLeaveRequestPage().eq(0).click()
         adminDashboardPage.getApproveRequestBtnInLeaveRequestPage().click()
         cy.contains("Leave Request Approved Substitution Pending").should('be.visible').wait(1500)
-        adminDashboardPage.getApprovedStatusLstInLeaveRequestsPage("alex").should('have.text',"Approved")
+        adminDashboardPage.getApprovedStatusLstInLeaveRequestsPage("alex").should('have.text', "Approved")
         adminDashboardPage.getDashboardTabInSideNavigationBar().scrollIntoView().click()
         adminDashboardPage.getRightArrowIconInDashboardPage().click().wait(3000)
-        adminDashboardPage.getTeacherPresentCount().invoke('text').then(text => {
-          const str = "text";
-          const letters = str.split('');
-          const first = letters[0];
-          const last = letters(letters.length - 1);
-          const firstNum = parseInt(first);
-          const lastNum = parseInt(last);
-          cy.log(firstNum)
-          cy.log(lastNum)
-          cy.wrap(lastNum).should('be.gt',firstNum)
+        adminDashboardPage.getTeacherPresentCount().scrollIntoView().invoke('text').then(text => {
+          cy.log(text)
+          var first = Number(text.charAt(0));
+          var last = Number(text.charAt(text.length - 1));
+          cy.wrap(last).should('be.greaterThan', first);
         })
-
       })
     })
-
   })
-
   //author - shiva
 })

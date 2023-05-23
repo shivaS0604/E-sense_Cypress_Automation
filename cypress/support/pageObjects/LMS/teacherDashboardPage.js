@@ -48,6 +48,10 @@ class teacherDashboardPage {
         return cy.get('div>button.MuiPickersDay-today')
     }
 
+    getCloseDateInRequestAbsencePopup() {
+        return cy.get('.mt-4 > :nth-child(2)')
+    }
+
     getFullDayCheckBoxInRequestAbsencePopup(){
         return cy.get('div.leaveRqtLeveTypeOpt>span[data-testid="fullDayRadio"]')
     }
