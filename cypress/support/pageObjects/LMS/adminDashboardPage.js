@@ -124,6 +124,14 @@ class adminDashboardPage {
         return cy.get('div[class*="Dashboard_tchDshTimelineCnt"]>div>h4>span').eq(6)
     }
 
+    getStudentRegistrationBtn(){
+        return cy.get('button[role="tab"]').contains("Student Registrations")
+    }
+
+    getStudentRegistrationCountPoint(){
+        return cy.get('g>circle')
+    }
+
     //Logout-admin
     logout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
