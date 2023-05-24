@@ -1,0 +1,24 @@
+{
+    "Grade": "Grade 4",
+    "section": "B",
+    "StudentGradebookText": "Student Gradebook",
+    "BasicTemplateDetailsText": "Basic Template Details",
+    "Theory": "100",
+    "Practicle": "0",
+    "AddActivityName": "Drawing",
+    "AddSignatureTxt": "Add Signature",
+    "SignatureFile": "C:/Users/user.TYSS-GARIMASAIN/Desktop/Esens/TopSchool/E-sense_Cypress_Automation/cypress/fixtures/LMS/GradeBook_signature.jpg",
+    "StudentGradeBookTxt": "Student Gradebook",
+    "Grade2": "Grade 2",
+    
+    "StudentName": "kumar",
+    "PrimaryDetailsContactNumb": "9999999999",
+    "GuardianName": "veena",
+    "GuardianContactNumb": "8888888888",
+    "GuardianAddress": "Bangalore",
+    "Pincode": "561101",
+    "AdmissionYear": "2012",
+    "AdmissionNumb": "22",
+    "RollNumb": "12",
+    "Remarks": "No remarks"
+}
