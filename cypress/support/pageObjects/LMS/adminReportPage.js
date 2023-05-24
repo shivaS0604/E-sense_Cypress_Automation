@@ -432,9 +432,9 @@ class AdminReportPage {
     }
 
     getGradeBookStudentsLists() {
-        return cy.get('tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)')
+        return cy.get('tbody>tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)')
     }
-
+    
     getArrowForwordIcon() {
         return cy.get('[data-testid="ArrowForwardIosIcon"]')
     }
@@ -526,6 +526,31 @@ class AdminReportPage {
     getTeacherModuleELAsTab() {
         return cy.xpath('//button[contains(.,"ELAs")]')
     }
+
+
+    // Tc_007 Verify that School Admin can search and select filters in Gradebook
+    getSearchStudentTxtfield(){
+        return cy.get('input[placeholder="Search a student..."]')
+    }
+
+    getAllGradesDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All Grades")]')
+    }
+
+    getAllSectionDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All Sections")]')
+    }
+
+    getAllTermsDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All terms")]')
+    }
+
+    getTermsList(){
+        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"]>li').contains('Term 1')
+    }
+
+
+    // Tc_008 Verify that School Admin can search and select filters in 360 reports
 
 }
 

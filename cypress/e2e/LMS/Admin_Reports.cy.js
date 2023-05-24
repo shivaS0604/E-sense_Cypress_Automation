@@ -258,7 +258,7 @@ describe('Admin Report Validation', function () {
 
 
 
-  it.only('Tc_006 Verify that School Admin can Add results for respective students', function () {
+  it('Tc_006 Verify that School Admin can Add results for respective students', function () {
 
     // pre condition --- Create student
     ReportDashboardPage.getUserTab().click()
@@ -281,7 +281,7 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.getAddStudentPageGradesList().click()
     ReportDashboardPage.getAddStudentPageSectionDropdown().click()
     ReportDashboardPage.getAddStudentPageSectionList().click()
-    ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().type(this.TemplateDetails.RollNumb)
+    ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(this.TemplateDetails.RollNumb)
     ReportDashboardPage.getAddStudentButton().click()
 
 
@@ -347,7 +347,6 @@ describe('Admin Report Validation', function () {
       }
     })
 
-
     // Post conditon- Delete Created Student account
     teacherDashboard.teacherLogout()
     cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
@@ -366,6 +365,147 @@ describe('Admin Report Validation', function () {
     })
 
   })
+
+
+
+  it('Tc_007 Verify that School Admin can search and select filters in Gradebook',function(){
+
+    // pre condition --- Create student
+    ReportDashboardPage.getUserTab().click()
+    ReportDashboardPage.getStudentsTab().click()
+    ReportDashboardPage.getAddStudentsIcon().click()
+    ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type(this.TemplateDetails.StudentName)
+    ReportDashboardPage.getAddStudentPageGenderDropdown().click()
+    ReportDashboardPage.getAddStudentPageGenderList().click()
+    ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(this.TemplateDetails.PrimaryDetailsContactNumb)
+    ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
+    ReportDashboardPage.getAddStudentPageSelectRelation().click()
+    ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type(this.TemplateDetails.GuardianName)
+    ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type(this.TemplateDetails.GuardianContactNumb)
+    ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type(this.TemplateDetails.GuardianAddress)
+    ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(this.TemplateDetails.Pincode).wait(1000)
+    ReportDashboardPage.getAddStudentButton().click()
+    ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type(this.TemplateDetails.AdmissionYear)
+    ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(this.TemplateDetails.AdmissionNumb)
+    ReportDashboardPage.getAddStudentPageGradeDropdown().click()
+    ReportDashboardPage.getAddStudentPageGradesList().click()
+    ReportDashboardPage.getAddStudentPageSectionDropdown().click()
+    ReportDashboardPage.getAddStudentPageSectionList().click()
+    ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(this.TemplateDetails.RollNumb)
+    ReportDashboardPage.getAddStudentButton().click()
+
+    //Verify that School Admin can search and select filters in Gradebook
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
+    ReportDashboardPage.getGradeBookTab().click()
+    ReportDashboardPage.getSearchStudentTxtfield().type(this.TemplateDetails.StudentName).wait(500)
+    ReportDashboardPage.getGradeBookStudentsLists().each(($Txt)=>{
+      var StudentName=$Txt.text()
+      if (StudentName==this.TemplateDetails.StudentName) {
+        ReportDashboardPage.getGradeBookStudentsLists().should('be.visible')
+      }
+    })
+    ReportDashboardPage.getAllGradesDropdown().click()
+    ReportDashboardPage.getAddStudentPageGradesList().click()
+    ReportDashboardPage.getAllSectionDropdown().click()
+    ReportDashboardPage.getAddStudentPageSectionList().click()
+    ReportDashboardPage.getAllTermsDropdown().click()
+    ReportDashboardPage.getTermsList().click()
+    ReportDashboardPage.getGradeBookStudentsLists().each(($Txt)=>{
+      var StudentName=$Txt.text()
+      if (StudentName==this.TemplateDetails.StudentName) {
+        ReportDashboardPage.getGradeBookStudentsLists().should('be.visible')
+      }
+    })
+
+    // Post conditon- Delete Created Student account
+    ReportDashboardPage.getUserTab().click({force:true})
+    ReportDashboardPage.getStudentsTab().click().wait(2000)
+    ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+      var studentName = $text.text().trim()
+      if (studentName === this.TemplateDetails.StudentName) {
+        ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+        ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+        ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+      }
+    })
+
+  })
+
+
+    it.only('Tc_008 Verify that School Admin can search and select filters in 360 reports',function(){
+
+      // pre condition --- Create student
+      for(let i=0;i<=1;i++){
+        var RandNum=Math.floor(Math.random()*10)
+    ReportDashboardPage.getUserTab().click()
+    ReportDashboardPage.getStudentsTab().click()
+    ReportDashboardPage.getAddStudentsIcon().click()
+    ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type(this.TemplateDetails.StudentName)
+    ReportDashboardPage.getAddStudentPageGenderDropdown().click()
+    ReportDashboardPage.getAddStudentPageGenderList().click()
+    ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(this.TemplateDetails.PrimaryDetailsContactNumb)
+    ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
+    ReportDashboardPage.getAddStudentPageSelectRelation().click()
+    ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type(this.TemplateDetails.GuardianName)
+    ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type(this.TemplateDetails.GuardianContactNumb)
+    ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type(this.TemplateDetails.GuardianAddress)
+    ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(this.TemplateDetails.Pincode).wait(1000)
+    ReportDashboardPage.getAddStudentButton().click()
+    ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type(this.TemplateDetails.AdmissionYear)
+    ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(1+""+RandNum)
+    ReportDashboardPage.getAddStudentPageGradeDropdown().click()
+    ReportDashboardPage.getAddStudentPageGradesList().click()
+    ReportDashboardPage.getAddStudentPageSectionDropdown().click()
+    ReportDashboardPage.getAddStudentPageSectionList().click()
+    ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(2+""+RandNum)
+    ReportDashboardPage.getAddStudentButton().click()
+      }
+  
+   // Verify that School Admin can search and select filters in 360 reports
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    cy.get('div[class="content-popover-reports"]').eq(1).should('be.visible', { timeout: 2000 }).click({ force: true })
+    cy.xpath('//p[contains(.,"360˚ Reports")]').should('be.visible').wait(2000)
+    cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').each(($Txt)=>{
+      console.log($Txt.text());
+      var StudentName=$Txt.text()
+      if (StudentName=='bhai') {
+        cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').should('be.visible')
+      }
+    })
+    cy.get('[id="demo-simple-select-1"]').click()
+    ReportDashboardPage.getAddStudentPageGradesList().click()
+    cy.get('[id="demo-simple-select-2"]').click()
+    ReportDashboardPage.getAddStudentPageSectionList().click().wait(2000)
+    cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').each(($Txt)=>{
+      console.log($Txt.text());
+      var StudentName=$Txt.text()
+      if (StudentName==this.TemplateDetails.StudentName) {
+        cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').should('be.visible')
+      }
+    })
+
+     // Post conditon- Delete Created Student account
+    //  ReportDashboardPage.getUserTab().click({force:true})
+    //  ReportDashboardPage.getStudentsTab().click().wait(2000)
+    //  ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+    //    var studentName = $text.text().trim()
+    //    if (studentName === this.TemplateDetails.StudentName) {
+    //      ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+    //      ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+    //      ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+    //    }
+    //  })
+
+
+  })
+
+
+
+
+
+  
 
 
 
