@@ -366,6 +366,45 @@ class CalenderPage{
    getEventDetails(){
     return cy.xpath('//div[@class="md-custom-event-details remainderCell"]')
    }
+   getUploadCSVButton(){
+    return cy.xpath("//div[text()='Upload CSV']")
+   }
+   getUploadSchoolHolidays(){
+    return cy.xpath("//div[text()='Upload school holidays']")
+   }
+   getDownloadSampleFile(){
+    return cy.xpath("//button[text()='Download sample file']")
+   }
+   getSelectFileFromComputer(){
+    return cy.xpath('//input[@id="file-input"]')
+   }
+   getUploadHolidaysInBulkpopupText(){
+    return cy.xpath("//h2[text()='Upload Holidays in bulk']")
+   }
+   getImportHolidaysButton(){
+    return cy.xpath("//button[contains(text(),'Import ')]")
+   }
+   getHolidaysImportedSuccessfullyMsg(){
+    return cy.xpath("//h5[contains(text(),'Holidays Imported successfully')]")
+   }
+   getDateMonthTextInCalenderPage(DD_MMM){
+    return cy.xpath("//div[contains(text(),'"+DD_MMM+"')]") 
+   }
+   getCalenderheaderNextIcon(){
+    return cy.xpath('//button[contains(@class,"cal-header-next ")]')
+   }
+   getCalenderYearButtonInCalender(){
+    return cy.xpath('//span[contains(@class,"mbsc-calendar-title mbsc-calendar-year")]')
+   }
+   getYearButtonInCalender(year){
+    return cy.xpath("//div[text()='"+year+"']")
+   }
+   getVerifyHolidaysDetailsInMonthlyCalender(date,remain){
+    return cy.xpath('((//div[@class="mbsc-calendar-wrapper mbsc-windows"])[2]/descendant::div[text()="'+date+'"])[3]/following-sibling::div/descendant::div[text()="'+remain+'"]')
+   }
    
+   
+
+
 }   
 module.exports=new CalenderPage()

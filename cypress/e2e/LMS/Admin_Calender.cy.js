@@ -316,7 +316,7 @@ it('E2E_05_Exam_To Validate that the user is able to create exam in calender and
     calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
 
 })
-it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
+it('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
     calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
@@ -329,8 +329,7 @@ it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered sele
     calenderPage.getAppointmentCheckbox().should('be.checked')
     calenderPage.getSelectAllCheckbox().click().should('not.be.checked')
     calenderPage.getEventCheckbox().click().should('be.checked',{timeout:10000})
-    calenderPage.getEventDetails().should('not.be.exist')
-    ///////////////////////////////////////////////////////
+    calenderPage.getEventDetails().should('not.be.exist').wait(1000)
     calenderPage.getCreateNewButton().click()
     calenderPage.getCreateANewCalenderText().should('be.visible',{timeout:10000})
     calenderPage.getEventButton().click()
@@ -386,7 +385,7 @@ it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered sele
             calenderPage.getStudentCheckboxInEventPage('StudentA').click({timeout:10000})
             calenderPage.getStudentPopupCloseIconInEventPage().click()
             calenderPage.getSaveEventButton().click()
-              calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
+            calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
            
             calenderPage.getWeeklyDropdown().select('Monthly')
             calenderPage.getVerifyTextInCalenderWithName(date,event).should('be.visible').wait(500)
@@ -398,6 +397,38 @@ it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered sele
         })
 
 
-})
 
 })
+it('E2E_08_Upload CSV_Validate that the Admin can upload file and it will be displayed in the weekly calendar board.',function(){
+    adminDashBoardPage.getSideNavBar().invoke('show')
+    adminDashBoardPage.getCalenderTab().click()
+    calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
+    calenderPage.getUploadCSVButton().click().wait(1000)
+    calenderPage.getUploadSchoolHolidays().click().wait(1000)
+    calenderPage.getUploadHolidaysInBulkpopupText().should('be.visible')
+    calenderPage.getSelectFileFromComputer().attachFile("LMS/Holiday_Template.xlsx",{force:true}).wait(500)
+    calenderPage.getImportHolidaysButton().click().wait(500)
+    calenderPage.getHolidaysImportedSuccessfullyMsg().should('be.visible',{timeout:10000})
+    calenderPage.getHolidaysCheckbox().then($el=>{
+        if(!$el.is(":checked"))
+        {
+             cy.wrap($el).click().should('be.checked')
+        }
+    })
+    
+    calenderPage.getCalenderYearButtonInCalender().click().wait(500)
+    calenderPage.getYearButtonInCalender(2025).click().wait(500)
+    cy.get('div[class="mbsc-calendar-table"]').eq(1).find('div[aria-label="April"]').click().wait(1000)
+    cy.get('div[aria-label="Thursday, April 24"]').click().wait(1000)
+    calenderPage.getWeeklyDropdown().select('Monthly')
+    calenderPage.getVerifyHolidaysDetailsInMonthlyCalender('24','Holiday1').should('be.visible').wait(500)
+    calenderPage.getWeeklyDropdown().select('Weekly')
+    calenderPage.getHolidayDetailsIncalender('Holiday1').click()
+    calenderPage.getDeleteButton().click()
+    calenderPage.getDeleteHolidayButton().click({force:true}).wait(10000)
+    calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
+})
+
+
+})
+//Pavani
