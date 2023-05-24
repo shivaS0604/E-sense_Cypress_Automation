@@ -97,7 +97,7 @@ class adminDashboardPage {
     }
 
     getSupportTicketTabInSideNavBar(){
-        return cy.get('a[href*="support"]')
+        return cy.get('div.menu-txt').contains("Support Tickets")
     }
 
     getLeaveRequestInSupportTickets(){
@@ -108,6 +108,29 @@ class adminDashboardPage {
         return cy.get('div.supportAndFeedTableStatus>span>button').contains("Approve")
     }
 
+    getApproveRequestBtnInLeaveRequestPage(){
+        return cy.get('button[class*="ViewLeaveRequest_approveRequest"]')
+    }
+
+    getApprovedStatusLstInLeaveRequestsPage(teacherName){
+        return cy.xpath('//tbody/tr/td/div/span[contains(text(),"'+teacherName+'")]/ancestor::tr/td/div/button')
+    }
+
+    getRightArrowIconInDashboardPage(){
+        return cy.get('img[class*="Dashboard_hideArrow"]')
+    }
+
+    getTeacherPresentCount(){
+        return cy.get('div[class*="Dashboard_tchDshTimelineCnt"]>div>h4>span').eq(6)
+    }
+
+    getStudentRegistrationBtn(){
+        return cy.get('button[role="tab"]').contains("Student Registrations")
+    }
+
+    getStudentRegistrationCountPoint(){
+        return cy.get('g>circle')
+    }
 
     //Logout-admin
     logout() {

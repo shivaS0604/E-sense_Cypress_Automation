@@ -76,6 +76,10 @@ class adminUsersPage {
         return cy.get('div.continue-btn')
     }
 
+    getAdminAddNewTeacherAccountAcademicDetailsSaveChangesBtn() {
+        return cy.get('button.AcademicDetails_saveChangesBtn__5Hcqk')
+    }
+
     getAdminAddNewTeacherAccountGradeSectionSelectGradeDropdown() {
         return cy.get('div[id="opt-subjects"]')
     }
@@ -109,8 +113,16 @@ class adminUsersPage {
         return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//button[@aria-label="Delete Teacher"]')
     }
 
+    getStudentDeleteBtn(teachername) {
+        return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//button[@aria-label="Delete Student"]')
+    }
+
     getTeacherEditBtn(teachername) {
         return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//button[@aria-label="Edit Teacher"]')
+    }
+
+    getStudentEditBtn(studentname) {
+        return cy.xpath('//p[text()="' + studentname + '"]/ancestor::tr//button[@aria-label="Edit Student"]')
     }
 
     getTeacherResetBtn(teachername) {
@@ -121,8 +133,16 @@ class adminUsersPage {
         return cy.xpath('//p[text()="' + teachername + '"]/ancestor::tr//img[@src="/static/media/rightViewImg.a97b7807.svg"]')
     }
 
+    getStudentViewBtn(Studentname) {
+        return cy.xpath('//p[text()="' + Studentname + '"]/ancestor::tr//img[@src="/static/media/rightViewImg.a97b7807.svg"]')
+    }
+
     getTeacherEditSaveChangesBtn() {
         return cy.get('button.continue-btn-cls')
+    }
+
+    getStudentEditSaveChangesBtn() {
+        return cy.get('button.AcademicDetails_saveChangesBtn__5Hcqk')
     }
 
     getTeacherDeleteAccountBtn() {
@@ -143,6 +163,10 @@ class adminUsersPage {
     }
 
     getTeacherBulkUploadBtn() {
+        return cy.get('button[aria-label="Bulk Upload"]')
+    }
+
+    getStudentBulkUploadBtn() {
         return cy.get('button[aria-label="Bulk Upload"]')
     }
 
@@ -167,31 +191,31 @@ class adminUsersPage {
     }
 
 
-    getTeacherViewDeactivateAccountBtn(){
+    getTeacherViewDeactivateAccountBtn() {
         return cy.get('button.TeacherProfile_tchPrfDactBtn__2E33J')
     }
 
-    getTeacherViewTeacherDetailsTab(){
+    getTeacherViewTeacherDetailsTab() {
         return cy.get('div.tchPrfWrkListDetailsImg').contains('Teacher Details')
     }
 
-    getTeacherViewAcademicDetailsTab(){
+    getTeacherViewAcademicDetailsTab() {
         return cy.get('div.tchPrfWrkListDetailsImg').contains('Academic Details')
     }
 
-    getTeacherViewViewTeacherCalendarTab(){
+    getTeacherViewViewTeacherCalendarTab() {
         return cy.get('div.tchPrfWrkListDetailsImg').contains('View Teacher Calendar')
     }
 
-    getTeacherViewPopupCloseBtn(){
+    getTeacherViewPopupCloseBtn() {
         return cy.get('div[class="closediv"] svg[data-testid="CloseIcon"]')
     }
 
-    getTeacherSearchTxtfld(){
+    getTeacherSearchTxtfld() {
         return cy.get('input[type="search"]')
     }
 
-    getStudentSearchTxtfld(){
+    getStudentSearchTxtfld() {
         return cy.get('input[type="search"]')
     }
 
@@ -219,8 +243,8 @@ class adminUsersPage {
         return cy.get('div[class*="TeacherDashboard_student"] p:nth-child(1)')
     }
 
-    getTeacherDltBtn() {
-        return cy.get('button[aria-label="Delete Teacher"]')
+    getTeacherDltBtn(teacherName) {
+        return cy.xpath('//div[contains(@class,"TeacherDashboard_studentMeta")]/p[contains(text(),"' + teacherName + '")]/../../../../td/div/button[@aria-label="Delete Teacher"]')
     }
 
     getDeleteAccountBtn() {
@@ -323,108 +347,108 @@ class adminUsersPage {
         return cy.get('div[class*="UserDashBoard_studentMeta"] p:nth-child(1)')
     }
 
-    getTeacherDltBtn() {
-        return cy.get('button[aria-label="Delete Teacher"]')
-    }
-
     getStudentDltBtn() {
         return cy.get('button[aria-label="Delete Student"]')
     }
 
-    getTeacherAdmissionNumber(teacherName){
-        return cy.xpath('//p[text()="'+teacherName+'"]/ancestor::div[@class="TeacherDashboard_studentMeta__3kQfU"]//p[@class="MuiTypography-root MuiTypography-body1 TeacherDashboard_adminssionNumber__1gVX3 css-9l3uo3"]')
+    getSiTeacherLst() {
+        return cy.get('p[class*="TeacherDashboard_adminssionNumber"]')
     }
 
-    getTeacherDeactivateBtn(teacherName){
-        return cy.xpath('//p[text()="'+teacherName+'"]/ancestor::tr//div[@class="TeacherDashboard_textdeactive__3UvpD"]')
+    getTeacherAdmissionNumber(teacherName) {
+        return cy.xpath('//p[text()="' + teacherName + '"]/ancestor::div[@class="TeacherDashboard_studentMeta__3kQfU"]//p[@class="MuiTypography-root MuiTypography-body1 TeacherDashboard_adminssionNumber__1gVX3 css-9l3uo3"]')
     }
 
-    getTeacherDeactivateActivateBtn(){
+    getTeacherDeactivateBtn(teacherName) {
+        return cy.xpath('//p[text()="' + teacherName + '"]/ancestor::tr//div[@class="TeacherDashboard_textdeactive__3UvpD"]')
+    }
+
+    getTeacherDeactivateActivateBtn() {
         return cy.get('div[class="font-cls"]').contains('Activate')
     }
 
-    getTeacherDeactivatePopupActivateBtn(){
+    getTeacherDeactivatePopupActivateBtn() {
         return cy.get('button.activate')
     }
 
-    getAddtudentBtn(){
+    getAddtudentBtn() {
         return cy.get('div[aria-label="Add student(s)"]')
     }
 
-    getStudentFullNameTxtFld(){
+    getStudentFullNameTxtFld() {
         return cy.get('input[id="fullName"]')
     }
 
-    getStudentGenderDropDown(){
+    getStudentGenderDropDown() {
         return cy.get('div[id="demo-simple-select"]').eq(1)
     }
 
-    getStudentRelationDropDown(){
+    getStudentRelationDropDown() {
         return cy.get('div[id="demo-simple-select"]').eq(3)
     }
 
-    getStudentGenderDropDownOpt(){
+    getStudentGenderDropDownOpt() {
         return cy.get('li[role="option"]')
     }
 
-    getStudentRelationDropDownOpt(){
+    getStudentRelationDropDownOpt() {
         return cy.get('li[role="option"]')
     }
 
-    getStudentContactNumberTxtFld(){
+    getStudentContactNumberTxtFld() {
         return cy.get('input[name="contactNumber"]')
     }
 
-    getStudentGurdianNameTxtFld(){
+    getStudentGurdianNameTxtFld() {
         return cy.get('input[id="Guardian Name*"]')
     }
 
-    getStudentGurdianContactNumberTxtFld(){
+    getStudentGurdianContactNumberTxtFld() {
         return cy.get('input[id="Contact Number*"]').eq(1)
     }
 
-    getStudentAddressTxtFld(){
+    getStudentAddressTxtFld() {
         return cy.get('input[name="addressLineOne"]')
     }
 
-    getStudentPinecodeTxtFld(){
+    getStudentPinecodeTxtFld() {
         return cy.get('input[name="pinCode"]')
     }
 
-    getAddStudentBtn(){
+    getAddStudentBtn() {
         return cy.get('button.AcademicDetails_saveChangesBtn__5Hcqk')
     }
 
-    getStudentAcademicDetailsAmissionYearTxtFld(){
+    getStudentAcademicDetailsAmissionYearTxtFld() {
         return cy.get('input[placeholder="yyyy"]')
     }
 
-    getStudentAcademicDetailsAdmissionNumberTxtFld(){
+    getStudentAcademicDetailsAdmissionNumberTxtFld() {
         return cy.get('input[id="AdmissionNo"]')
     }
 
-    getStudentAcademicDetailsGradeDropdown(){
+    getStudentAcademicDetailsGradeDropdown() {
         return cy.get('.css-10bl4s4 > .MuiGrid-container > :nth-child(2) > .MuiFormControl-root > .MuiOutlinedInput-root > #demo-simple-select')
     }
 
-    getStudentAcademicDetailsSectionsDropdown(){
+    getStudentAcademicDetailsSectionsDropdown() {
         return cy.get(':nth-child(3) > .MuiFormControl-root > .MuiOutlinedInput-root > #demo-simple-select')
     }
 
-    getStudentAcademicDetailsGradeDropdownOpt(grade){
+    getStudentAcademicDetailsGradeDropdownOpt(grade) {
         return cy.get('li[role="option"]').contains(grade)
     }
 
-    getStudentAcademicDetailsSectionDropdownOpt(){
+    getStudentAcademicDetailsSectionDropdownOpt() {
         return cy.get('li[role="option"]')
     }
 
-    getStudentAcademicDetailsRollNoTxtFld(){
+    getStudentAcademicDetailsRollNoTxtFld() {
         return cy.get('input[id="RollNo"]')
     }
 
-    getStudentDeleteBtn(studentName){
-        return cy.xpath('//div[@class="UserDashBoard_studentMeta__12OmY"]/p[text()="'+studentName+'"]/ancestor::tr//button[@aria-label="Delete Student"]')
+    getStudentDeleteBtn(studentName) {
+        return cy.xpath('//div[@class="UserDashBoard_studentMeta__12OmY"]/p[text()="' + studentName + '"]/ancestor::tr//button[@aria-label="Delete Student"]')
     }
 
     getStudentDeleteAccountBtn() {
@@ -435,34 +459,51 @@ class adminUsersPage {
         return cy.get('button.userdelete')
     }
 
+
+    getAddStudentGradeDropdown(){
+        return cy.get('div.schAdminInputCtrSelect').eq(0)
+    }
+
+    getAddStudentGradeDropdownOpt(opt){
+        return cy.get('li[role="option"]').contains(opt)
+    }
+
+    getAddStudentSectionDropdown(){
+        return cy.get('div.schAdminInputCtrSelect').eq(1)
+    }
+
+    getAddStudentSectionDropdownOpt(opt){
+        return cy.get('li[role="option"]').contains(opt)
+    }
+
+    getAddStudentDoneBtn(){
+        return cy.get('button.fileUploadPopup_gradeBtn__7zxBc')
+    }
+
+    getStudentBulkUploadDownloadSampleFile(){
+        return cy.get('button.BulkUpload_downloadSampleTxt__1UJTp')
+    }
+
+    getStudentUploadStudentAccountsinbulkSelectFileFromComputerBtn() {
+        return cy.get('input[id="file-input"]')
+    }
+
+
+    getStudentUploadStudentAccountsinbulkImportStudentAccounts() {
+        return cy.get('button.BulkUpload_bulkImport__spFpc')
+    }
+
     //Business-Logic
     newTeacherCreation() {
         cy.get('body').click(0, 0)
         this.getAdminUsersSideMenuTab().click({ force: true })
         this.getAdminUsersTeachersTab().click().wait(2000)
-        cy.get('body').then(($el) => {
-            if ($el.find('div[class*="TeacherDashboard_textdeactive"]').length > 0) {
-                this.getActionsBtnLst().eq(0).click()
-                this.getTeacherDeactivatedDrpDwnLst().eq(1).click()
-                this.getDeactivateAccountBtn().click()
-                this.getDeleteAccountBtn().click()
-                cy.contains("Do you want to delete the teacher alex ?").should('be.visible')
-                this.getDeleteSubmitBtn().click()
-                cy.wait(2000)
-                this.getTeacherLst().should('not.contain.text', "alex")
-            }
-        })
-        this.getTeacherLst().each(($e1, index) => {
-            const txt = $e1.text()
-            if (txt === "alex") {
-                this.getTeacherDltBtn().eq(index).click()
-                this.getDeleteAccountBtn().click()
-                cy.contains("Do you want to delete the teacher alex ?").should('be.visible')
-                this.getDeleteSubmitBtn().click()
-                cy.wait(2000)
-                this.getTeacherLst().should('not.contain.text', "alex")
-            }
-        })
+        this.getTeacherDltBtn("alex").click()
+        this.getDeleteAccountBtn().click()
+        cy.contains("Do you want to delete the teacher alex ?").should('be.visible')
+        this.getDeleteSubmitBtn().click()
+        cy.wait(2000)
+        this.getTeacherLst().should('not.contain.text', "alex")
         cy.wait(3000)
         this.getAddTeacherBtnInTeacherPage().click()
         this.getFullNameTxtFld().type("alex")
