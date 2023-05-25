@@ -5,7 +5,7 @@ const adminDashBoardPage = require('../../support/pageObjects/LMS/adminDashboard
 const calenderPage=require('../../support/pageObjects/LMS/adminCalenderPage.js')
 
 describe('Calender', function(){
-    beforeEach('Login to application', function () {
+    beforeEach('Login to application', function ()  {
         cy.visit(Cypress.env("url"))
         cy.url().should('contain', `${Cypress.env("url")}`)
         cy.viewport(1920, 1080)
