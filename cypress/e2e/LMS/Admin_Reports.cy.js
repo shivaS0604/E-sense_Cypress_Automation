@@ -434,10 +434,9 @@ describe('Admin Report Validation', function () {
   })
 
 
-    it.only('Tc_008 Verify that School Admin can search and select filters in 360 reports',function(){
+    it('Tc_008 Verify that School Admin can search and select filters in 360 reports',function(){
 
       // pre condition --- Create student
-      for(let i=0;i<=1;i++){
         var RandNum=Math.floor(Math.random()*10)
     ReportDashboardPage.getUserTab().click()
     ReportDashboardPage.getStudentsTab().click()
@@ -461,42 +460,106 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.getAddStudentPageSectionList().click()
     ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(2+""+RandNum)
     ReportDashboardPage.getAddStudentButton().click()
-      }
   
    // Verify that School Admin can search and select filters in 360 reports
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
-    cy.get('div[class="content-popover-reports"]').eq(1).should('be.visible', { timeout: 2000 }).click({ force: true })
-    cy.xpath('//p[contains(.,"360˚ Reports")]').should('be.visible').wait(2000)
-    cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').each(($Txt)=>{
+    ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage. get360ReportPageTitle().should('have.text','360˚ Reports').wait(2000)
+    ReportDashboardPage.get360ReportPageStudentList().each(($Txt)=>{
       console.log($Txt.text());
       var StudentName=$Txt.text()
       if (StudentName=='bhai') {
-        cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').should('be.visible')
+        ReportDashboardPage.get360ReportPageStudentList().should('be.visible')
       }
     })
-    cy.get('[id="demo-simple-select-1"]').click()
+   ReportDashboardPage. get360ReportPageGradeDropdown().click()
     ReportDashboardPage.getAddStudentPageGradesList().click()
-    cy.get('[id="demo-simple-select-2"]').click()
+    ReportDashboardPage.get360ReportPageSectionDropdown().click()
     ReportDashboardPage.getAddStudentPageSectionList().click().wait(2000)
-    cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').each(($Txt)=>{
+    ReportDashboardPage.get360ReportPageStudentList().each(($Txt)=>{
       console.log($Txt.text());
       var StudentName=$Txt.text()
       if (StudentName==this.TemplateDetails.StudentName) {
-        cy.get('tbody>tr[class="MuiTableRow-root css-1gqug66"] td:nth-child(3)').should('be.visible')
+        ReportDashboardPage.get360ReportPageStudentList().should('be.visible')
       }
     })
 
-     // Post conditon- Delete Created Student account
-    //  ReportDashboardPage.getUserTab().click({force:true})
-    //  ReportDashboardPage.getStudentsTab().click().wait(2000)
-    //  ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
-    //    var studentName = $text.text().trim()
-    //    if (studentName === this.TemplateDetails.StudentName) {
-    //      ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
-    //      ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
-    //      ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
-    //    }
-    //  })
+    // Post conditon- Delete Created Student account
+     ReportDashboardPage.getUserTab().click({force:true})
+     ReportDashboardPage.getStudentsTab().click().wait(2000)
+     ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+       var studentName = $text.text().trim()
+       if (studentName === this.TemplateDetails.StudentName) {
+         ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+         ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+         ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+       }
+      
+     })
+
+  })
+
+
+  it.only('Tc_009 Verify that School Admin can add the Health report in 360 reports',function(){
+    // pre condition --- Create student
+    var RandNum=Math.floor(Math.random()*10)
+    ReportDashboardPage.getUserTab().click()
+    ReportDashboardPage.getStudentsTab().click()
+    ReportDashboardPage.getAddStudentsIcon().click()
+    ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type(this.TemplateDetails.StudentName)
+    ReportDashboardPage.getAddStudentPageGenderDropdown().click()
+    ReportDashboardPage.getAddStudentPageGenderList().click()
+    ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(this.TemplateDetails.PrimaryDetailsContactNumb)
+    ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
+    ReportDashboardPage.getAddStudentPageSelectRelation().click()
+    ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type(this.TemplateDetails.GuardianName)
+    ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type(this.TemplateDetails.GuardianContactNumb)
+    ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type(this.TemplateDetails.GuardianAddress)
+    ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(this.TemplateDetails.Pincode).wait(1000)
+    ReportDashboardPage.getAddStudentButton().click()
+    ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type(this.TemplateDetails.AdmissionYear)
+    ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(1+""+RandNum)
+    ReportDashboardPage.getAddStudentPageGradeDropdown().click()
+    ReportDashboardPage.getAddStudentPageGradesList().click()
+    ReportDashboardPage.getAddStudentPageSectionDropdown().click()
+    ReportDashboardPage.getAddStudentPageSectionList().click()
+    ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(2+""+RandNum)
+    ReportDashboardPage.getAddStudentButton().click()
+  
+   // Verify that School Admin can search and select filters in 360 reports
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage. get360ReportPageTitle().should('have.text','360˚ Reports').wait(2000)
+    ReportDashboardPage. get360ReportPageGradeDropdown().click()
+   // ReportDashboardPage.getAddStudentPageGradesList().click()
+   cy.get('[role="listbox"] li').contains('Grade 5').click()
+    ReportDashboardPage.get360ReportPageSectionDropdown().click()
+    //ReportDashboardPage.getAddStudentPageSectionList().click().wait(2000)
+    cy.get('[role="listbox"] li').contains('B').click().wait(2000)
+    ReportDashboardPage.get360ReportPageStudentList().each(($Txt,index)=>{
+      console.log($Txt.text());
+      var StudentName=$Txt.text()
+      if (StudentName==this.TemplateDetails.StudentName) {
+        cy.get('button[class="viewBtn"]').eq(index).click()
+      }
+    })
+    ReportDashboardPage.get360ReportPageAddReportButton().click()
+    ReportDashboardPage.get360ReportAddNewReportPageSchoolTypeDropdown().click()
+    ReportDashboardPage.get360ReportAddNewReportPageSchoolTypeList().click()
+    ReportDashboardPage.get360ReportAddNewReportPageGradeDropdown().click()
+    ReportDashboardPage.get360ReportAddNewReportPageGradeList().click()
+    ReportDashboardPage.get360ReportAddNewReportPageWeightTxtfield().click().type(28)
+    ReportDashboardPage.get360ReportAddNewReportPageHeightTxtfield().click().type(130).wait(500)
+    ReportDashboardPage.get360ReportAddNewReportPageAddButton().click({force:true}).wait(1000)
+
+    dashboard.logout()
+    cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
+      cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
+    })
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click({force:true})
+    ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    ReportDashboardPage. get360ReportPageTitle().should('have.text','360˚ Reports').wait(2000)
+
 
 
   })
