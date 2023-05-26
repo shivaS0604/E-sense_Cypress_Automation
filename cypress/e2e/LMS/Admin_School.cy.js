@@ -28,11 +28,11 @@ describe("Admin School Validation", function () {
     academicsetuppage.getAddAcademicPopUpSelectYearDropdownLists().eq(0).click()
     academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderIcon().eq(0).click()
     academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderArrowRightIcon().click()
-    academicsetuppage.getAddAcademicSetUpPopUpCalenderDates().contains('30').click()
-    academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderIcon().eq(1).click()
-    academicsetuppage.getAddAcademicPopUpCalenderYearArrowDropDownIcon().eq(2).click()
-    academicsetuppage.getAddAcademicPopUpCalenderYearArrowDropDownLists().contains('2025').click()
-    academicsetuppage.getAddAcademicSetUpPopUpCalenderDates().contains('30').click()
+    // academicsetuppage.getAddAcademicSetUpPopUpCalenderDates().contains('30').click()
+    // academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderIcon().eq(1).click()
+    // academicsetuppage.getAddAcademicPopUpCalenderYearArrowDropDownIcon().eq(2).click()
+    // academicsetuppage.getAddAcademicPopUpCalenderYearArrowDropDownLists().contains('2025').click()
+    // academicsetuppage.getAddAcademicSetUpPopUpCalenderDates().contains('30').click()
     // academicsetuppage.getAddAcademicPopUpAddBttn().click()
   })
 
@@ -62,7 +62,7 @@ describe("Admin School Validation", function () {
         cy.wait(1000)
         cy.get('body').click(0, 0)
         cy.wait(2000)
-        gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click()
+        gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({force:true})
         cy.wait(2000)
         adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
         gradeAndSubjectPage.getGrades().each(($el, index, $List) => {
@@ -125,16 +125,25 @@ describe("Admin School Validation", function () {
     gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn().click()
   })
 
-  it('admin school 003 Verify that School admin can add the School infracture successfully',function(){
+  it.only('admin school 003 Verify that School admin can add the School infracture successfully',function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     admin_Schoolpage.getSchoolInfrastructures().click()
+    schoolInfrastructuresPage.getInfrastructureTitle().should('have.text',"School Infrastructure")
     schoolInfrastructuresPage.getAddInfrastructureBttn().click()
-    schoolInfrastructuresPage.getPopUpAddInfrastructureTitle().should('have.text',)
-
-     
-
+    schoolInfrastructuresPage.getPopUpAddInfrastructureTitle().should('have.text',"Add Infrastructure")
+    schoolInfrastructuresPage.getInfrastructureNameTextField().type("testyantra")
+    schoolInfrastructuresPage.getInfrastructureNameTextField().invoke('val').then((text)=>{
+      var infrastructurename =text
+      cy.wrap(infrastructurename).as('infrastructurename')
+    })
+    schoolInfrastructuresPage.getNumberofFloorsTextField().type("10")
+    schoolInfrastructuresPage.getDiscriptionTextField().type("Good infrastructure")
+    schoolInfrastructuresPage.getaddbttn().click()
+    schoolInfrastructuresPage.getAddInfrastructureInsertedSuccessfully().should('have.text',"Inserted Successfully")
+    schoolInfrastructuresPage.getInfrastructureTitle().should('have.text',"School Infrastructure")
+    schoolInfrastructuresPage.getInfrastructureNameText().should('be.visible')
   })
 })
 
