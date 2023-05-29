@@ -67,9 +67,6 @@ class teacherDashboardPage {
     getNewTeacherFirstPageContinueBtn() {
         return cy.get('.MuiButton-contained')
     }
-
-
-
     getDashboardTitle() {
         return cy.get('.Dashboard_tchDshTitle__3rghy')
     }
