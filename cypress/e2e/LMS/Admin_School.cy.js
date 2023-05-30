@@ -141,9 +141,28 @@ describe("Admin School Validation", function () {
     schoolInfrastructuresPage.getNumberofFloorsTextField().type("10")
     schoolInfrastructuresPage.getDiscriptionTextField().type("Good infrastructure")
     schoolInfrastructuresPage.getaddbttn().click()
+    cy.wait(1000)
     schoolInfrastructuresPage.getAddInfrastructureInsertedSuccessfully().should('have.text',"Inserted Successfully")
     schoolInfrastructuresPage.getInfrastructureTitle().should('have.text',"School Infrastructure")
-    schoolInfrastructuresPage.getInfrastructureNameText().should('be.visible')
+    cy.wait(2000)
+    schoolInfrastructuresPage.getInfrastructureNameTexts().each(($el,index,$list)=>{
+      var infraNames = $el.text()
+      if(infraNames === "testyantra"){
+        schoolInfrastructuresPage.getAddRoomBttn().eq(index).click()
+        schoolInfrastructuresPage.getAddRoomPopUpTitle().should('have.text',"Add Room")
+        schoolInfrastructuresPage.getRoomNameTextField().eq(0).type("Kannada")
+        schoolInfrastructuresPage.getRoomNameTextField().eq(1).type("1")
+        schoolInfrastructuresPage.getGradeDropDownBttn().click()
+        schoolInfrastructuresPage.getGradeDropDownLists().contains("Grade 1 - A").click()
+        schoolInfrastructuresPage.getRoomNameTextField().eq(2).type("kannada class start at 9:30am in 1 floor")
+
+        schoolInfrastructuresPage.getInfrastructureDeleteIconBtn().eq(index).click()
+        schoolInfrastructuresPage.getInfrastructureDeleteBttnPopUp().click()
+      
+      }
+    })
+    
+    
   })
 })
 
