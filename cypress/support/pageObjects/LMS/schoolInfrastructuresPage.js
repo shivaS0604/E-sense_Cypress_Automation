@@ -32,9 +32,38 @@ class SchoolInftastructures{
         return cy.xpath("//div[text()='Inserted Successfully']")
     }
 
-    getInfrastructureNameText(){
-        return cy.xpath("//div[text()='testyantra']")
+    getInfrastructureNameTexts(){
+        return cy.get("div.infra-table-row-out div.infra-name-font")
     }
-   
+
+    getInfrastructureDeleteIconBtn(){
+        return cy.get(".rooms-delete-out")
+    }
+
+    getInfrastructureDeleteBttnPopUp(){
+        return cy.get("div.delete-button")
+    }
+
+    getAddRoomBttn(){
+        return cy.get(".rooms-btn-out")
+    }
+
+    
+    getRoomNameTextField(){
+        return cy.get('.schAdminInputCtr')
+    }
+
+    getGradeDropDownBttn(){
+        return cy.get("#demo-simple-select")
+    }
+
+    getGradeDropDownLists(){
+        return cy.get("div.MuiPopover-paper")
+    }
+
+    getAddRoomPopUpTitle(){
+        return cy.xpath("//div[text()='Add Room']")
+    }
+
 }
 module.exports = new SchoolInftastructures()
