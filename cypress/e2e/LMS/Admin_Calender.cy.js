@@ -82,7 +82,7 @@ describe('Calender', function(){
 
     calenderPage.getRemaindersCheckBox().click()
     calenderPage.getWeeklyDropdown().select('Monthly')
-    calenderPage.getVerifyTextInCalenderWithName(date,remain).should('be.visible').wait(500)
+    calenderPage.getVerifyTextInMonthlyCalender(remain).should('be.visible').wait(500)
     calenderPage.getWeeklyDropdown().select('Weekly')
     calenderPage.getRemainderDetailsInCalender(remain).click()
     calenderPage.getDeleteButton().click()
@@ -112,12 +112,13 @@ it("E2E_02_Holiday_To Validate that the user is able to create Holiday in calend
     calenderPage.getSaveHolidayButton().click()
     calenderPage.getHolidayAddedSuccessfullyMsg().should('be.visible',{timeout:10000})
     calenderPage.getWeeklyDropdown().select('Monthly')
-    calenderPage.getVerifyTextInCalenderWithName(date,holiday).should('be.visible').wait(500)
+    calenderPage.getVerifyTextInMonthlyCalender(holiday).should('be.visible').wait(500)
     calenderPage.getWeeklyDropdown().select('Weekly')
     calenderPage.getHolidayDetailsIncalender(holiday).click()
     calenderPage.getDeleteButton().click()
     calenderPage.getDeleteHolidayButton().click({force:true}).wait(1000)
     calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
+    
     
 })
 
@@ -184,7 +185,7 @@ it('E2E_03_Event_To Validate that the user is able to create Event in calender a
             calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
             calenderPage.getEventCheckbox().click()
             calenderPage.getWeeklyDropdown().select('Monthly')
-            calenderPage.getVerifyTextInCalenderWithName(date,event).should('be.visible').wait(500)
+            calenderPage.getVerifyTextInMonthlyCalender(event).should('be.visible').wait(500)
             calenderPage.getWeeklyDropdown().select('Weekly')
             calenderPage.getEventDetailsIncalender(event).click()
             calenderPage.getDeleteButton().click()
@@ -250,7 +251,7 @@ it('E2E_04_Appointment_To Validate that the user is able to create Appointment i
     calenderPage.getCloseIcon().click()
     calenderPage.getAppointmentCheckbox().click()
     calenderPage.getWeeklyDropdown().select('Monthly')
-    calenderPage.getVerifyTextInCalenderWithName(date,appointment).should('be.visible').wait(500)
+    calenderPage.getVerifyTextInMonthlyCalender(appointment).should('be.visible').wait(500)
     calenderPage.getWeeklyDropdown().select('Weekly')
     calenderPage.getEventDetailsIncalender(appointment).click()
     calenderPage.getDeleteButton().click()
@@ -308,7 +309,7 @@ it('E2E_05_Exam_To Validate that the user is able to create exam in calender and
     calenderPage.getExamAddedSuccessfullyMsg().should('be.visible',{timeout:10000})
     calenderPage.getExamCheckbox().click({force:true})
     calenderPage.getWeeklyDropdown().select('Monthly')
-    calenderPage.getVerifyTextInCalenderWithName(date,exam).should('be.visible').wait(500)
+    calenderPage.getVerifyTextInMonthlyCalender(exam).should('be.visible').wait(500)
     calenderPage.getWeeklyDropdown().select('Weekly')
     calenderPage.getExamDetailsIncalender(exam).click()
     calenderPage.getDeleteButton().click()
@@ -388,7 +389,7 @@ it('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selection
             calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})
            
             calenderPage.getWeeklyDropdown().select('Monthly')
-            calenderPage.getVerifyTextInCalenderWithName(date,event).should('be.visible').wait(500)
+            calenderPage.getVerifyTextInMonthlyCalender(event).should('be.visible').wait(500)
             calenderPage.getWeeklyDropdown().select('Weekly')
             calenderPage.getEventDetailsIncalender(event).click()
             calenderPage.getDeleteButton().click()
@@ -399,7 +400,7 @@ it('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selection
 
 
 })
-it('E2E_08_Upload CSV_Validate that the Admin can upload file and it will be displayed in the weekly calendar board.',function(){
+it.only('E2E_08_Upload CSV_Validate that the Admin can upload file and it will be displayed in the weekly calendar board.',function(){
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
     calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })

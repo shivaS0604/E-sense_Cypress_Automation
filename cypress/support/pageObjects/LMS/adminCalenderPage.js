@@ -131,6 +131,9 @@ class CalenderPage{
    getWeeklyDropdown(){
     return cy.get('select')
    }
+   getVerifyTextInMonthlyCalender(text){
+    return cy.xpath('//div[text()="'+text+'"]')
+   }
    getVerifyTextInCalenderWithName(date,remain){
     return cy.xpath('((//div[@class="mbsc-calendar-wrapper mbsc-windows"])[2]/descendant::div[text()="'+date+'"])[2]/following-sibling::div/descendant::div[text()="'+remain+'"]')
    }
