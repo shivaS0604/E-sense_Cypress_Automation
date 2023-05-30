@@ -605,6 +605,38 @@ class AdminReportPage {
     }
 
 
+    // Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports
+    get360ReportMyGradestab(){
+        return cy.xpath('//button[contains(.,"My Grades")]')
+    }
+
+    get360ReportSubjectGrades(){
+        return cy.get('div[class="StudentDetails_prevStdMyGradeItem__3q6Lz MuiBox-root css-0"]')
+    }
+
+    get360ReportMyCompetencyTab(){
+        return cy.xpath('//button[contains(.,"My Competency")]')
+
+    }
+
+    getMyCompetenctPageDropdown(){
+    return cy.get('div[id="demo-simple-select"]')
+    }
+
+    getSelectSubject(){
+        return cy.get('ul[role="listbox"] li').contains('Basic maths')
+    }
+
+    get360ReportSubjectPerformanceTab(){
+        return cy.xpath('//button[contains(.,"Subject Performance")]')
+    }
+
+    getSubjectPerformancePageDropdown(){
+        return cy.get('div[id="demo-simple-select"]')
+        }
+
+
+
 }
 
 module.exports = new AdminReportPage()
