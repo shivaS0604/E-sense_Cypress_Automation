@@ -65,5 +65,9 @@ class SchoolInftastructures{
         return cy.xpath("//div[text()='Add Room']")
     }
 
+    getPopupAddRoomBttn(){
+        return cy.get(".add-btn")
+    }
+
 }
 module.exports = new SchoolInftastructures()
