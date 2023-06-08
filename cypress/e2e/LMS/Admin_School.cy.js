@@ -3,6 +3,7 @@ const academicsetuppage = require('../../support/pageObjects/LMS/academicSetUpPa
 const gradeAndSubjectPage = require('../../support/pageObjects/LMS/academicSetUpGrade&SubjectPage.js')
 const admin_Schoolpage = require('../../support/pageObjects/LMS/admin_Schoolpage.js')
 const schoolInfrastructuresPage = require('../../support/pageObjects/LMS/schoolInfrastructuresPage')
+const curriculumbuilderPage = require('../../support/pageObjects/LMS/curriculumBuilderPage')
 
 describe("Admin School Validation", function () {
 
@@ -24,10 +25,10 @@ describe("Admin School Validation", function () {
     cy.wait(2000)
     academicsetuppage.getAddNewBttn().click()
     academicsetuppage.getAddAcademicSetUpPopUpTittle().contains("Academic Year")
-    academicsetuppage.getAddAcademicPopUpSelectYearDropdownBttn().click()
-    academicsetuppage.getAddAcademicPopUpSelectYearDropdownLists().eq(0).click()
-    academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderIcon().eq(0).click()
-    academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderArrowRightIcon().click()
+    // academicsetuppage.getAddAcademicPopUpSelectYearDropdownBttn().click()
+    // academicsetuppage.getAddAcademicPopUpSelectYearDropdownLists().eq(0).click()
+    // academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderIcon().eq(0).click()
+    // academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderArrowRightIcon().click()
     // academicsetuppage.getAddAcademicSetUpPopUpCalenderDates().contains('30').click()
     // academicsetuppage.getAddAcademicSetUpPopUpStartDateCalenderIcon().eq(1).click()
     // academicsetuppage.getAddAcademicPopUpCalenderYearArrowDropDownIcon().eq(2).click()
@@ -61,7 +62,7 @@ describe("Admin School Validation", function () {
         gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
         cy.wait(1000)
         cy.get('body').click(0, 0)
-        cy.wait(2000)
+        cy.wait(3000)
         gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({force:true})
         cy.wait(2000)
         adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
@@ -125,7 +126,7 @@ describe("Admin School Validation", function () {
     gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn().click()
   })
 
-  it.only('admin school 003 Verify that School admin can add the School infracture successfully',function(){
+  it('admin school 003 Verify that School admin can add the School infracture successfully',function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
@@ -155,15 +156,24 @@ describe("Admin School Validation", function () {
         schoolInfrastructuresPage.getGradeDropDownBttn().click()
         schoolInfrastructuresPage.getGradeDropDownLists().contains("Grade 1 - A").click()
         schoolInfrastructuresPage.getRoomNameTextField().eq(2).type("kannada class start at 9:30am in 1 floor")
-
+        schoolInfrastructuresPage.getPopupAddRoomBttn().click()
         schoolInfrastructuresPage.getInfrastructureDeleteIconBtn().eq(index).click()
         schoolInfrastructuresPage.getInfrastructureDeleteBttnPopUp().click()
       
       }
     })
-    
-    
   })
+
+
+  it.only("admin school 04 Verify that School admin can create the Curriculum successfully for the Grades selected as part fo license",function(){
+    cy.wait(2000)
+    adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
+    adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
+    adminschoolpage.getCurriculumBuilder().click()
+    curriculumbuilderPage.getCurriculumBuilderPageTitleText().should('have.text','Curriculum Builder')
+    curriculumbuilderPage.getTopSchoolTabText().should('have.text',"TopSchool")
+  })
+
 })
 
     //Akshay
