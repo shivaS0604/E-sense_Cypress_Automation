@@ -204,5 +204,6 @@ describe("Admin School Validation", function () {
     quickLinks.getGoBackBtn().click()
     cy.wait(3000)
   })
+  
   //author - shiva
 })
