@@ -172,6 +172,25 @@ describe("Admin School Validation", function () {
     adminschoolpage.getCurriculumBuilder().click()
     curriculumbuilderPage.getCurriculumBuilderPageTitleText().should('have.text','Curriculum Builder')
     curriculumbuilderPage.getTopSchoolTabText().should('have.text',"TopSchool")
+    curriculumbuilderPage.getMySchoolTab().click()
+    curriculumbuilderPage.getMySchoolGradesText().each(($el,index,$list)=>{
+      let count = $el.length
+      for (let i = 0; i <= count; i++) {
+        curriculumbuilderPage.getViewDetailsBttn().eq(index).click()
+        cy.get('.Pending').eq(index).should('be.visible')
+      }
+    })
+    curriculumbuilderPage.getTopSchoolTabText().click()
+    curriculumbuilderPage.getTopSchoolGrades().each(($el1,index,$list)=>{
+      let count1 = $el1.length
+      for (let i = 0; i <= count1; i++) {
+        curriculumbuilderPage.getTopSchoolViewDetails().eq(index).click()
+        curriculumbuilderPage.getDuplicateBttn().click()
+        cy.wait(4000)
+        curriculumbuilderPage.getOverWrightBtn().click()
+        curriculumbuilderPage.getTopSchoolViewDetails().eq(index).click()
+      }
+    })
   })
 
 })
