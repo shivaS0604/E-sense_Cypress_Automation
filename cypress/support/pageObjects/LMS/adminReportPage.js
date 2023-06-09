@@ -421,8 +421,6 @@ class AdminReportPage {
         return cy.xpath('//button[contains(.,"Delete account")]')
     }
 
-
-
     getGradeBookTab() {
         return cy.xpath('//button[contains(.,"GradeBook")]')
     }
