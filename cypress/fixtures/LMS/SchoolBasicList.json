@@ -1,4 +1,5 @@
 {
-    "className" : "Grade 1-A",
-    "student1" : "bhai"
+    "className" : "Grade 1 - A",
+    "student1" : "bhai",
+    "dropdownClassName" : "Grade 1"
 }

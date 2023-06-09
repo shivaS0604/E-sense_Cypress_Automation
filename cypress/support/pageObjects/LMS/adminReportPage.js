@@ -241,7 +241,7 @@ class AdminReportPage {
     //To Create Template
     CreateNewTemplate(Grade, Section, Practicle, AddActivityName, SignatureFile) {
 
-        this.getCreatetemplateButton().click()
+        this.getCreatetemplateButton().click({force:true})
         this.getCreateNewTemplateGradeDropdown().click()
         this.getCreateNewTemplateSelectGradeDropdownValue().contains(Grade).click()
         this.getCreateNewTemplateSectionDropdown().click()
@@ -341,7 +341,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageGenderList() {
-        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('Male')
+        return cy.get('[aria-labelledby="demo-simple-select-label"] li').contains('Male')
     }
 
     getAddStudentPagePrimaryDetailsContactNumb() {
@@ -353,7 +353,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageSelectRelation() {
-        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('Mother')
+        return cy.get('[aria-labelledby="demo-simple-select-label"] li').contains('Mother')
     }
 
     getAddStudentPageGuardianNameTxtfield() {
@@ -389,7 +389,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageGradesList() {
-        return cy.get('[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"]>li').contains('Grade 5')
+        return cy.get('[role="listbox"] li').contains('Grade 5')
     }
 
     getAddStudentPageSectionDropdown() {
@@ -397,7 +397,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageSectionList() {
-        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"]>li').contains('B')
+        return cy.get('[role="listbox"] li').contains('B')
     }
 
     getAddStudentPageRollNumbTxtfield() {
@@ -432,9 +432,9 @@ class AdminReportPage {
     }
 
     getGradeBookStudentsLists() {
-        return cy.get('tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)')
+        return cy.get('tbody>tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)')
     }
-
+    
     getArrowForwordIcon() {
         return cy.get('[data-testid="ArrowForwardIosIcon"]')
     }
@@ -526,6 +526,116 @@ class AdminReportPage {
     getTeacherModuleELAsTab() {
         return cy.xpath('//button[contains(.,"ELAs")]')
     }
+
+
+    // Tc_007 Verify that School Admin can search and select filters in Gradebook
+    getSearchStudentTxtfield(){
+        return cy.get('input[placeholder="Search a student..."]')
+    }
+
+    getAllGradesDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All Grades")]')
+    }
+
+    getAllSectionDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All Sections")]')
+    }
+
+    getAllTermsDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All terms")]')
+    }
+
+    getTermsList(){
+        return cy.get('[aria-labelledby="demo-simple-select-label"] li').contains('Term 1')
+    }
+
+
+
+    // Tc_008 Verify that School Admin can search and select filters in 360 reports
+    getStudent360ReportTab(){
+        return  cy.get('div[class="content-popover-reports"]').eq(1)
+    }
+
+    get360ReportPageTitle(){
+        return cy.xpath('//p[contains(.,"360˚ Reports")]')
+    }
+
+    get360ReportPageStudentList(){
+        return cy.get('table[aria-labelledby="tableTitle"] tbody>tr td:nth-child(3)')
+    }
+
+    get360ReportPageGradeDropdown(){
+        return cy.get('[id="demo-simple-select-1"]')
+    }
+
+    get360ReportPageSectionDropdown(){
+        return cy.get('[id="demo-simple-select-2"]')
+    }
+
+    get360ReportPageAddReportButton(){
+        return cy.get('div[role="tabpanel"] button')
+    }
+
+    get360ReportAddNewReportPageSchoolTypeDropdown(){
+        return cy.get('div[id="demo-simple-select"]').eq(0)
+    }
+
+    get360ReportAddNewReportPageSchoolTypeList(){
+        return cy.get('[aria-labelledby="demo-simple-select-label"] li[data-value="Primary School"]')
+    }
+
+    get360ReportAddNewReportPageGradeDropdown(){
+        return cy.get('div[id="demo-simple-select"]').eq(1)
+    }
+
+    get360ReportAddNewReportPageGradeList(){
+        return cy.get('[aria-labelledby="demo-simple-select-label"] li[data-value="Grade 5"]')
+    }
+
+    get360ReportAddNewReportPageWeightTxtfield(){
+        return cy.get('input[type="number"]').eq(0)
+    }
+
+    get360ReportAddNewReportPageHeightTxtfield(){
+        return cy.get('input[type="number"]').eq(1)
+    }
+
+    get360ReportAddNewReportPageAddButton(){
+        return cy.get('div button').contains('Add')
+    }
+
+
+    // Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports
+    get360ReportMyGradestab(){
+        return cy.xpath('//button[contains(.,"My Grades")]')
+    }
+
+    get360ReportSubjectGrades(){
+        return cy.get('div[class="StudentDetails_prevStdMyGradeItem__3q6Lz MuiBox-root css-0"]')
+    }
+
+    get360ReportMyCompetencyTab(){
+        return cy.xpath('//button[contains(.,"My Competency")]')
+
+    }
+
+    getMyCompetenctPageDropdown(){
+    return cy.get('div[id="demo-simple-select"]')
+    }
+
+    getSelectSubject(){
+        return cy.get('ul[role="listbox"] li').contains('Basic maths')
+    }
+
+    get360ReportSubjectPerformanceTab(){
+        return cy.xpath('//button[contains(.,"Subject Performance")]')
+    }
+
+    getSubjectPerformancePageDropdown(){
+        return cy.get('div[id="demo-simple-select"]')
+        }
+
+
 
 }
 
