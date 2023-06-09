@@ -1,5 +1,6 @@
-const teacherSupportTickets=require("../../support/pageObjects/LMS/teacherSupportTickets.js")
+const teacherSupportTickets=require("../../support/pageObjects/LMS/teacherSupportTicketsPage.js")
 const adminDashboardPage=require("../../support/pageObjects/LMS/adminDashboardPage.js")
+const teacherDashboardPage=require("../../support/pageObjects/LMS/teacherDashboardPage.js")
 describe("Teacher_Support_Tickets",function(){
     beforeEach('Login to application', function () {
         cy.visit(Cypress.env("url"))
@@ -38,7 +39,7 @@ describe("Teacher_Support_Tickets",function(){
 
         teacherSupportTickets.getcloseIcon().click({timeout:10000})
         teacherSupportTickets.getRaiseSupportticketStatus(ticketNumber).should('have.text','Pending').wait(1000)
-        teacherSupportTickets.teacherLogout()
+        teacherDashboardPage.teacherLogout()
         cy.adminLogin(this.credentials.username,this.credentials.password)
         adminDashboardPage.getSideNavBar().invoke('show')
         teacherSupportTickets.getAdminSupportTicketsTab().click({timeout:10000})
@@ -64,9 +65,82 @@ describe("Teacher_Support_Tickets",function(){
 
         })
 
-       
-       
+    })
+    it.only('E2E_03_LeaveRequest_To verify Teacher is notified once the Leave Request is Approved/Rejected.',function(){
+        teacherSupportTickets.getTeacherDashBoardPage().should('be.visible').and('have.text','Your Dashboard')
+        teacherSupportTickets.getTeacherSideNavbar().invoke('show')
+        teacherSupportTickets.getMyCalenderTab().scrollIntoView().click({force:true},{timeout:10000})
+        teacherSupportTickets.getYourCalenderPage().should('be.visible')
+        teacherSupportTickets.getRequestLeaveButton().click({timeout:10000})
+        teacherSupportTickets.getRequestAbsencePopup().should('be.visible')
+        teacherSupportTickets.getReasonforLeaveRadioButton('Vacation Leave').click({timeout:10000})
+        teacherSupportTickets.getLeaveTypeRadioButton(' Full day(s) ').click({timeout:10000})
+        teacherSupportTickets.getStartdateButtonInRequestAbsencepopup().click().wait(500)
+        teacherSupportTickets.getTodayDateButton().click({timeout:10000}).wait(1000)
+        teacherSupportTickets.getEnddateButtonInRequestAbsencepopup().click({timeout:1000})
+        teacherSupportTickets.getTodayDateButton().click({timeout:10000}).wait(1000)
+        teacherSupportTickets.getSendRequestButton().click({timeout:1000}).wait(500)
+       // teacherSupportTickets.getRequestSentSuccessfullyMsg().should('be.visible',{timeout:10000}).wait(1000)
+        teacherSupportTickets.getTeacherSideNavbar().invoke('show')
+        teacherSupportTickets.getTeacherMyProfileTab().scrollIntoView().click({force:true},{timeout:10000})
+        teacherSupportTickets.getAccountandSupportTab().click({timeout:10000})
+        teacherSupportTickets.getAccountandSupportPage().should('be.visible',{timeout:10000})
+        teacherSupportTickets.getTeacherLeaveRequestTab().click().should('be.visible',{timeout:10000})
+        cy.xpath("//div[text()='All']").click()
+        cy.xpath("//li[text()='Approved']").click().wait(10000)
+        teacherSupportTickets.getTeacherApprovedStatus().then(function($el){
+            let teacherLRApprovedcount=$el.length
+            cy.log(teacherLRApprovedcount)
 
+            teacherDashboardPage.teacherLogout()
+            cy.wait(1000)
+            cy.adminLogin(this.credentials.username,this.credentials.password)
+            adminDashboardPage.getSideNavBar().invoke('show')
+            teacherSupportTickets.getAdminSupportTicketsTab().click({force:true},{timeout:10000})
+            teacherSupportTickets.getAdminSupportTicketsPage().should('be.visible').and('have.text','Support Tickets').wait(1000)
+           teacherSupportTickets.getAdminLeaveRequests().click({force:true}).wait(1000)
+           cy.xpath("//div[text()='All']").click().wait(1000)
+           cy.xpath("//li[text()='Approved']").click().wait(10000)
+          
+            cy.xpath("//button[text()='Approved']").then(function($el1){
+                let adminLRApprovedcount=$el1.length
+                cy.log(adminLRApprovedcount)
+                cy.xpath("//div[text()='Approved']").click().wait(1000)
+                cy.xpath("//li[text()='All']").click().wait(10000)
+                teacherSupportTickets.getAdminLeaveRequestsApproveStatusButton().click({timeout:10000}).wait(10000)
+
+
+                cy.xpath("//label[text()='Remarks']/following-sibling::div/textarea[1]").type("Remarks",{timeout:1000}).wait(1000)
+                teacherSupportTickets.getApproveRequestButton().click({timeout:10000})
+                teacherSupportTickets.getLeaveRequestApprovedMsg().should('be.visible',{timeout:10000})
+                adminDashboardPage.getSideNavBar().invoke('show')
+            teacherSupportTickets.getAdminSupportTicketsTab().click({force:true},{timeout:10000})
+            teacherSupportTickets.getAdminSupportTicketsPage().should('be.visible').and('have.text','Support Tickets')
+            teacherSupportTickets.getAdminLeaveRequests().click({force:true},{timeout:10000})
+            cy.xpath("//div[text()='All']").click()
+            cy.xpath("//li[text()='Approved']").click().wait(1000)
+            
+            teacherSupportTickets.getApprovedStatusButton().should('be.length',adminLRApprovedcount+1)
+            adminDashboardPage.logout()
+             cy.wait(10000)
+        cy.teacherLogin(this.credentials.teacherUsername1,this.credentials.teacherPassword)
+        teacherSupportTickets.getTeacherDashBoardPage().should('be.visible').and('have.text','Your Dashboard')
+        teacherSupportTickets.getTeacherSideNavbar().invoke('show')
+        teacherSupportTickets.getTeacherMyProfileTab().scrollIntoView().click({force:true},{timeout:10000})
+        teacherSupportTickets.getAccountandSupportTab().click({timeout:10000})
+        teacherSupportTickets.getAccountandSupportPage().should('be.visible',{timeout:10000})
+        teacherSupportTickets.getTeacherLeaveRequestTab().click().should('be.visible',{timeout:10000})
+        cy.xpath("//div[text()='All']").click()
+        cy.xpath("//li[text()='Approved']").click().wait(1000)
+        teacherSupportTickets.getTeacherApprovedStatus().should('be.length',teacherLRApprovedcount+1)
+
+            })
+    
+            
+        })
 
     })
-})
+  
+    
+    })
+

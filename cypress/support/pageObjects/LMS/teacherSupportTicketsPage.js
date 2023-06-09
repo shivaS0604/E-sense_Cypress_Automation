@@ -1,4 +1,4 @@
-class TeacherSupportTickets{
+class TeacherSupportTicketsPage{
     getBody(){
         return cy.get('body')
     }
@@ -10,7 +10,6 @@ class TeacherSupportTickets{
     }
     getTeacherMyProfileTab(){
         return cy.get('div').contains('My Profile')
-        
     }
     getAccountandSupportTab(){
         return cy.xpath("//div[text()='Account & Support']")
@@ -94,6 +93,71 @@ class TeacherSupportTickets{
         return cy.xpath("//h4[text()='"+ticketNumber+"']")
     }
 
+    getMyCalenderTab(){
+        return cy.xpath("//div[text()='My Calendar']")
+    }
+    getYourCalenderPage(){
+        return cy.xpath("//div[text()='Your Calendar']")
+    }
+    getRequestLeaveButton(){
+        return cy.xpath("//button[text()='Request Leave']")
+    }
+    getRequestAbsencePopup(){
+        return cy.xpath("//p[text()='Request Absence']")
+    }
+    getReasonforLeaveRadioButton(leave){
+        return cy.xpath("//p[text()='"+leave+"']/parent::div[@class='leaveRqtLeveTypeOpt']/span/input")
+    }
+    getLeaveTypeRadioButton(leaveType){
+        return cy.xpath("//p[contains(text(),'"+leaveType+"')]/parent::div[@class='leaveRqtLeveTypeOpt']/span/input")
+    }
+    getStartdateButtonInRequestAbsencepopup(){
+        return cy.xpath('//label[text()="Start Date"]/parent::div')
+       }
+    getEnddateButtonInRequestAbsencepopup(){
+        return cy.xpath('//label[text()="End Date"]/parent::div')
+       }
+    getTodayDateButton(){
+
+        return cy.xpath("//button[contains(@class,'MuiPickersDay-today')]")
+    }
+    getSendRequestButton(){
+        return cy.xpath("//button[text()='Send Request']")
+    }
+    getTeacherLeaveRequestButton(){
+        return cy.xpath("//a[text()='Leave Request']")
+    }
+    getAdminRequestSentSuccesfullyMsg(){
+        return cy.xpath("//h4[contains(text(),'Request Sent Successfully')]")
+    }
+    getAdminLeaveRequests(){
+        return cy.xpath("//a[text()='Leave Requests']")
+    }
+    getAdminLeaveRequestsApproveStatusButton(){
+        return cy.xpath("(//button[text()='Approve'])[1]")
+    }
+    getAdminLeaveRequestsRejectStatusButton(){
+        return cy.xpath("(//button[text()='Reject'])[1]")
+    }
+    getRemarksTextAreaFieldInRequestAbsencepopup(){
+        return cy.xpath("//label[text()='Remarks']/following-sibling::div/textarea[1]")
+    }
+    getApproveRequestButton(){
+        return cy.xpath("//button[text()='Approve Request']")
+    }
+    getLeaveRequestApprovedMsg(){
+         return cy.xpath("//p[text()='Leave Request Approved']")
+    }
+    getApprovedStatusButton(){
+        return cy.xpath("//button[text()='Approved']")
+    }
+    getTeacherLeaveRequestTab(){
+        return cy.xpath("//a[text()='Leave Request']")
+    }
+    getTeacherApprovedStatus(){
+        return cy.xpath("//p[text()='Approved']")
+    }
+
     teacherLogout(){
         this.getTeacherSideNavbar().invoke('show').wait(1000)
         this.getTeacherMyProfileTab().scrollIntoView().click({force:true},{timeout:10000})
@@ -101,7 +165,7 @@ class TeacherSupportTickets{
         this.getGoToHomelink().then(function($el){
             if($el.text()=='Go to Home')
             {
-                cy.wrap($el).dblclick({force:true}).wait(10000)
+                cy.xpath("//a[@class='link_404']").click({force:true}).wait(1000)
             }
             else{
                 cy.visit(Cypress.env("url"))
@@ -115,5 +179,5 @@ class TeacherSupportTickets{
  
 }
 
-module.exports=new TeacherSupportTickets()
+module.exports=new TeacherSupportTicketsPage()
 //Pavani
