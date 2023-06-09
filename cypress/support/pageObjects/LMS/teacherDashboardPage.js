@@ -75,9 +75,9 @@ class teacherDashboardPage {
     teacherLogout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
         this.getLogoutBtnInMyProfileList().click({ force: true }).wait(4000)
-        cy.get('body').then(($el) => {
+        cy.get('body').each(($el) => {
             if ($el.find('a.link_404').length > 0) {
-                cy.get('a.link_404').click().wait(1000)
+                cy.get('a.link_404').click().wait(2000)
             }
         })
     }

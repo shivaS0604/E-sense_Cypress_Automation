@@ -19,5 +19,9 @@ class adminSchoolPage{
     getSchoolInfrastructures(){
         return cy.xpath('//p[text()="School Infrastructure"]')
     }
+
+    getCurriculumBuilder(){
+        return cy.xpath('//p[text()="Curriculum Builder"]')
+    }
 }
 module.exports = new adminSchoolPage()

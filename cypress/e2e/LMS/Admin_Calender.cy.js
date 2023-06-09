@@ -317,7 +317,7 @@ it('E2E_05_Exam_To Validate that the user is able to create exam in calender and
     calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
 
 })
-it('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
+it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
     calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
@@ -400,7 +400,7 @@ it('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selection
 
 
 })
-it.only('E2E_08_Upload CSV_Validate that the Admin can upload file and it will be displayed in the weekly calendar board.',function(){
+it('E2E_08_Upload CSV_Validate that the Admin can upload file and it will be displayed in the weekly calendar board.',function(){
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
     calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })

@@ -241,7 +241,7 @@ class AdminReportPage {
     //To Create Template
     CreateNewTemplate(Grade, Section, Practicle, AddActivityName, SignatureFile) {
 
-        this.getCreatetemplateButton().click()
+        this.getCreatetemplateButton().click({force:true})
         this.getCreateNewTemplateGradeDropdown().click()
         this.getCreateNewTemplateSelectGradeDropdownValue().contains(Grade).click()
         this.getCreateNewTemplateSectionDropdown().click()
@@ -389,7 +389,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageGradesList() {
-        return cy.get('[aria-labelledby="demo-simple-select-label"] li').contains('Grade 5')
+        return cy.get('[role="listbox"] li').contains('Grade 5')
     }
 
     getAddStudentPageSectionDropdown() {
@@ -397,7 +397,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageSectionList() {
-        return cy.get('[aria-labelledby="demo-simple-select-label"] li').contains('B')
+        return cy.get('[role="listbox"] li').contains('B')
     }
 
     getAddStudentPageRollNumbTxtfield() {
@@ -420,8 +420,6 @@ class AdminReportPage {
     getAdminModuleUserPageStudentsListDeleteButton() {
         return cy.xpath('//button[contains(.,"Delete account")]')
     }
-
-
 
     getGradeBookTab() {
         return cy.xpath('//button[contains(.,"GradeBook")]')
