@@ -300,7 +300,7 @@ class adminUsersPage {
     }
 
     getDepartmentDrpDwn() {
-        return cy.get('.css-13sljp9 > .MuiOutlinedInput-root > #demo-simple-select')
+        return cy.xpath('//input[@name="department"]/..')
     }
 
     getDeptLst() {
@@ -516,11 +516,12 @@ class adminUsersPage {
         this.getContactNoFld().type("9797979797")
         this.getAddressline1Fld().type("Topschool")
         this.getPincodeFld().type("636401")
+        cy.wait(3000)
+        this.getContinueBtn().click()
+        cy.wait(2000)
         this.getDepartmentDrpDwn().click()
         this.getDeptLst().first().click()
         cy.wait(4000)
-        this.getContinueBtn().click()
-        cy.wait(3000)
         this.getDepartmentDrpDwn().click()
         this.getDeptLst().first().click()
         this.getContinueBtn2().click()
@@ -531,8 +532,8 @@ class adminUsersPage {
         cy.wait(1000)
         this.getSectionCheckBx().click()
         this.getClassTeacherRadioBtn().click()
-        this.getSelectSubjectsDrpDwn().click()
-        this.getSelSubjectCheckBx().click()
+        this.getSelectSubjectsDrpDwn().last().click()
+        this.getSelSubjectCheckBx().last().click()
         cy.get('body').click(0, 0)
         this.getThirdContinueBtn().click()
         cy.wait(2000)

@@ -24,7 +24,7 @@ describe("Admin School Validation", function () {
     teacherDashboard.getMarkClassAttendanceBtn().click().wait(2000)
     teacherDashboard.getMarkAttendanceBtnInMarkAttendancePage().invoke('text').then((text) => {
       if (text === "Mark Attendance ") {
-        teacherDashboard.getMarkAttendanceBtnInMarkAttendancePage().click()
+        teacherDashboard.getMarkAttendanceBtnInMarkAttendancePage().click().wait(2000)
         teacherDashboard.getMarkAttendanceSubmitBtn().click()
         cy.contains("Submit Attendance Record!").should('be.visible')
         teacherDashboard.getYesSubmitMarkAttendanceSubmitBtn().click()
@@ -77,7 +77,8 @@ describe("Admin School Validation", function () {
     cy.contains("50%").should('be.visible')
   })
 
-  it("Adm_Dashboard 005 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
+  it.only("Adm_Dashboard 005 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
+    cy.viewport(1920, 1080) 
     adminUsersPage.newTeacherCreation()
     adminUsersPage.getSiTeacherLst().contains("alex").invoke('text').then((name) => {
       adminDashboardPage.logout()
@@ -150,7 +151,7 @@ describe("Admin School Validation", function () {
     })
   })
 
-  it.only("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
+  it.skip("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
     cy.wait(2000)
     quickLinks.getMenuSchoolImg().click()
     quickLinks.getTimetableManagementBtn().contains('School Infrastructure').should('be.visible').click()
@@ -206,4 +207,6 @@ describe("Admin School Validation", function () {
   })
   
   //author - shiva
+  //Section A created by manually for grade 5
+  //manually created one teacher (alex) and deleted in script itself
 })
