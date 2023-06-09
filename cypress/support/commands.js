@@ -3,10 +3,6 @@ import 'cypress-file-upload'
 
 // Shadow dom element plugin
 // import 'cypress-shadow-dom/commands';
-<<<<<<< HEAD
-=======
-
->>>>>>> b03d0b6008facb8e6edbceac5349eda035bd4db1
 
 
 

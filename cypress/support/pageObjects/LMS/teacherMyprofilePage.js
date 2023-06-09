@@ -5,7 +5,7 @@ class teacherMyprofilePage {
 
 
     accountAandSupportRequestChangeBtn(){
-        return cy.get('button.clickbtn')
+        return cy.get('.MuiButton-root')
     } 
 
 
@@ -22,11 +22,43 @@ class teacherMyprofilePage {
     } 
 
     accountAandSupportRequestChangepopupSendRequestBtn(){
-        return cy.get('li[role="option"]')
+        return cy.get('button.request_btn')
     } 
 
     accountAandSupportRequestChangeSuccessfullypopupCloseBtn(){
         return cy.get('svg[data-testid="CloseIcon"]')
+    }
+
+    getSupportAndFeedbackTab(){
+        return cy.get('a.ClassDashboard_routeDesign__2n_Xy').contains('Support & Feedback')
+    }
+
+    getFeedbackTaggaleBtn(){
+        return cy.get('button[value="feedback"]')
+    }
+
+    getShareFeedbackBtn(){
+        return cy.contains('+ New Feedback')
+    }
+
+    getShareFeedbackSelectModuleDropdown(){
+        return cy.get('div[id="rc_screen"]')
+    }
+
+    getShareFeedbackSelectModuleDropdownOpt(){
+        return cy.get('li[role="option"]')
+    }
+
+    getShareFeedbackEnterYourFeedbackTextareaFld(){
+        return cy.get('[id="rc_content"]')
+    }
+
+    getShareFeedbackstarBtn(){
+        return cy.get('span label')
+    }
+
+    getShareFeedbackSubmitBtn(){
+        return cy.get('button.request_btn')
     }
 
 }
