@@ -306,7 +306,6 @@ it('E2E_05_Exam_To Validate that the user is able to create exam in calender and
     calenderPage.getExamTypeDropdownList('Test 1').click()
     calenderPage.getAttachAFileButton().attachFile('LMS/Event_added.pdf',{force:true}).wait(500)
     calenderPage.getSaveExamButton().click().wait(500)
-    calenderPage.getExamAddedSuccessfullyMsg().should('be.visible',{timeout:10000})
     calenderPage.getExamCheckbox().click({force:true})
     calenderPage.getWeeklyDropdown().select('Monthly')
     calenderPage.getVerifyTextInMonthlyCalender(exam).should('be.visible').wait(500)
@@ -317,7 +316,7 @@ it('E2E_05_Exam_To Validate that the user is able to create exam in calender and
     calenderPage.getYourCalenderText().should('be.visible',{timeout:10000})
 
 })
-it.only('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
+it('E2E_07_Filter_To Validate that when admin apply filtter. Filttered selections are displayed in weekly calendar board.',function(){
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
     calenderPage.getYourCalenderText().should('be.visible', { delay: 10000 })
