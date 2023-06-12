@@ -174,8 +174,5 @@ describe("TeacherReports", function () {
         teacherReport.getPracticleTxtField().click().type('00')
         teacherReport.getCancelBtn().click()
 
-    
-
-
     })
 })
