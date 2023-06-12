@@ -23,5 +23,9 @@ class adminSchoolPage{
     getCurriculumBuilder(){
         return cy.xpath('//p[text()="Curriculum Builder"]')
     }
+
+    getAdminAccounts(){
+        return cy.xpath('//p[text()="Admin Accounts"]')
+    }
 }
 module.exports = new adminSchoolPage()

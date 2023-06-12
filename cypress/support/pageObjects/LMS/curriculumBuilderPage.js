@@ -35,5 +35,41 @@ class curriculumBuilderPage{
     getOverWrightBtn(){
         return cy.xpath("//button[text()='Overwrite']")
     }
+
+    getAllSelectGradesCheckBox(){
+        return cy.get("span.topsclMbl")
+    }
+
+    getMySchoolAllSelectGradesCheckBox(){
+        return cy.get("span.mysclMbl")
+    }
+
+    getBottomDuplicateBtn(){
+        return cy.xpath("//div[text()='Duplicate Curriculum']")
+    }
+
+    getSussfullMessage(){
+        return cy.get('.MuiAlert-message')
+    }
+
+    getMyschlBootomApproveBtn(){
+        return cy.xpath('//div[text()="Approve"]')
+    }
+
+    getMyschlPopUpApproveBtn(){
+        return cy.xpath('//span[text()="Approve"]')
+    }
+
+    getCurriculumApprovePopUpText(){
+        return cy.xpath("//div[text()='Curriculum Approved']")
+    }
+
+    getCurriculumApproveCloseBtn(){
+        return cy.get('.close-btn')
+    }
+
+    getMyschlCourses(){
+        return cy.get('th.logo-course')
+    }
 }
 module.exports = new curriculumBuilderPage()
