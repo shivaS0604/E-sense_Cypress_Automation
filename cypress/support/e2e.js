@@ -1,6 +1,9 @@
 //X-path plugin
 require('cypress-xpath');
 
+//Mochawesome reporter plugin
+import 'cypress-mochawesome-reporter/register';
+
 // File-Upload Plugin
 import 'cypress-file-upload';
 import './commands'

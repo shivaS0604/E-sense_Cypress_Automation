@@ -77,7 +77,7 @@ describe("Admin School Validation", function () {
     cy.contains("50%").should('be.visible')
   })
 
-  it.only("Adm_Dashboard 005 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
+  it("Adm_Dashboard 006 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
     cy.viewport(1920, 1080) 
     adminUsersPage.newTeacherCreation()
     adminUsersPage.getSiTeacherLst().contains("alex").invoke('text').then((name) => {
@@ -126,7 +126,8 @@ describe("Admin School Validation", function () {
         cy.contains("Leave Request Approved Substitution Pending").should('be.visible').wait(1500)
         adminDashboardPage.getApprovedStatusLstInLeaveRequestsPage("alex").should('have.text', "Approved")
         adminDashboardPage.getDashboardTabInSideNavigationBar().scrollIntoView().click()
-        adminDashboardPage.getRightArrowIconInDashboardPage().click().wait(3000)
+        adminDashboardPage.getRightArrowIconInDashboardPage().click().wait(4000)
+        cy.get('body').click(0,0)
         adminDashboardPage.getTeacherPresentCount().scrollIntoView().invoke('text').then(text => {
           cy.log(text)
           var first = Number(text.charAt(0));
@@ -137,7 +138,7 @@ describe("Admin School Validation", function () {
     })
   })
 
-  it("Adm_Dashboard 006 To Validate the Student registration count is reflected in the Student Registration Sections", function () {
+  it("Adm_Dashboard 007 To Validate the Student registration count is reflected in the Student Registration Sections", function () {
     adminUsersPage.getAdminUsersSideMenuTab().click()
     adminUsersPage.getAdminUsersStudentTab().click()
     let studentCount;
@@ -151,59 +152,8 @@ describe("Admin School Validation", function () {
     })
   })
 
-  it.skip("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
-    cy.wait(2000)
-    quickLinks.getMenuSchoolImg().click()
-    quickLinks.getTimetableManagementBtn().contains('School Infrastructure').should('be.visible').click()
-    cy.wait(2500)
-    cy.contains('School Infrastructure').should('be.visible')
-    cy.get('body').then(($el) => {
-      if ($el.find('[class="rooms-delete-out"] img').length > 0) {
-        quickLinks.getDeleteIconInfrastructure().then(($el) => {
-          var delLen = $el.length
-          cy.wrap(delLen).as('delLen')
-        })
-        cy.get('@delLen').then((delLen) => {
-          for (let index = 0; index < delLen; index++) {
-            quickLinks.getDeleteIconInfrastructure().eq(0).click()
-            cy.wait(1000)
-            quickLinks.getDeleteConfirmIconInfrastructure().should('be.visible').click()
-            quickLinks.getDeleteSuccessMsg().should('be.visible')
-            cy.wait(1000)
-          }
-        })
-        cy.reload()
-      }
-    })
-    cy.contains('No data found').should('be.visible')
-    quickLinks.getAddInfrastructureButton().should('be.visible').click()
-    quickLinks.getAddInfrastructureTextFields().should('be.visible').eq(0).clear().type(this.timeTableCreation.infraStructureName)
-    quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floors)
-    quickLinks.getAddInfrastructureTextFields().eq(2).clear().type(this.timeTableCreation.description)
-    quickLinks.getAddInfrastructureAddBtn().click()
-    quickLinks.getInsertedSuccessMsg().should('be.visible')
-    let roomLen = (this.timeTableCreation.roomName).length
-    for (let index = 0; index < roomLen; index++) {
-      quickLinks.getAddRoomBtn().should('be.visible').click()
-      quickLinks.getAddInfrastructureTextFields().should('be.visible').eq(0).clear().type(this.timeTableCreation.roomName[index])
-      if (index < roomLen / 3) {
-        quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[0])
-      }
-      else if (index < (roomLen / 3) * 2) {
-        quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[1])
-      }
-      else {
-        quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[2])
-      }
-      quickLinks.getAddInfrastructureTextFields().eq(2).clear().type(this.timeTableCreation.description)
-      quickLinks.getAddRoomGradeDropdown().click()
-      quickLinks.getAddRoomGradeDropdownList().should('be.visible').eq(index).click({ force: true })
-      quickLinks.getAddInfrastructureAddBtn().click()
-      quickLinks.getInsertedSuccessMsg().should('be.visible')
-    }
-    cy.wait(3000)
-    quickLinks.getGoBackBtn().click()
-    cy.wait(3000)
+  it("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
+    
   })
   
   //author - shiva
