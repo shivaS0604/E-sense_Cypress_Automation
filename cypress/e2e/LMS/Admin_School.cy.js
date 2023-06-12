@@ -201,7 +201,7 @@ describe("Admin School Validation", function () {
     })
   })
 
-  it.only("admin school 04 Verify that School admin can add new Admin accounts successfully with granting access per module required",function(){
+  it("admin school 04 Verify that School admin can add new Admin accounts successfully with granting access per module required",function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
@@ -213,8 +213,10 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getDesignationNameTextField().invoke('val').then((text)=>{
       var designationName = text
       cy.log(designationName)
+      cy.wrap(designationName).as('designationName')
     })
     adminaccountsPage.getViewEditApprovalCheckBox().click({multiple:true})
+    adminaccountsPage.getAddRolePopUpBtn().click()
 
 
   })
