@@ -12,6 +12,14 @@ class GradeAndSubjectPage{
         return cy.get('button.sectionsBtn')
     }
 
+    getSectionBtn(){
+        return cy.xpath("//div[text()='Grade 5']//ancestor::tr//button[contains(@class,'sectionsBtn')]")
+    }
+
+    getSectionBtn1(){
+        return cy.xpath("//div[text()='Grade 6']//ancestor::tr//button[contains(@class,'sectionsBtn')]")
+    }
+
     getAddNewSectionPopUPTitle(){
         return cy.get('span.title')
     }
