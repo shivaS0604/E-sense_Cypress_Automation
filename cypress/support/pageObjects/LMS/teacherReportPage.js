@@ -91,5 +91,9 @@ class TeacherReport{
     getSectionList(){
         return cy.get('[role="listbox"] li').contains('A')
     }
+
+    getSaveANDcountinueBtn(){
+        return cy.xpath('//button[contains(.,"Save and Continue ")]')
+    }
 }
 module.exports = new TeacherReport();

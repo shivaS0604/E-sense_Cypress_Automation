@@ -389,7 +389,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageGradesList() {
-        return cy.get('[role="listbox"] li').contains('Grade 5')
+        return cy.get('[role="listbox"] li').contains('Grade 2')
     }
 
     getAddStudentPageSectionDropdown() {
@@ -397,7 +397,7 @@ class AdminReportPage {
     }
 
     getAddStudentPageSectionList() {
-        return cy.get('[role="listbox"] li').contains('B')
+        return cy.get('[role="listbox"] li').contains('A')
     }
 
     getAddStudentPageRollNumbTxtfield() {
@@ -442,11 +442,11 @@ class AdminReportPage {
     }
 
     getTheoryTextField() {
-        return cy.get('input[type="number"]').eq(0)
+        return cy.get('input[type="text"]').eq(0)
     }
 
     getPracticleTextfield() {
-        return cy.get('input[type="number"]').eq(1)
+        return cy.get('input[type="text"]').eq(1)
     }
 
     getCoScholasticActivities1_TxtField() {
@@ -587,7 +587,7 @@ class AdminReportPage {
     }
 
     get360ReportAddNewReportPageGradeList(){
-        return cy.get('[aria-labelledby="demo-simple-select-label"] li[data-value="Grade 5"]')
+        return cy.get('[aria-labelledby="demo-simple-select-label"] li[data-value="Grade 2"]')
     }
 
     get360ReportAddNewReportPageWeightTxtfield(){

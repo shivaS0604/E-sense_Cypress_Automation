@@ -2,7 +2,7 @@ const adminReportPage = require('../../support/pageObjects/LMS/adminReportPage')
 const ReportDashboardPage = require('../../support/pageObjects/LMS/adminReportPage')
 const dashboard = require("../../support/pageObjects/LMS/adminDashboardPage")
 const teacherDashboard = require("../../support/pageObjects/LMS/teacherDashboardPage")
-
+const teacherReport = require('../../support/pageObjects/LMS/teacherReportPage')
 
 describe('Admin Report Validation', function () {
 
@@ -38,7 +38,7 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.getCreateNewTemplateMaxMarksDropdown().click()
     ReportDashboardPage.getCreateNewTemplateSelectMaxMarksValue().click()
     ReportDashboardPage.getCreateNewTemplateAddSubjectButton().click()
-    cy.get(':nth-child(2) > .CreateNewTemplate_crtNewTempAddThyContr__1H9Jb > .MuiButton-root > img').click()
+  //  cy.get(':nth-child(2) > .CreateNewTemplate_crtNewTempAddThyContr__1H9Jb > .MuiButton-root > img').click()
     ReportDashboardPage.getCreateNewTemplateSubjectDropdown().click()
     ReportDashboardPage.getCreateNewTemplateSelectSubjectvalue().click()
     ReportDashboardPage.getCreateNewTemplateAddTheoryAndPracticleButton().click()
@@ -258,7 +258,7 @@ describe('Admin Report Validation', function () {
 
 
 
-  it('Tc_006 Verify that School Admin can Add results for respective students', function () {
+  it.only('Tc_006 Verify that School Admin can Add results for respective students', function () {
 
     // pre condition --- Create student
     ReportDashboardPage.getUserTab().click()
@@ -297,12 +297,9 @@ describe('Admin Report Validation', function () {
       }
     })
     ReportDashboardPage.getEditButton().click()
-    ReportDashboardPage.getTheoryTextField().click().wait(1000).type(80)
-    ReportDashboardPage.getPracticleTextfield().click().wait(1000).type(20)
-    ReportDashboardPage.getCoScholasticActivities1_TxtField().next().type(1)
-    ReportDashboardPage.getCoScholasticActivities2_TxtField().next().type(2)
-    ReportDashboardPage.getCoScholasticActivities3_TxtField().next().type(3)
-    ReportDashboardPage.getCoScholasticActivities4_TxtField().next().type(4)
+    ReportDashboardPage.getTheoryTextField().click().wait(1000).type(70)
+    ReportDashboardPage.getPracticleTextfield().click().wait(1000).type('00')
+    teacherReport.getCoScholasticActivitiesMarksTxtField().click().type(3)
     ReportDashboardPage.getRemarksTextfield().type(this.TemplateDetails.Remarks)
     ReportDashboardPage.getTotalPercentage().should('be.visible')
     ReportDashboardPage.getResult().should('be.visible')
@@ -335,11 +332,14 @@ describe('Admin Report Validation', function () {
     })
 
     ReportDashboardPage.getTeacherModuleMyClassTab().click({ force: true })
-    ReportDashboardPage.getTeacherModuleSubjectTab().click({ force: true })
-    ReportDashboardPage.getTeacherModuleAssessmentsTab().click({ force: true }).wait(1000)
-    ReportDashboardPage.getTeacherModuleELAsTab().should('be.visible').wait(1000)
-    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click({ force: true })
-    ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    // ReportDashboardPage.getTeacherModuleSubjectTab().click({ force: true })
+    // ReportDashboardPage.getTeacherModuleAssessmentsTab().click({ force: true }).wait(1000)
+    // ReportDashboardPage.getTeacherModuleELAsTab().should('be.visible').wait(1000)
+    cy.go('back')
+    ReportDashboardPage.getAdminReportsSideMenubarReportTab().click({ force: true }).wait(2000)
+   // ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+   teacherReport.getStudentGradeBookTab().eq(0).wait(1000).click()
+        cy.wait(1000)
     ReportDashboardPage.getGradeBookStudentsLists().each(($element) => {
       if ($element.text() == this.TemplateDetails.StudentName) {
         ReportDashboardPage.getStudentResult().should('be.visible')
@@ -485,6 +485,10 @@ describe('Admin Report Validation', function () {
     })
 
     // Post conditon- Delete Created Student account
+    teacherDashboard.teacherLogout()
+    cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+      cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+    })
     ReportDashboardPage.getUserTab().click({ force: true })
     ReportDashboardPage.getStudentsTab().click().wait(2000)
     ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
@@ -505,7 +509,7 @@ describe('Admin Report Validation', function () {
     var RandNum = Math.floor(Math.random() * 10)
     ReportDashboardPage.getUserTab().click()
     ReportDashboardPage.getStudentsTab().click()
-    ReportDashboardPage.getAddStudentsIcon().click()
+    ReportDashboardPage.getAddStudentsIcon().click({force:true})
     ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type(this.TemplateDetails.StudentName)
     ReportDashboardPage.getAddStudentPageGenderDropdown().click()
     ReportDashboardPage.getAddStudentPageGenderList().click()
@@ -532,10 +536,10 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.get360ReportPageTitle().should('have.text', '360˚ Reports').wait(2000)
     ReportDashboardPage.get360ReportPageGradeDropdown().click()
     // ReportDashboardPage.getAddStudentPageGradesList().click()
-    cy.get('[role="listbox"] li').contains('Grade 5').click()
+    cy.get('[role="listbox"] li').contains('Grade 2').click()
     ReportDashboardPage.get360ReportPageSectionDropdown().click()
     //ReportDashboardPage.getAddStudentPageSectionList().click().wait(2000)
-    cy.get('[role="listbox"] li').contains('B').click().wait(2000)
+    cy.get('[role="listbox"] li').contains('A').click().wait(2000)
     ReportDashboardPage.get360ReportPageStudentList().each(($Txt, index) => {
       console.log($Txt.text());
       var StudentName = $Txt.text()
@@ -560,6 +564,18 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
     ReportDashboardPage.get360ReportPageTitle().should('have.text', '360˚ Reports').wait(2000)
 
+    // Post conditon- Delete Created Student account
+    ReportDashboardPage.getUserTab().click({ force: true })
+    ReportDashboardPage.getStudentsTab().click().wait(2000)
+    ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+      var studentName = $text.text().trim()
+      if (studentName === this.TemplateDetails.StudentName) {
+        ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+        ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+        ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+      }
+
+    })
 
   })
 
