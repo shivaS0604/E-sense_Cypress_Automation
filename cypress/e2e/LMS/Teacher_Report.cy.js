@@ -123,7 +123,7 @@ describe("TeacherReports", function () {
         })
     })
 
-    it.only('Tc__002 Verify that Teacher can view the Published / Pending Students Gradebook of the respective grades ',function(){
+    it('Tc__002 Verify that Teacher can view the Published / Pending Students Gradebook of the respective grades ',function(){
         // pre condition --- Create student
         var randNumb = Math.floor(Math.random() * 10)
         teacherDashboard.teacherLogout()
