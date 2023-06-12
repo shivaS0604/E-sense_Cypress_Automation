@@ -216,6 +216,7 @@ describe("Admin School Validation", function () {
       cy.wrap(designationName).as('designationName')
     })
     adminaccountsPage.getViewEditApprovalCheckBox().click({multiple:true})
+    adminaccountsPage.getAddRolePopUpBtn().click()
 
 
   })
