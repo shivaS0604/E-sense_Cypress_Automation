@@ -66,7 +66,7 @@ describe("Teacher_Support_Tickets",function(){
         })
 
     })
-    it.only('E2E_03_LeaveRequest_To verify Teacher is notified once the Leave Request is Approved/Rejected.',function(){
+    it('E2E_03_LeaveRequest_To verify Teacher is notified once the Leave Request is Approved/Rejected.',function(){
         teacherSupportTickets.getTeacherDashBoardPage().should('be.visible').and('have.text','Your Dashboard')
         teacherSupportTickets.getTeacherSideNavbar().invoke('show')
         teacherSupportTickets.getMyCalenderTab().scrollIntoView().click({force:true},{timeout:10000})
@@ -80,7 +80,6 @@ describe("Teacher_Support_Tickets",function(){
         teacherSupportTickets.getEnddateButtonInRequestAbsencepopup().click({timeout:1000})
         teacherSupportTickets.getTodayDateButton().click({timeout:10000}).wait(1000)
         teacherSupportTickets.getSendRequestButton().click({timeout:1000}).wait(500)
-       // teacherSupportTickets.getRequestSentSuccessfullyMsg().should('be.visible',{timeout:10000}).wait(1000)
         teacherSupportTickets.getTeacherSideNavbar().invoke('show')
         teacherSupportTickets.getTeacherMyProfileTab().scrollIntoView().click({force:true},{timeout:10000})
         teacherSupportTickets.getAccountandSupportTab().click({timeout:10000})
