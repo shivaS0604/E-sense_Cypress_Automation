@@ -16,7 +16,7 @@ describe('Admin Report Validation', function () {
     cy.fixture('LMS/GradeBook_templateDetails').as('TemplateDetails')
   })
 
-  it.only('Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template', function () {
+  it('Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template', function () {
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
     ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
