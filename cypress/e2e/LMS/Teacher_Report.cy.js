@@ -15,11 +15,13 @@ describe("TeacherReports", function () {
             cy.teacherLogin(credentials.teacherUsername2, credentials.teacherPassword)
             this.credentials = credentials;
         })
+
     })
+
 
     it('Tc__001 Verify that Teacher can add / edit the results in Students Gradebook  of the respective grades', function () {
         // pre condition --- Create student
-        var randNumb = Math.floor(Math.random() * 10)
+        var randNumb = Math.floor(Math.random() * 100)
         teacherDashboard.teacherLogout()
         cy.wait(500)
         cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
@@ -48,7 +50,7 @@ describe("TeacherReports", function () {
         ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(randNumb)
         ReportDashboardPage.getAddStudentButton().click()
         dashboard.logout()
-
+   
         // Actual condition --Verify that Teacher can add / edit the results in Students Gradebook  of the respective grades
         cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
             cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
@@ -125,7 +127,7 @@ describe("TeacherReports", function () {
 
     it('Tc__002 Verify that Teacher can view the Published / Pending Students Gradebook of the respective grades ',function(){
         // pre condition --- Create student
-        var randNumb = Math.floor(Math.random() * 10)
+        var randNumb = Math.floor(Math.random() * 100)
         teacherDashboard.teacherLogout()
         cy.wait(500)
         cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
@@ -170,9 +172,29 @@ describe("TeacherReports", function () {
             }
         })
         teacherReport.getEditBtn().click().wait(1000)
-        teacherReport.getTheoryTxtField().click().clear().type(70)
+        teacherReport.getTheoryTxtField().click().type(70)
         teacherReport.getPracticleTxtField().click().type('00')
         teacherReport.getCancelBtn().click()
+        teacherReport.getSaveANDcountinueBtn().click()
+        ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', 'Student Gradebook')
+        teacherDashboard.teacherLogout()
+        cy.wait(1000)
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+
+        // Post conditon- Delete Created Student account
+        ReportDashboardPage.getUserTab().click({ force: true })
+        ReportDashboardPage.getStudentsTab().click().wait(2000)
+        ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+            var studentName = $text.text().trim()
+            if (studentName === 'kumar') {
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+            }
+        })
+
 
     })
 })
