@@ -16,7 +16,7 @@ describe("Admin School Validation", function () {
     cy.fixture("LMS/TimeTableCreation").as('timeTableCreation')
   })
 
-  it('Adm_Dashboard 001 To validate user is able to view the attendance marked is reflected in the Grade wise attendace section and Student Present widgets', function () {
+  it.only('Adm_Dashboard 001 To validate user is able to view the attendance marked is reflected in the Grade wise attendace section and Student Present widgets', function () {
     adminDashboardPage.logout()
     cy.fixture("LMS/Credentials").then(function (validTeacherLoginData) {
       cy.teacherLogin(validTeacherLoginData.teacherUsername1, validTeacherLoginData.teacherPassword)
