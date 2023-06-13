@@ -20,7 +20,7 @@ module.exports = defineConfig({
   },
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": "./",
+    "baseUrl": "./", 
     "types": ["@shelex/cypress-allure-plugin"],
     "noEmit": true
 },
